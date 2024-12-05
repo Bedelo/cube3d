@@ -2,7 +2,8 @@ CC = cc
 
 NAME = libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g3
 
 
 SRC = ft_isalpha.c \
