@@ -6,7 +6,8 @@ CUBE_NAME = cube3D
 SRCS = ./srcs/
 INCLUDE = ./includes/
 
-CUBE_SRC = $(SRCS)main.c
+CUBE_SRC = $(SRCS)main.c \
+			$(SRCS)parsing.c
 
 
 CUBE_OBJ = $(CUBE_SRC:.c=.o)
@@ -14,11 +15,24 @@ CUBE_OBJ = $(CUBE_SRC:.c=.o)
 NAME = $(CUBE_NAME)
 all: $(NAME)
 
-$(CUBE_NAME): $(CUBE_OBJ)
-	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(CUBE_NAME) $(CUBE_OBJ)
+$(NAME_MAC): $(CUBE_OBJ)
+	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(CUBE_NAME) $(CUBE_OBJ) -lm -L$(LIBFT_PATH) -lft
+
+PATH_MLX = ./minilibx-linux/
+
+$(NAME): $(LIBFT) $(MLX) $(CUBE_OBJ) 
+	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(CUBE_NAME) $(CUBE_OBJ) -lm -L$(LIBFT_PATH) -lft -L$(PATH_MLX) -lmlx -lXext -lX11
+
+LIBFT_PATH = ./Libft
+LIBFT = $(LIBFT_PATH)/libft.a
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_PATH)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+
+mac:
+	$(NAME_MAC)
 
 clean:
 	rm -f $(CUBE_OBJ)
