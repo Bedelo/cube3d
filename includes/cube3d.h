@@ -36,4 +36,10 @@ typedef struct s_vars
 	t_coord	coord;
 }			t_vars;
 
+//static
+int		len_x(int fd);
+int		len_y(int fd);
+int		ft_handle_map(char *file);
+
+
 #endif

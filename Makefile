@@ -26,7 +26,6 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(MLX) $(CUBE_OBJ)
 	$(CC) $(CFLAGS) -I$(INCLUDE) $(CUBE_OBJ) -o $(CUBE_NAME) -lm -L$(LIBFT_PATH) -lft -L$(PATH_MLX) -lmlx -lXext -lX11
 
-# $(CC) $(CFLAGS) -I$(INCLUDE) -o $(CUBE_NAME) $(CUBE_OBJ) -lm -L$(LIBFT_PATH) -lft -L$(PATH_MLX) -lmlx -lXext -lX11
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@

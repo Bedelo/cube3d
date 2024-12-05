@@ -5,6 +5,9 @@ int	main(int ac, char **av)
 	(void) ac;
 	(void) av;
 
-	
-	return(0);
+	int	fd;
+	fd = ft_handle_map("maps/maps5.cub");
+	if (fd == -1)
+		return (-1);
+	return (len_y(fd));
 }
