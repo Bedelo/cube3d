@@ -14,7 +14,7 @@
             ],
             "settings": {
                 // EDITOR
-                "editor.fontSize": 18,
+                "editor.fontSize": 10,
                 "editor.tabSize": 4,
                 "editor.insertSpaces": false,
                 "editor.renderWhitespace": "all",

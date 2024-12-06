@@ -13,7 +13,7 @@ int	ft_handle_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		write(2, "Cannot read file.\n", 18);
+		ft_putstr_fd("Cannot read file.\n", 2);
 		return (-1);
 	}
 	return (fd);

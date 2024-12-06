@@ -8,7 +8,8 @@ SRCS = ./srcs/
 INCLUDE = ./includes/
 
 CUBE_SRC = $(SRCS)main.c \
-			$(SRCS)parsing.c
+			$(SRCS)parsing.c \
+			$(SRCS)error.c \
 
 
 CUBE_OBJ = $(CUBE_SRC:.c=.o)
