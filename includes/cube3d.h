@@ -38,11 +38,30 @@ typedef struct s_container
 	t_coord	coord;
 }			t_container;
 
-//static
+
+typedef struct s_map_creation
+{
+	char	*file;
+	char	**my_map;
+	int		dimX;
+	int		dimY;
+	int		*dim;
+	int		fd;
+	int		i;
+	int		j;
+	char	*line;
+	int		flag;
+}			t_map_creation;
+
 int		len_x(int fd);
 int		len_y(int fd);
 int		ft_handle_map(char *file);
 int		map_dim(int *dim, char *file, int (*f) (int));
+
+void	*shield_malloc(void *ptr);
+void	*shield_malloc_2(char **ptr, int y);
+
+t_map_creation	*ft_map(t_map_creation *m, char **av);
 
 void	error_init(void);
 void	error_window(t_container *container);
