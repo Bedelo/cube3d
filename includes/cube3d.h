@@ -3,14 +3,16 @@
 
 # include "./../Libft/libft.h"
 # include "./../rscs/minilibx-linux/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
+// # include <X11/X.h>
+// # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
 
 # define ERROR_INITIALISATION "\n\nINITIALISATION ERROR OCCURS \n\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
+# define KO 1
+# define OK 0
 
 typedef struct s_data
 {
@@ -40,6 +42,7 @@ typedef struct s_container
 int		len_x(int fd);
 int		len_y(int fd);
 int		ft_handle_map(char *file);
+int		map_dim(int *dim, char *file, int (*f) (int));
 
 void	error_init(void);
 void	error_window(t_container *container);

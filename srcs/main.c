@@ -32,17 +32,27 @@ void	init(t_container *container)
 int	main(int ac, char **av)
 {
 	(void)	ac;
-	(void)	av;
+	int *dim;
+	dim = malloc (2 * sizeof(int));
 	// t_container	container;
 
 	// container.name = "cube3d";
 	// init(&container);
-	void *mlx;
-	void *win;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 720, 720, "cube3d");
-	mlx_loop(mlx);
+	if( map_dim(dim, av[1], len_x) == OK)
+	{
+		ft_putstr_fd("dim[x] = ", 1);
+		ft_putnbr_fd(dim[0], 1);
+		ft_putstr_fd("\n", 1);
 
+	}
+	if( map_dim(dim+1, av[1], len_y) == OK)
+	{
+		ft_putstr_fd("dim[y] = ", 1);
+		ft_putnbr_fd(dim[1], 1);
+		ft_putstr_fd("\n", 1);
 
+	}
+	return (0);
 }
+

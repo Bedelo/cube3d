@@ -20,9 +20,9 @@ int	ft_handle_map(char *file)
 }
 
 /**
- * get the length of the longest line in the map
+ * get the length of the longest line x in the map
  * @param fd
- * @return length of the longest line
+ * @return length of the longest line x
  */
 int	len_x(int fd)
 {
@@ -38,12 +38,16 @@ int	len_x(int fd)
 		if (!line)
 			break ;
 		if (ft_strlen(line) > len_x)
-			len_x = ft_strlen(line);
+			len_x = ft_strlen(line) - 1;
 		free(line);
 	}
 	return (len_x);
 }
-
+/**
+* get the length of the map in y
+* @param fd
+* @return length of the map in y
+ */
 int	len_y(int fd)
 {
 	char	*line;
@@ -63,3 +67,22 @@ int	len_y(int fd)
 	return (len_y);
 }
 
+/**
+* get the dimension x or y of the map respectively if f equal len_x or len_y
+* @param dim x or y pointer of the map from len_x or len_y
+* @param file	 file of the map
+* @param f	 function len_x or len_y
+* @return 0 if success, 1 if fail
+*/
+int	map_dim(int *dim, char *file, int (*f) (int))
+{
+	int	fd;
+
+	fd = ft_handle_map(file);
+	if (fd == -1)
+		return (1);
+	else
+		*dim = f(fd);
+	close(fd);
+	return (0);
+}
