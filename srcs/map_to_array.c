@@ -21,11 +21,11 @@ char	**fill_map(t_map_creation *m, int *k)
 
 	while (*k != m->dim[1])
 	{
-		ft_putchar_fd(m->line[*k], 1);							//* printer
+		// ft_putchar_fd(m->line[*k], 1);							//* printer
 		if (m->line[*k] == '1' || m->line[*k] == '0')
 		{
 			m->my_map[m->i][*k] = m->line[*k];
-			ft_putchar_fd(m->my_map[m->i][*k], 1);
+			ft_putchar_fd(m->my_map[m->i][*k], 1);								//* printer
 		}
 		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'E' || m->line[*k] == 'W') && m->flag == 0)
 			m->my_map[m->i][*k] = m->line[*k];
@@ -33,10 +33,9 @@ char	**fill_map(t_map_creation *m, int *k)
 			m->my_map[m->i][*k] = '0';
 		else if (m->line[*k] != '\n')
 			m->my_map[m->i][*k] = 0;
-		// m->j += 1;
 		*k += 1;
-		// printf("k = %d\n", *k);									//* printer
 	}
+	ft_putchar_fd('\n', 1);								//* printer
 	return (m->my_map);
 }
 
@@ -60,6 +59,7 @@ char	**create_map(t_map_creation *m)
 		free(m->line);									//*check if it is correct
 		m->line = NULL;
 		m->i += 1;
+		k = 0;
 		ft_putstr_fd("fill_next OK\n", 1);							//* printer
 	}
 	// m->my_map[m->i] = 0;
@@ -87,9 +87,6 @@ int	ft_initialise_map(t_map_creation *m)
 t_map_creation	*ft_map(t_map_creation *m, char **av)
 {
 	int	i;
-
-	m = malloc(sizeof(t_map_creation));
-	m->file = av[1];
 
 	m->dim = ft_calloc(2, sizeof(int));
 	map_dim(&i, m->file, len_y);

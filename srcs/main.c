@@ -34,18 +34,11 @@ int	main(int ac, char **av)
 	(void)	ac;
 	// t_container	container;
 
-	// container.name = "cube3d";
-	// init(&container);
-	// int a;
-	// int d;
-	// a = 0;
-	// d = map_dim(&a, av[1], len_x);
-	// printf("d = %d\n", d);
-	// printf("a = %d\n", a);
+
 
 	t_map_creation	*m;
-	// m = ft_calloc(1, sizeof(t_map_creation ));
-	// m->file = av[1];
+	m = ft_calloc(1, sizeof(t_map_creation ));
+	m->file = av[1];
 
 	int i = 0;
 	int j = 0;
@@ -57,7 +50,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		// ft_putchar_fd(m->my_map[1][2], 1);
+		ft_putchar_fd(m->dim[1], 1);
 		ft_putstr_fd("\n\n\n################## DRAW ###################\n\n\n", 1);
 
 		while (i < m->dim[0])
