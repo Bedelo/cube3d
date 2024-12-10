@@ -21,3 +21,10 @@ void	*shield_malloc_2(char **ptr, int y)
 	free(ptr);
 	return (NULL);
 }
+
+void	clean_map(t_map_creation *m)
+{
+	shield_malloc_2(m->my_map, m->dim[0]);
+	free(m->dim);
+	free(m);
+}

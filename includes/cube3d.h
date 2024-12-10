@@ -11,6 +11,7 @@
 # define ERROR_INITIALISATION "\n\nINITIALISATION ERROR OCCURS \n\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
+# define FAIL (-1)
 # define KO 1
 # define OK 0
 
@@ -43,28 +44,33 @@ typedef struct s_map_creation
 {
 	char	*file;
 	char	**my_map;
-	int		dimX;
-	int		dimY;
+	// int		dimX;
+	// int		dimY;
 	int		*dim;
 	int		fd;
 	int		i;
-	int		j;
+	int		header_len;
 	char	*line;
 	int		flag;
 }			t_map_creation;
 
-int		len_x(int fd);
-int		len_y(int fd);
+int		len_x(int fd, int *header_len);
+int		len_y(int fd, int *header_len);
 int		ft_handle_map(char *file);
-int		map_dim(int *dim, char *file, int (*f) (int));
+int		map_dim(int *dim, char *file, int (*f) (int, int*), int *header_len);
 
 void	*shield_malloc(void *ptr);
 void	*shield_malloc_2(char **ptr, int y);
+void	clean_map(t_map_creation *m);
 
 t_map_creation	*ft_map(t_map_creation **m, char **av);
 
 void	error_init(void);
 void	error_window(t_container *container);
 void	error_image(t_container *container);
+
+int		check_is_header(char **line, int fd);
+int		is_header(char *line, int fd);
+int		check_is_map(char *file, int *header_len);
 
 #endif

@@ -22,24 +22,28 @@ int	ft_handle_map(char *file)
 /**
  * get the length of the longest line x (columns)
  * @param fd
+ * @param header_len
  * @return length of the longest line x
  */
-int	len_x(int fd)
+int	len_x(int fd, int *header_len)
 {
 	char	*line;
 	int		len_x;
+	int		ret;
 
 	len_x = 0;
 	if (fd == -1)
 		return (-1);
+	while (check_is_header(&line, fd) == OK)
+		free(line);
 	while (1)
 	{
-		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (ft_strlen(line) > len_x)
 			len_x = ft_strlen(line);
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (len_x);
 }
@@ -47,23 +51,28 @@ int	len_x(int fd)
 /**
  * get the length of the map in y (rows)
  * @param fd
+  * @param header_len
  * @return length of the map in y
  */
-int	len_y(int fd)
+int	len_y(int fd, int *header_len)
 {
 	char	*line;
 	int		len_y;
+	int		ret;
 
+	ret = 0;
 	len_y = 0;
 	if (fd == -1)
 		return (-1);
+	while (check_is_header(&line, fd) == OK)
+		free(line);
 	while (1)
 	{
-		line = get_next_line(fd);
 		if (!line)
 			break ;
 		len_y++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (len_y);
 }
@@ -75,7 +84,7 @@ int	len_y(int fd)
  * @param f	 function len_x or len_y
  * @return 0 if success, 1 if fail
 */
-int	map_dim(int *dim, char *file, int (*f) (int))
+int	map_dim(int *dim, char *file, int (*f) (int, int*), int *header_len)
 {
 	int	fd;
 
@@ -83,7 +92,7 @@ int	map_dim(int *dim, char *file, int (*f) (int))
 	if (fd == -1)
 		return (1);
 	else
-		*dim = f(fd);
+		*dim = f(fd, header_len);
 	close(fd);
 	return (0);
 }

@@ -37,18 +37,25 @@ int	main(int ac, char **av)
 	t_map_creation	*m;
 	m = ft_calloc(1, sizeof(t_map_creation ));
 	m->file = av[1];
-	char **map_array;
 
-	int i = 0;
-	int j = 0;
 
-	if ((ft_map(&m, av)) == NULL)
+	if (ft_map(&m, av))
 	{
-		ft_putstr_fd("Error main 47\n", 2);
-		return (1);
+		int i = 0;
+		int j = 0;
+		while (i < m->dim[0])
+			{
+				while (j < m->dim[1])
+				{
+					ft_putchar_fd(m->my_map[i][j], 1);
+					j++;
+				}
+				ft_putchar_fd('\n', 1);
+				i++;
+				j = 0;
+			}
+	clean_map(m);
 	}
-
-
 	return (0);
 }
 
