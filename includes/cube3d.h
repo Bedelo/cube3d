@@ -61,7 +61,7 @@ int		map_dim(int *dim, char *file, int (*f) (int));
 void	*shield_malloc(void *ptr);
 void	*shield_malloc_2(char **ptr, int y);
 
-t_map_creation	*ft_map(t_map_creation *m, char **av);
+t_map_creation	*ft_map(t_map_creation **m, char **av);
 
 void	error_init(void);
 void	error_window(t_container *container);

@@ -14,7 +14,8 @@ void	*shield_malloc_2(char **ptr, int y)
 	i = 0;
 	while (i < y)
 	{
-		free(ptr[i]);
+		if (ptr[i])
+			free(ptr[i]);
 		i++;
 	}
 	free(ptr);

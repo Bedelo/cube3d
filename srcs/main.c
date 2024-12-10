@@ -34,39 +34,21 @@ int	main(int ac, char **av)
 	(void)	ac;
 	// t_container	container;
 
-
-
 	t_map_creation	*m;
 	m = ft_calloc(1, sizeof(t_map_creation ));
 	m->file = av[1];
+	char **map_array;
 
 	int i = 0;
 	int j = 0;
 
-	if (ft_map(m, av) == NULL)
+	if ((ft_map(&m, av)) == NULL)
 	{
-		ft_putstr_fd("Error main 55\n", 2);
+		ft_putstr_fd("Error main 47\n", 2);
 		return (1);
 	}
-	else
-	{
-		ft_putchar_fd(m->dim[1], 1);
-		ft_putstr_fd("\n\n\n################## DRAW ###################\n\n\n", 1);
 
-		while (i < m->dim[0])
-		{
 
-			while (j < m->dim[1])
-			{
-
-				ft_putchar_fd(m->my_map[i][j], 1);
-				ft_putchar_fd(' ', 1);
-				j++;
-			}
-			i++;
-			j = 0;
-		}
-	}
 	return (0);
 }
 

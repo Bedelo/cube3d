@@ -17,7 +17,7 @@ RUN sudo apt-get update && \
 	git \
 	vim \
 	xorg \
-	# Xquartz \
+	xquartz \
 	libxext-dev \
 	libbsd-dev \
 	ssh \
