@@ -57,7 +57,7 @@ char	**create_map(t_map_creation **map)
 	m->i = 0;
 	head = 0;
 	while (check_is_header(&m->line, m->fd) == OK)
-		;
+		free(m->line);
 	while (m->i < (m->dim[0] ) && m->line)
 	{
 		printf("%s  MA LINE\n", m->line);									//* printer
