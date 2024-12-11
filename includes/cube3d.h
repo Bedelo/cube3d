@@ -54,23 +54,24 @@ typedef struct s_map_creation
 	int		flag;
 }			t_map_creation;
 
-int		len_x(int fd, int *header_len);
-int		len_y(int fd, int *header_len);
-int		ft_handle_map(char *file);
-int		map_dim(int *dim, char *file, int (*f) (int, int*), int *header_len);
+int				len_x(int fd, int *header_len);
+int				len_y(int fd, int *header_len);
+int				ft_handle_map(char *file);
+int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
 
-void	*shield_malloc(void *ptr);
-void	*shield_malloc_2(char **ptr, int y);
-void	clean_map(t_map_creation *m);
+void			*shield_malloc(void *ptr);
+void			*shield_malloc_2(char **ptr, int y);
+void			clean_map(t_map_creation *m);
 
+void			display_map(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m, char **av);
 
-void	error_init(void);
-void	error_window(t_container *container);
-void	error_image(t_container *container);
+void			error_init(void);
+void			error_window(t_container *container);
+void			error_image(t_container *container);
 
-int		check_is_header(char **line, int fd);
-int		is_header(char *line, int fd);
-int		check_is_map(char *file, int *header_len);
+int				check_is_header(char **line, int fd);
+int				is_header(char *line, int fd);
+int				check_is_map(char *file, int *header_len);
 
 #endif

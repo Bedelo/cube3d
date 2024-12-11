@@ -16,11 +16,10 @@ RUN sudo apt-get update && \
 	python3-pip \
 	git \
 	vim \
+	ssh \
 	xorg \
-	xquartz \
 	libxext-dev \
 	libbsd-dev \
-	ssh \
 	libreadline-dev && \
 	sudo apt-get clean
 

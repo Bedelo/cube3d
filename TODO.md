@@ -12,7 +12,7 @@
 [x] 1 0 and (N, S, E, W) one time
 
 [] map is closed
-[] clean frees
+[x] clean frees
 
 ## Parsing Header
 [] Is Header Normed (NO SO EA WE C F is only present)
@@ -20,8 +20,6 @@
 [] Store Infos header in Structure
 
 [] clean frees
-
-
 
 ## Minilibx
 [] moving

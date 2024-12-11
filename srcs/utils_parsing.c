@@ -1,7 +1,5 @@
 #include "./../includes/cube3d.h"
 
-
-
 int	check_is_header(char **line, int fd)
 {
 	int	res;
@@ -11,35 +9,41 @@ int	check_is_header(char **line, int fd)
 	return (res);
 }
 
+char	**header_label(char *header[7])
+{
+	header[0] = "NO";
+	header[1] = "SO";
+	header[2] = "WE";
+	header[3] = "EA";
+	header[4] = "F";
+	header[5] = "C";
+	header[6] = NULL;
+	return (header);
+}
+
 int	is_header(char *line, int fd)
 {
 	char	**split_line;
 	int		size;
-	char	*header[7] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
+	char	*header[7];
 	int		h;
 
 	h = -1;
 	size = 0;
+	header_label(header);
 	if (ft_strlen(line) == 1)
 		return (OK);
 	split_line = ft_split(line, ' ');
 	while (split_line[size])
 		size++;
 	if (size != 2)
-	{
-		shield_malloc_2(split_line, size);
-		return (KO);
-	}
+		return (shield_malloc_2(split_line, size), KO);
 	while (header[++h])
 	{
 		if (ft_strncmp(*split_line, header[h], ft_strlen(split_line[0])) == 0)
-		{
-			shield_malloc_2(split_line, size);
-			return (OK);
-		}
+			return (shield_malloc_2(split_line, size), OK);
 	}
-	shield_malloc_2(split_line, size);
-	return (KO);
+	return (shield_malloc_2(split_line, size), KO);
 }
 
 int	check_is_map(char *file, int *header_len)

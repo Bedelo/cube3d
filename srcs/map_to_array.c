@@ -58,9 +58,8 @@ char	**create_map(t_map_creation **map)
 	head = 0;
 	while (check_is_header(&m->line, m->fd) == OK)
 		free(m->line);
-	while (m->i < (m->dim[0] ) && m->line)
+	while (m->i < (m->dim[0]) && m->line)
 	{
-		printf("%s  MA LINE\n", m->line);									//* printer
 		if (!fill_map(&m, &k))
 			return (shield_malloc_2(m->my_map, m->dim[0]));
 		free(m->line);
@@ -68,7 +67,6 @@ char	**create_map(t_map_creation **map)
 		m->i += 1;
 		k = 0;
 		m->line = get_next_line(m->fd);
-		printf("########## %d/%d\n", m->i, m->dim[0]);									//* printer
 	}
 	return (m->my_map);
 }
@@ -81,7 +79,6 @@ int	ft_initialise_map(t_map_creation **map)
 	m->fd = ft_handle_map(m->file);
 	if (m->fd == -1)
 		return (1);
-	// ft_putstr_fd("enter to create map OK\n", 1);				//* printer
 	create_map(&m);
 	close(m->fd);
 	if (!m->my_map)
@@ -92,7 +89,6 @@ int	ft_initialise_map(t_map_creation **map)
 t_map_creation	*ft_map(t_map_creation **map, char **av)
 {
 	int				i;
-	// int				h;
 	t_map_creation	*m;
 
 	m = *map;
@@ -101,11 +97,7 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 	m->dim[0] = i;
 	map_dim(&i, m->file, len_x, &m->header_len);
 	m->dim[1] = i;
-	printf("dim0 = %d\n", m->dim[0]);												//* printer
-	printf("dim1 = %d\n", m->dim[1]);												//* printer
-	printf("header_len = %d\n", m->header_len);										//* printer
 	i = 0;
-	printf("################## CURSOR ##################\n");							//* printer
 	m->my_map = ft_calloc(m->dim[0], sizeof(char *));
 	if (!m->my_map)
 		return (shield_malloc(m->my_map));
@@ -116,11 +108,7 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 			return (shield_malloc_2(m->my_map, m->dim[0]));
 		i++;
 	}
-	i = ft_initialise_map(&m);
-	if (i)
-	{
-		printf("KO for MAP\n");
-		i == 1;
-	}
+	if (ft_initialise_map(&m) == KO)
+		return (NULL);
 	return (m);
 }
