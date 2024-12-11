@@ -7,14 +7,11 @@ char	**fill_empty_map(t_map_creation **map, int *k)
 	t_map_creation	*m;
 
 	m = *map;
-	// printf("before fill K = %d\n", *k);											//* printer
-	while (*k < m->dim[1])
+	while (*k < m->dim[1] - 1)
 	{
-		// ft_putstr_fd("COMPLETE LINE \n", 1);										//* printer
-		m->my_map[m->i][*k] = '0';
+		m->my_map[m->i][*k] = '1';
 		*k += 1;
 	}
-	// m->my_map[m->i][*k] = 0;
 	return (m->my_map);
 }
 
@@ -24,13 +21,13 @@ char	**fill_map(t_map_creation **map, int *k)
 
 	m = *map;
 	*k = 0;
-	// if (m->i == m->dim[0])
-	// 	return (m->my_map);
-	while (*k <= ft_strlen(m->line))
+	while (*k < ft_strlen(m->line))
 	{
-		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W' || m->line[*k] == 'E') && m->flag)
-			return (NULL);
-		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W' || m->line[*k] == 'E') && !m->flag)
+		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W'
+				|| m->line[*k] == 'E') && m->flag)
+			return (err(INCORRECT_PLAYER), NULL);
+		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W'
+				|| m->line[*k] == 'E') && !m->flag)
 		{
 			m->my_map[m->i][*k] = m->line[*k];
 			m->flag = 1;
@@ -38,8 +35,8 @@ char	**fill_map(t_map_creation **map, int *k)
 		if (m->line[*k] == '1' || m->line[*k] == '0')
 			m->my_map[m->i][*k] = m->line[*k];
 		if (m->line[*k] == ' ')
-			m->my_map[m->i][*k] = '0';
-		if (m->line[*k] == 0)
+			m->my_map[m->i][*k] = '1';
+		if (m->line[*k] == '\n')
 			fill_empty_map(&m, k);
 		*k += 1;
 	}
@@ -98,12 +95,12 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 	map_dim(&i, m->file, len_x, &m->header_len);
 	m->dim[1] = i;
 	i = 0;
-	m->my_map = ft_calloc(m->dim[0], sizeof(char *));
+	m->my_map = ft_calloc(m->dim[0] + 1, sizeof(char *));
 	if (!m->my_map)
 		return (shield_malloc(m->my_map));
 	while (i < m->dim[0])
 	{
-		m->my_map[i] = ft_calloc(m->dim[1], sizeof(char));
+		m->my_map[i] = ft_calloc(m->dim[1] + 1, sizeof(char));
 		if (!m->my_map)
 			return (shield_malloc_2(m->my_map, m->dim[0]));
 		i++;

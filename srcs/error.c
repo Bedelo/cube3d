@@ -22,3 +22,8 @@ void	error_image(t_container *container)
 	ft_putstr_fd("error: image: ", 2);
 	error_init();
 }
+void err(char *str)
+{
+	while(*str)
+		write(2, str++, 1);
+}

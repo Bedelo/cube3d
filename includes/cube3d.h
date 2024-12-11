@@ -3,15 +3,18 @@
 
 # include "./../Libft/libft.h"
 # include "./../rscs/minilibx-linux/mlx.h"
-// # include <X11/X.h>
-// # include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
 
-# define ERROR_INITIALISATION "\n\nINITIALISATION ERROR OCCURS \n\n"
+# define INCORRECT_PLAYER "Error: Incorrect player\n"
+# define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
-# define FAIL (-1)
+# define ERROR "Error\n"
+# define ERROR_MAP "Error: MAP\n"
+# define FAIL (-1)										//! Norme
 # define KO 1
 # define OK 0
 
@@ -44,8 +47,7 @@ typedef struct s_map_creation
 {
 	char	*file;
 	char	**my_map;
-	// int		dimX;
-	// int		dimY;
+	t_coord	coord;
 	int		*dim;
 	int		fd;
 	int		i;
@@ -59,16 +61,22 @@ int				len_y(int fd, int *header_len);
 int				ft_handle_map(char *file);
 int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
 
+char			**player_position(t_map_creation **map, int *k);
+
 void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
 void			clean_map(t_map_creation *m);
 
-void			display_map(t_map_creation *m, char **av);
+t_map_creation	*map_init(t_map_creation *m, char **av);
+void			display_map(t_map_creation *m);
 t_map_creation	*ft_map(t_map_creation **m, char **av);
+int				check_enclosure_map(t_map_creation **map);
 
 void			error_init(void);
 void			error_window(t_container *container);
 void			error_image(t_container *container);
+
+void			err(char *str);
 
 int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);

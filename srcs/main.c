@@ -20,6 +20,13 @@ int	main(int ac, char **av)
 	t_map_creation		*m;
 
 
-	display_map(m, av);
+	m = map_init(m, av);
+
+	check_enclosure_map(&m);
+	clean_map(m);
+	// if (check_enclosure_map(&m) == OK)
+	// 	;
+	// else
+	// 	err("Map is not enclosed\n");
 	return (0);
 }

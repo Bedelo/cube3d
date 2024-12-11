@@ -10,6 +10,7 @@
 [x] handle HEADER to array of map
 [x] transforme space to 0 if necessary
 [x] 1 0 and (N, S, E, W) one time
+[] add right error message
 
 [] map is closed
 [x] clean frees
