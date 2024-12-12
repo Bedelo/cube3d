@@ -34,6 +34,8 @@ int	is_header(char *line, int fd)
 	if (ft_strlen(line) == 1)
 		return (OK);
 	split_line = ft_split(line, ' ');
+	if (!split_line)
+		return (KO);
 	while (split_line[size])
 		size++;
 	if (size != 2)
@@ -46,6 +48,11 @@ int	is_header(char *line, int fd)
 	return (shield_malloc_2(split_line, size), KO);
 }
 
+
+
+
+//* BELOW IS TO REMOVE *//
+/*
 int	check_is_map(char *file, int *header_len)
 {
 	int		fd;
@@ -65,8 +72,8 @@ int	check_is_map(char *file, int *header_len)
 		free(line);
 		line = get_next_line(fd);
 		printf("vide ? %ld\n", ft_strlen(line));
-		printf("######################### IS HEADER ###############################\n");
 	}
 	close(fd);
 	return (OK);
 }
+*/

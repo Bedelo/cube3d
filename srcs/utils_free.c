@@ -25,6 +25,20 @@ void	*shield_malloc_2(char **ptr, int y)
 void	clean_map(t_map_creation *m)
 {
 	shield_malloc_2(m->my_map, m->dim[0]);
+	free(m->pos);
 	free(m->dim);
 	free(m);
+}
+
+void	free_2(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

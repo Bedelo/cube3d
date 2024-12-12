@@ -14,6 +14,7 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)utils_free.c \
 			$(SRCS)utils_parsing.c \
 			$(SRCS)error.c \
+			$(SRCS)header_infos.c \
 			$(SRCS)map_init.c \
 
 CUBE_OBJ = $(CUBE_SRC:.c=.o)

@@ -12,7 +12,7 @@
 [x] 1 0 and (N, S, E, W) one time
 [] add right error message
 
-[] map is closed
+[x] map is closed
 [x] clean frees
 
 ## Parsing Header
