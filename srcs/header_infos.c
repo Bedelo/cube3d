@@ -14,7 +14,7 @@ int	fill_header(char **split_, int i, int j)
 	}
 	if (label[l] == NULL)
 		return (KO);
-	printf("label find: %s\n", label[l]); //* printer
+	// printf("label find: %s\n\n", label[l]); //* printer
 	if (split_[j] != NULL)
 		return (OK);
 	else
@@ -49,22 +49,22 @@ int	header_init(t_header *header, char *line, int *nb_label)
 
 	i = -1;
 	if (ft_strlen(line) == 1)
-		return (OK);
+		return (free(line), OK);
 	split_line = ft_split(line, ' ');
 	if (!split_line)
-		return (KO);
+		return (free(line), KO);
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
 		;
 	j = i;
 	while (split_line[++j] && ft_strlen(split_line[j]) < 5)
 		;
-	printf("resource value: %s\n", split_line[j]); //* printer
 	if (fill_header(split_line, i, j) == OK)
 	{
-		return (*nb_label++, store_label(&header, split_line, i, j), free_2(split_line), OK);
+		return ((*nb_label)++, store_label(&header, split_line, i, j),
+			free_2(split_line), free(line), OK);
 	}
 	free_2(split_line);
-	return (KO);
+	return (free(line), KO);
 }
 
 void	display_header(t_header *header)
@@ -90,16 +90,13 @@ t_header	*header_creation(char *file)
 	if (!header)
 		return (NULL);
 	*header = (t_header){0};
-	line = get_next_line(fd);
-	while (nb_label < 7 && line)
+	while (nb_label < 6)
 	{
+		line = get_next_line(fd);
 		if (header_init(header, line, &nb_label) == KO)
 			return (NULL);
-		line = get_next_line(fd);
+		// printf("nb_label: %d\n", nb_label); 				//* printer
 	}
 	close (fd);
-	display_header(header);							//* printer
-	ft_putstr_fd("header_creation: OK\n", 1);		//* printer
 	return (header);
 }
-

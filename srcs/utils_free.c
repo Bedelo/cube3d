@@ -30,6 +30,17 @@ void	clean_map(t_map_creation *m)
 	free(m);
 }
 
+void	clean_header(t_header *header)
+{
+	free(header->no);
+	free(header->so);
+	free(header->we);
+	free(header->ea);
+	free(header->f);
+	free(header->c);
+	free(header);
+}
+
 void	free_2(char **split)
 {
 	int	i;

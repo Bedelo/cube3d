@@ -10,22 +10,23 @@
 [x] handle HEADER to array of map
 [x] transforme space to 0 if necessary
 [x] 1 0 and (N, S, E, W) one time
-[] add right error message
+[x] add right error message
 
 [x] map is closed
 [x] clean frees
 
 ## Parsing Header
-[] Is Header Normed (NO SO EA WE C F is only present)
-[] Is Header Right (paths of rescources is correct)
-[] Store Infos header in Structure
+[x] Is Header Normed (NO SO EA WE C F is only present)
+[x] Is Header Right (paths of rescources is correct)
+[x] Store Infos header in Structure
 
-[] clean frees
+[o] clean frees
+	[x] error free occurs at header get_next_line
 
 ## Minilibx
 [] moving
 [] translation
-[] clsoe Windows
+[] close Windows
 
 [] clean frees
 

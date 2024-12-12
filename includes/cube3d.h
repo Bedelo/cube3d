@@ -48,7 +48,7 @@ typedef struct s_container
 {
 	char	*name;
 	void	*mlx;
-	void	*win;
+	void	*mlx_win;
 	t_data	img;
 	t_coord	coord;
 }			t_container;
@@ -68,6 +68,12 @@ typedef struct s_map_creation
 	int		*pos;
 }			t_map_creation;
 
+typedef struct s_infos
+{
+	t_map_creation	*map;
+	t_header		*header;
+}					t_infos;
+
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
 int				ft_handle_map(char *file);
@@ -79,6 +85,7 @@ void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
 void			free_2(char **split);
 void			clean_map(t_map_creation *m);
+void			clean_header(t_header *header);
 
 t_map_creation	*map_init(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m, char **av);
