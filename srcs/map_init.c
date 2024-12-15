@@ -6,9 +6,10 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	m = ft_calloc(1, sizeof(t_map_creation));
 	m->file = av[1];
 	m = ft_map(&m, av);
-	m->pos = player_position(&m);
-	// printf("dim0 %d \ndim1 %d\n\n", m->dim[0], m->dim[1]);    //* printer
-	// display_map(m);				//# TO USE IN FUTURE FOR DISPLAYING MAP ON CONSOLE
+	m->pos = malloc(sizeof(int) * 2);
+	if (!m->pos)
+		return (NULL);
+	player_position(&m);
 	// clean_map(m);			//# TO USE IN FUTURE FOR CLEANING MEMORY ALLOCATED
 	return (m);
 }

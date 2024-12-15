@@ -48,32 +48,3 @@ int	is_header(char *line, int fd)
 	return (shield_malloc_2(split_line, size), KO);
 }
 
-
-
-
-//* BELOW IS TO REMOVE *//
-/*
-int	check_is_map(char *file, int *header_len)
-{
-	int		fd;
-	char	*line;
-
-	*header_len = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		write(2, "Error: fd: check is map fails\n", 30);
-		return (KO);
-	}
-	line = get_next_line(fd);
-	while (is_header(line, fd) == OK)
-	{
-		*header_len += 1;
-		free(line);
-		line = get_next_line(fd);
-		printf("vide ? %ld\n", ft_strlen(line));
-	}
-	close(fd);
-	return (OK);
-}
-*/

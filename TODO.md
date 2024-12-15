@@ -22,6 +22,24 @@
 
 [o] clean frees
 	[x] error free occurs at header get_next_line
+[] check discord for other test
+
+
+## Player
+[] Structure player
+[] Direction to parse N S E W
+[] Position based on map
+[] FOV
+
+
+## Draw 2D map
+[] structure pour rendu 2D du mur
+[] definir dimension total
+[] buffer **2D
+[] rendu total 2D
+
+## Raycast
+
 
 ## Minilibx
 [] moving

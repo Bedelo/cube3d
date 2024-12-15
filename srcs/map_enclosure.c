@@ -5,24 +5,20 @@ int	*player_position(t_map_creation **map)
 	t_map_creation	*m;
 	int				i;
 	int				j;
-	int				*pos;
 
 	m = *map;
 	i = -1;
-	pos = malloc(sizeof(int) * 2);
-	if (!pos)
-		return (NULL);
 	while (++i < m->dim[0])
 	{
 		j = -1;
-		while (++j < m->dim[1])
+		while (++j < m->dim[1] - 1)
 		{
 			if (m->my_map[i][j] == 'N' || m->my_map[i][j] == 'S'
 				|| m->my_map[i][j] == 'W' || m->my_map[i][j] == 'E')
 			{
-				pos[0] = (i);
-				pos[1] = (j);
-				return (pos);
+				m->pos[0] = (i);
+				m->pos[1] = (j);
+				return (m->pos);
 			}
 		}
 	}

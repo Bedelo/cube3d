@@ -7,6 +7,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
+# include "render2D.h"
 
 # define INCORRECT_PLAYER "Error: INCORRECT PLAYER\n"
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
@@ -19,60 +20,7 @@
 # define KO 1
 # define OK 0
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
-typedef struct s_coord
-{
-	long long	xx;
-	long long	yy;
-}			t_coord;
-
-typedef struct s_header
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-}			t_header;
-
-typedef struct s_container
-{
-	char	*name;
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-	t_coord	coord;
-}			t_container;
-
-
-typedef struct s_map_creation
-{
-	char	*file;
-	char	**my_map;
-	t_coord	coord;
-	int		*dim;
-	int		fd;
-	int		i;
-	int		header_len;
-	char	*line;
-	int		flag;
-	int		*pos;
-}			t_map_creation;
-
-typedef struct s_infos
-{
-	t_map_creation	*map;
-	t_header		*header;
-}					t_infos;
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
