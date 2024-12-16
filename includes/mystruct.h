@@ -1,6 +1,15 @@
 #ifndef MYSTRUCT_H
 # define MYSTRUCT_H
 
+typedef struct s_player
+{
+	double	px;
+	double	py;
+	double	xx;
+	double	yy;
+	double	angle;
+} 			t_player;
+
 typedef struct s_header
 {
 	char	*no;
@@ -41,6 +50,7 @@ typedef struct s_infos
 {
 	t_map_creation	*map;
 	t_header		*header;
+	t_player		*player;
 }					t_infos;
 
 typedef struct s_data
@@ -64,6 +74,7 @@ typedef struct s_launcher
 {
 	t_container	*c;
 	t_infos		*i;
+	t_player	*p;
 }				t_launcher;
 
 #endif

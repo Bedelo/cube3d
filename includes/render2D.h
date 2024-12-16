@@ -12,10 +12,10 @@
 # define W_WALL 5
 # define H_WALL 5
 
-
+void		render_player(t_launcher **launcher);
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void		draw_wall(t_container *c, t_infos *infos);
-void		handle_event(t_container *container);
+void		draw_wall(t_launcher **launcher);
+void		handle_event(t_launcher **launcher);
 
 #endif

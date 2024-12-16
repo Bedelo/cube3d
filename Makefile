@@ -17,6 +17,7 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)header_infos.c \
 			$(SRCS)map_init.c \
 			$(SRCS)event_handle.c \
+			$(SRCS)player.c \
 			$(SRCS)render_2D.c \
 			$(SRCS)render_3D.c \
 

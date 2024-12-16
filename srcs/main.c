@@ -1,15 +1,21 @@
 #include "./../includes/cube3d.h"
 
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
+t_infos	*init_player(t_infos **i)
+{
+	t_infos	*infos;
 
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
+	infos = *i;
+	infos->player = ft_calloc(1, sizeof(t_player));
+	if (!infos->player)								//# ADD MESSAGE
+		return (NULL);
+	infos->player->px = infos->map->pos[0] * H_WALL + H_WALL / 2;
+	infos->player->py = infos->map->pos[1] * W_WALL + W_WALL / 2;
+	infos->player->angle = 0;		//? ADD RADIAN ANGLE BY HEADER N S E W
+	return (infos);
+}
 
 
-t_infos	*init(char **av, t_infos **i)
+t_infos	*init_infos(char **av, t_infos **i)
 {
 	t_infos				*infos;
 
@@ -21,12 +27,15 @@ t_infos	*init(char **av, t_infos **i)
 	check_enclosure_map(&infos->map);
 	infos->header = header_creation(av[1]);
 	display_map(infos->map);							//* printer
+	init_player(&infos);
 	return (infos);
 }
 
-void	draw(t_container *c, t_infos *infos)
+void	init_draw(t_launcher **launcher)
 {
+	t_container	*c;
 
+	c = (*launcher)->c;
 	c = ft_calloc(1, sizeof(t_container));
 	c->mlx = mlx_init();
 	if (!c->mlx)
@@ -41,30 +50,39 @@ void	draw(t_container *c, t_infos *infos)
 			&c->img.bits_per_pixel,
 			&c->img.line_length,
 			&c->img.endian);
-	draw_wall(c, infos);
-	mlx_loop(c->mlx);
+	(*launcher)->c = c;
 
+}
+
+int	render(t_launcher *launcher)
+{
+
+	init_draw(&launcher);
+	handle_event(&launcher);
+	draw_wall(&launcher);
+	render_player(&launcher);
+	mlx_put_image_to_window(launcher->c->mlx, launcher->c->mlx_win, launcher->c->img.img, 0, 0);
+	mlx_loop(launcher->c->mlx);
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	t_infos	*infos;
-	t_container	*c;
-	char position[2];
-	(void) ac;
+	t_launcher	*launcher;
 
-	infos = init(av, &infos);
-	if (!infos)
+	launcher = ft_calloc(1, sizeof(t_launcher));
+	if (!launcher)
 		return (1);
-	printf("position y: %d\n", infos->map->pos[1]);
-	// draw(c, infos);
 
 
-
-
-	clean_header(infos->header);
-	clean_map(infos->map);
-	free(infos);
-
+	(void) ac;
+	launcher->i = init_infos(av, &launcher->i);
+	if (!launcher->i)
+		return (1);
+	render(launcher);
+	clean_header(launcher->i->header);
+	clean_map(launcher->i->map);
+	free(launcher->i);
+	free(launcher);
 	return (0);
 }

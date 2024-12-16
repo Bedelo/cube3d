@@ -34,11 +34,15 @@ void	draw_square(t_infos *infos, t_container *c, int x, int y, int color)
 	}
 }
 
-void	draw_wall(t_container *c, t_infos *infos)
+void	draw_wall(t_launcher **launcher)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	t_infos		*infos;
+	t_container	*c;
 
+	c = (*launcher)->c;
+	infos = (*launcher)->i;
 	i = 0;
 	while (i < H_WALL * infos->map->dim[0] - 1)
 	{
@@ -53,5 +57,5 @@ void	draw_wall(t_container *c, t_infos *infos)
 		}
 		i += H_WALL;
 	}
-	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
+	// mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 }

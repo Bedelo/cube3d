@@ -9,6 +9,7 @@
 # include <stdio.h>
 # include "render2D.h"
 
+# define PI 3.14159265358979323846
 # define INCORRECT_PLAYER "Error: INCORRECT PLAYER\n"
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
@@ -16,11 +17,8 @@
 # define ERROR "Error\n"
 # define ERROR_MAP "Error: MAP IS WRONG\n"
 # define ERROR_HEADER "Error: HEADER IS WRONG\n"
-# define FAIL (-1)										//! Norme
 # define KO 1
 # define OK 0
-
-
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
@@ -53,4 +51,5 @@ int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);
 int				check_is_map(char *file, int *header_len);
 
+void	init_draw(t_launcher **launcher);
 #endif

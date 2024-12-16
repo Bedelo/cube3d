@@ -19,6 +19,7 @@
 [x] Is Header Normed (NO SO EA WE C F is only present)
 [x] Is Header Right (paths of rescources is correct)
 [x] Store Infos header in Structure
+[] Checking resources extensions
 
 [o] clean frees
 	[x] error free occurs at header get_next_line
@@ -54,7 +55,8 @@
 [] Do Walls
 []
 
-
+## ERROR MESSAGE
+[] whole refacto
 
 ### Garbage Collector
 [] do by struct
