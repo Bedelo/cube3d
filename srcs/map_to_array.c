@@ -9,7 +9,7 @@ char	**fill_empty_map(t_map_creation **map, int *k)
 	m = *map;
 	while (*k < m->dim[1] - 1)
 	{
-		m->my_map[m->i][*k] = '1';
+		m->my_map[m->i][*k] = ' ';
 		*k += 1;
 	}
 	return (m->my_map);
@@ -35,7 +35,7 @@ char	**fill_map(t_map_creation **map, int *k)
 		if (m->line[*k] == '1' || m->line[*k] == '0')
 			m->my_map[m->i][*k] = m->line[*k];
 		if (m->line[*k] == ' ')
-			m->my_map[m->i][*k] = '1';
+			m->my_map[m->i][*k] = ' ';
 		if (m->line[*k] == '\n')
 			fill_empty_map(&m, k);
 		*k += 1;

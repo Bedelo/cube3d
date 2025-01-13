@@ -37,6 +37,8 @@ t_map_creation	*map_init(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m, char **av);
 void			display_map(t_map_creation *m);
 int				check_enclosure_map(t_map_creation **map);
+int				check_map(t_map_creation **map);
+
 
 char			**header_label(char *header[7]);
 t_header		*header_creation(char *file);

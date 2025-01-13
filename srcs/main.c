@@ -21,10 +21,13 @@ t_infos	*init_infos(char **av, t_infos **i)
 
 	infos = *i;
 	infos = ft_calloc(1, sizeof(t_infos));
+	if (!infos)
+		return (NULL);
 	infos->map = map_init(infos->map, av);
 	if (!infos->map)
-		return (NULL);								//# ADD MESSAGE
-	check_enclosure_map(&infos->map);
+		return (NULL);								//# free infos
+	// if (check_enclosure_map(&infos->map) == KO)
+	// 	return (NULL);								//# free infos
 	infos->header = header_creation(av[1]);
 	display_map(infos->map);							//* printer
 	init_player(&infos);
@@ -73,12 +76,10 @@ int	main(int ac, char **av)
 	launcher = ft_calloc(1, sizeof(t_launcher));
 	if (!launcher)
 		return (1);
-
-
 	(void) ac;
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
-		return (1);
+		return (1);				//# free all
 	render(launcher);
 	clean_header(launcher->i->header);
 	clean_map(launcher->i->map);
