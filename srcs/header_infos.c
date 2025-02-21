@@ -13,12 +13,12 @@ int	fill_header(char **split_, int i, int j)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (KO);
+		return (free_2(split_), KO);
 	// printf("label find: %s\n\n", label[l]); //* printer
 	if (split_[j] != NULL)
 		return (OK);
 	else
-		return (KO);
+		return (free_2(split_), KO);
 }
 
 void	store_label(t_header **h, char **split_line, int i, int j)
@@ -38,7 +38,16 @@ void	store_label(t_header **h, char **split_line, int i, int j)
 		(header)->f = ft_strdup(split_line[j]);
 	if (ft_strncmp(split_line[i], "C", ft_strlen(split_line[i]) + 1) == 0)
 		(header)->c = ft_strdup(split_line[j]);
+	free(split_line[i]);
+	split_line[i] = NULL;
+	free(split_line[j]);
+	split_line[j] = NULL;
+	free(split_line);
+	split_line = NULL;
 }
+
+
+
 
 int	header_init(t_header *header, char *line, int *nb_label)
 {
@@ -59,12 +68,10 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	while (split_line[++j] && ft_strlen(split_line[j]) < 5)
 		;
 	if (fill_header(split_line, i, j) == OK)
-	{
-		return ((*nb_label)++, store_label(&header, split_line, i, j),
-			free_2(split_line), free(line), OK);
-	}
-	free_2(split_line);
-	return (free(line), KO);
+		return ((*nb_label)++, store_label(&header, split_line, i, j), free(line), OK);
+	free(line);
+	// line = NULL;
+	return (KO);
 }
 
 void	display_header(t_header *header)
@@ -93,9 +100,10 @@ t_header	*header_creation(char *file)
 	while (nb_label < 6)
 	{
 		line = get_next_line(fd);
+		if (!line)
+			return (close(fd), NULL);
 		if (header_init(header, line, &nb_label) == KO)
 			return (NULL);
-		// printf("nb_label: %d\n", nb_label); 				//* printer
 	}
 	close (fd);
 	return (header);

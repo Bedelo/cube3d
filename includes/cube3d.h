@@ -53,5 +53,5 @@ int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);
 int				check_is_map(char *file, int *header_len);
 
-void	init_draw(t_launcher **launcher);
+int				init_draw(t_launcher **launcher);
 #endif

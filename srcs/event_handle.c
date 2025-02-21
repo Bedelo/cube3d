@@ -5,8 +5,9 @@ int	close_window_x(t_container *c)
 	mlx_destroy_image(c->mlx, c->img.img);
 	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
+	free(c->name);
 	free(c->mlx);
-	exit(0);
+	return (1);
 }
 
 int	events_window(int keysym, t_launcher **launcher)
@@ -17,7 +18,7 @@ int	events_window(int keysym, t_launcher **launcher)
 	infos = (*launcher)->i;
 	c = (*launcher)->c;
 	if (keysym == XK_Escape)
-		close_window_x(c);
+		return (close_window_x(c));
 	if (keysym == XK_A || keysym == XK_a)
 		infos->player->px -= 1;
 	if (keysym == XK_D || keysym == XK_d)

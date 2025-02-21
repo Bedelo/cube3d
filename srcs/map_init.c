@@ -11,12 +11,11 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 		return (NULL);
 	m->pos = malloc(sizeof(int) * 2);
 	if (!m->pos)
-		return (NULL);
-	// m->my_map[m->pos[0]][m->pos[1]] = '0';
-	player_position(&m);
+		return (clean_map(m), NULL);
+	if (!player_position(&m))
+		return (clean_map(m), NULL);
 	if (check_map(&m) == KO)
-		return (NULL);
-	// clean_map(m);			//# TO USE IN FUTURE FOR CLEANING MEMORY ALLOCATED
+		return (clean_map(m), NULL);
 	return (m);
 }
 

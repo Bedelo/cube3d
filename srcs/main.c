@@ -25,16 +25,20 @@ t_infos	*init_infos(char **av, t_infos **i)
 		return (NULL);
 	infos->map = map_init(infos->map, av);
 	if (!infos->map)
-		return (NULL);								//# free infos
+		return ( free(infos), NULL);
 	// if (check_enclosure_map(&infos->map) == KO)
 	// 	return (NULL);								//# free infos
 	infos->header = header_creation(av[1]);
-	display_map(infos->map);							//* printer
-	init_player(&infos);
+	if(!infos->header)
+		return (clean_map(infos->map), free(infos), NULL);
+	display_map(infos->map);
+	infos = init_player(&infos);							//* printer
+	if (!infos)
+		return (free(infos->player), clean_header(infos->header), clean_map(infos->map), free(infos), NULL);
 	return (infos);
 }
 
-void	init_draw(t_launcher **launcher)
+int	init_draw(t_launcher **launcher)
 {
 	t_container	*c;
 
@@ -42,32 +46,34 @@ void	init_draw(t_launcher **launcher)
 	c = ft_calloc(1, sizeof(t_container));
 	c->mlx = mlx_init();
 	if (!c->mlx)
-		error_init();
-	c->mlx_win = mlx_new_window(c->mlx, 1920, 1080, "Hello world!");
+		return (error_init(), free(c), KO);
+	c->mlx_win = mlx_new_window(c->mlx, 1920, 1080, "Cube3d");
 	if (!c->mlx_win)
-		error_window(c);
+		return (error_window(c), free(c), KO);
 	c->img.img = mlx_new_image(c->mlx, 1920, 1080);
 	if (!c->img.img)
-		error_image(c);
+		return (error_image(c), free(c), KO);
 	c->img.addr = mlx_get_data_addr(c->img.img,
 			&c->img.bits_per_pixel,
 			&c->img.line_length,
 			&c->img.endian);
 	(*launcher)->c = c;
-
+	return (OK);
 }
 
 int	render(t_launcher *launcher)
 {
 
-	init_draw(&launcher);
+	if (init_draw(&launcher) == KO)
+		return (KO);
 	handle_event(&launcher);
 	draw_wall(&launcher);
-	render_player(&launcher);
+	// render_player(&launcher);  //? for minimap
 	mlx_put_image_to_window(launcher->c->mlx, launcher->c->mlx_win, launcher->c->img.img, 0, 0);
 	mlx_loop(launcher->c->mlx);
-	return (0);
+	return (OK);
 }
+
 
 int	main(int ac, char **av)
 {
@@ -79,8 +85,9 @@ int	main(int ac, char **av)
 	(void) ac;
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
-		return (1);				//# free all
-	render(launcher);
+		return (free(launcher), 1);
+	if (render(launcher) == KO)
+		return (free(launcher), KO);
 	clean_header(launcher->i->header);
 	clean_map(launcher->i->map);
 	free(launcher->i);

@@ -3,7 +3,6 @@
 void	error_init(void)
 {
 	ft_putstr_fd(ERROR_INITIALISATION, 2);
-	exit(1);
 }
 
 void	error_window(t_container *container)
