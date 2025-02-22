@@ -24,7 +24,7 @@
 [o] clean frees
 	[x] error free occurs at header get_next_line
 [] check discord for other test
-
+[] check extension ending map
 
 ## Player
 [] Structure player

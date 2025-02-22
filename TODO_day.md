@@ -1,5 +1,5 @@
-# 16.12
+# 22.02
 
-* struct player to implement and add to stuct launcher to render
-* apply N S E W orientation and implement first ray
+* map rsp doesnt exit use case to fix
 * check parsing right resources format and their existence
+* apply N S E W orientation and implement first ray

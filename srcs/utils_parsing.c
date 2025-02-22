@@ -33,7 +33,7 @@ int	is_header(char *line, int fd)
 	header_label(header);
 	if (ft_strlen(line) == 1)
 		return (OK);
-	split_line = ft_split(line, ' ');
+	split_line = ft_split(line);
 	if (!split_line)
 		return (KO);
 	while (split_line[size])

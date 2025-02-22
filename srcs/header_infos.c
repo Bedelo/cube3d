@@ -59,7 +59,7 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	i = -1;
 	if (ft_strlen(line) == 1)
 		return (free(line), OK);
-	split_line = ft_split(line, ' ');
+	split_line = ft_split(line);
 	if (!split_line)
 		return (free(line), KO);
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
