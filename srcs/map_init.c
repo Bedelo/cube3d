@@ -9,12 +9,12 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	m = ft_map(&m, av);
 	if (!m)
 		return (NULL);
+	if (check_map(&m) == KO)
+		return (clean_map(m), NULL);
 	m->pos = malloc(sizeof(int) * 2);
 	if (!m->pos)
 		return (clean_map(m), NULL);
 	if (!player_position(&m))
-		return (clean_map(m), NULL);
-	if (check_map(&m) == KO)
 		return (clean_map(m), NULL);
 	return (m);
 }

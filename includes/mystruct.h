@@ -64,14 +64,14 @@ typedef struct s_data
 
 typedef struct s_container
 {
-	char	*name;
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
 }			t_container;
 
 typedef struct s_launcher
 {
+	char		*name;
+	void		*mlx;
+	void		*mlx_win;
+	t_data		img;
 	t_container	*c;
 	t_infos		*i;
 	t_player	*p;

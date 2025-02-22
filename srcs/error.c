@@ -5,7 +5,7 @@ void	error_init(void)
 	ft_putstr_fd(ERROR_INITIALISATION, 2);
 }
 
-void	error_window(t_container *container)
+void	error_window(t_launcher *container)
 {
 	mlx_destroy_display(container->mlx);
 	free(container->img.img);
@@ -14,7 +14,7 @@ void	error_window(t_container *container)
 	error_init();
 }
 
-void	error_image(t_container *container)
+void	error_image(t_launcher *container)
 {
 	mlx_destroy_window(container->mlx, container->mlx_win);
 	mlx_destroy_display(container->mlx);
@@ -24,8 +24,8 @@ void	error_image(t_container *container)
 	error_init();
 }
 
-void	err(char *str)
-{
-	while (*str)
-		write(2, str++, 1);
-}
+// void	err(char *str)
+// {
+// 	while (*str)
+// 		write(2, str++, 1);
+// }

@@ -1,34 +1,28 @@
 #include "./../includes/cube3d.h"
 
-int	*player_position(t_map_creation **map)
+
+
+void err(char *s)
 {
-	t_map_creation	*m;
-	int				i;
-	int				j;
-
-	m = *map;
-	i = -1;
-	while (++i < m->dim[0])
-	{
-		j = -1;
-		while (++j < m->dim[1] - 1)
-		{
-			if (m->my_map[i][j] == 'N' || m->my_map[i][j] == 'S'
-				|| m->my_map[i][j] == 'W' || m->my_map[i][j] == 'E')
-			{
-				m->pos[0] = (i);
-				m->pos[1] = (j);
-				return (m->pos);
-			}
-		}
-	}
-	return (NULL);
+	ft_putstr_fd(s, 1);
 }
-
 
 int is_border(char c)
 {
 	if (!c || c == ' ')
+		return (KO);
+	return (OK);
+}
+
+int is_boundary_border(t_map_creation *map, int x , int y)
+{
+	if (x  == 0 && map->my_map[x][y] == '0')
+		return (KO);
+	if (y == 0 && map->my_map[x][y] == '0')
+		return (KO);
+	if (x == map->dim[0] - 1 && map->my_map[x][y] == '0')
+		return (KO);
+	if (y == map->dim[1] - 1 && map->my_map[x][y] == '0')
 		return (KO);
 	return (OK);
 }
@@ -71,6 +65,8 @@ int	check_map(t_map_creation **map)
 	{
 		while (m[i][j])
 		{
+			if (is_boundary_border(*map, i, j) == KO)
+				return (err("Error: map not close in boundary\n"), KO);
 			if (is_closed(m, i, j) == KO)
 				return (err("Error: map not close\n"), KO);
 			j++;

@@ -13,7 +13,7 @@
 [x] add right error message
 
 [x] map is closed
-[x] clean frees
+[o] clean frees
 
 ## Parsing Header
 [x] Is Header Normed (NO SO EA WE C F is only present)

@@ -58,7 +58,7 @@ char	**create_map(t_map_creation **map)
 	while (m->i < (m->dim[0]) && m->line)
 	{
 		if (!fill_map(&m, &k))
-			return (shield_malloc_2(m->my_map, m->dim[0]));
+			return (free(m->line), shield_malloc_2(m->my_map, m->dim[0]));
 		free(m->line);
 		m->line = NULL;
 		m->i += 1;

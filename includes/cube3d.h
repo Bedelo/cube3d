@@ -44,8 +44,8 @@ char			**header_label(char *header[7]);
 t_header		*header_creation(char *file);
 
 void			error_init(void);
-void			error_window(t_container *container);
-void			error_image(t_container *container);
+void			error_window(t_launcher *container);
+void			error_image(t_launcher *container);
 
 void			err(char *str);
 
@@ -53,5 +53,5 @@ int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);
 int				check_is_map(char *file, int *header_len);
 
-int				init_draw(t_launcher **launcher);
+void			init_draw(t_launcher **launcher);
 #endif

@@ -26,8 +26,6 @@ t_infos	*init_infos(char **av, t_infos **i)
 	infos->map = map_init(infos->map, av);
 	if (!infos->map)
 		return ( free(infos), NULL);
-	// if (check_enclosure_map(&infos->map) == KO)
-	// 	return (NULL);								//# free infos
 	infos->header = header_creation(av[1]);
 	if(!infos->header)
 		return (clean_map(infos->map), free(infos), NULL);
@@ -38,39 +36,37 @@ t_infos	*init_infos(char **av, t_infos **i)
 	return (infos);
 }
 
-int	init_draw(t_launcher **launcher)
+void	init_draw(t_launcher **launcher)
 {
-	t_container	*c;
+	t_launcher	*c;
 
-	c = (*launcher)->c;
-	c = ft_calloc(1, sizeof(t_container));
+	c = (*launcher);
 	c->mlx = mlx_init();
 	if (!c->mlx)
-		return (error_init(), free(c), KO);
+		return (error_init(), free(c));
 	c->mlx_win = mlx_new_window(c->mlx, 1920, 1080, "Cube3d");
 	if (!c->mlx_win)
-		return (error_window(c), free(c), KO);
+		return (error_window(c), free(c));
 	c->img.img = mlx_new_image(c->mlx, 1920, 1080);
 	if (!c->img.img)
-		return (error_image(c), free(c), KO);
+		return (error_image(c), free(c));
 	c->img.addr = mlx_get_data_addr(c->img.img,
 			&c->img.bits_per_pixel,
 			&c->img.line_length,
 			&c->img.endian);
-	(*launcher)->c = c;
-	return (OK);
+	return ;
 }
 
 int	render(t_launcher *launcher)
 {
 
-	if (init_draw(&launcher) == KO)
-		return (KO);
+	init_draw(&launcher);
+
 	handle_event(&launcher);
-	draw_wall(&launcher);
-	// render_player(&launcher);  //? for minimap
-	mlx_put_image_to_window(launcher->c->mlx, launcher->c->mlx_win, launcher->c->img.img, 0, 0);
-	mlx_loop(launcher->c->mlx);
+	draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
+	render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
+	mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);
+	mlx_loop(launcher->mlx);
 	return (OK);
 }
 
@@ -86,11 +82,6 @@ int	main(int ac, char **av)
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
 		return (free(launcher), 1);
-	if (render(launcher) == KO)
-		return (free(launcher), KO);
-	clean_header(launcher->i->header);
-	clean_map(launcher->i->map);
-	free(launcher->i);
-	free(launcher);
+	render(launcher);
 	return (0);
 }

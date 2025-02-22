@@ -1,22 +1,27 @@
 #include "./../includes/cube3d.h"
 
-int	close_window_x(t_container *c)
+int	close_window_x(t_launcher *c)
 {
 	mlx_destroy_image(c->mlx, c->img.img);
 	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
 	free(c->name);
 	free(c->mlx);
-	return (1);
+	free(c->i->player);
+	clean_map(c->i->map);
+	clean_header(c->i->header);
+	free(c->i);
+	free(c);
+	exit(0);
 }
 
 int	events_window(int keysym, t_launcher **launcher)
 {
-	t_container	*c;
+	t_launcher	*c;
 	t_infos	*infos;
 
 	infos = (*launcher)->i;
-	c = (*launcher)->c;
+	c = (*launcher);
 	if (keysym == XK_Escape)
 		return (close_window_x(c));
 	if (keysym == XK_A || keysym == XK_a)
@@ -42,9 +47,9 @@ int	move_player(int keysym, t_launcher **l)
 
 void	handle_event(t_launcher **launcher)
 {
-	t_container	*c;
+	t_launcher	*c;
 
-	c = (*launcher)->c;
+	c = (*launcher);
 	mlx_hook(c->mlx_win, 17, 0, close_window_x, c);
 	mlx_key_hook(c->mlx_win, events_window, launcher);
 	// mlx_key_hook(c->mlx_win, move_player, launcher);
