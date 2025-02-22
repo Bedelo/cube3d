@@ -75,6 +75,8 @@ int	main(int ac, char **av)
 {
 	t_launcher	*launcher;
 
+	if (ac != 2)
+		return (err("Enter valid map\n"), 1);
 	launcher = ft_calloc(1, sizeof(t_launcher));
 	if (!launcher)
 		return (1);

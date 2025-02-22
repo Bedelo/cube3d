@@ -13,7 +13,7 @@ int	ft_handle_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Cannot read file.\n", 2);
+		ft_putstr_fd("Cannot read file. file name is incorrect!\n", 2);
 		return (-1);
 	}
 	return (fd);
@@ -90,9 +90,9 @@ int	map_dim(int *dim, char *file, int (*f) (int, int*), int *header_len)
 
 	fd = ft_handle_map(file);
 	if (fd == -1)
-		return (1);
+		return (KO);
 	else
 		*dim = f(fd, header_len);
 	close(fd);
-	return (0);
+	return (OK);
 }

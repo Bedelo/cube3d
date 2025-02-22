@@ -1,7 +1,5 @@
 #include "./../includes/cube3d.h"
 
-
-
 char	**fill_empty_map(t_map_creation **map, int *k)
 {
 	t_map_creation	*m;
@@ -75,12 +73,12 @@ int	ft_initialise_map(t_map_creation **map)
 	m = *map;
 	m->fd = ft_handle_map(m->file);
 	if (m->fd == -1)
-		return (1);
+		return (KO);
 	create_map(&m);
 	close(m->fd);
 	if (!m->my_map)
-		return (1);
-	return (0);
+		return (KO);
+	return (OK);
 }
 
 t_map_creation	*ft_map(t_map_creation **map, char **av)
@@ -90,22 +88,24 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 
 	m = *map;
 	m->dim = ft_calloc(2, sizeof(int));
-	map_dim(&i, m->file, len_y, &m->header_len);
+	if (map_dim(&i, m->file, len_y, &m->header_len) == KO)
+		return (free(m->dim), free(m), NULL);
 	m->dim[0] = i;
-	map_dim(&i, m->file, len_x, &m->header_len);
+	if (map_dim(&i, m->file, len_x, &m->header_len))
+		return (free(m->dim), free(m), NULL);
 	m->dim[1] = i;
 	i = 0;
-	m->my_map = ft_calloc(m->dim[0] + 1, sizeof(char *));
+	m->my_map = ft_calloc((m->dim[0] + 1), sizeof(char *));
 	if (!m->my_map)
 		return (shield_malloc(m->my_map));
 	while (i < m->dim[0])
 	{
 		m->my_map[i] = ft_calloc(m->dim[1] + 1, sizeof(char));
-		if (!m->my_map)
+		if (!m->my_map[i])
 			return (shield_malloc_2(m->my_map, m->dim[0]));
 		i++;
 	}
 	if (ft_initialise_map(&m) == KO)
-		return (NULL);
+		return (shield_malloc_2(m->my_map, m->dim[0]), free(m->dim), free(m), NULL);
 	return (m);
 }

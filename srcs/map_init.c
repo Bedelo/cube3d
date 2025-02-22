@@ -5,6 +5,8 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	m = ft_calloc(1, sizeof(t_map_creation));
 	if (!m)
 		return (NULL);
+	if (!av[1])
+		return (NULL);
 	m->file = av[1];
 	m = ft_map(&m, av);
 	if (!m)
