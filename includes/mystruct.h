@@ -20,23 +20,10 @@ typedef struct s_header
 	char	*c;
 }			t_header;
 
-typedef struct s_vector
-{
-	double	x;
-	double	y;
-}			t_vector;
-
-typedef struct s_coord
-{
-	long long	xx;
-	long long	yy;
-}			t_coord;
-
 typedef struct s_map_creation
 {
 	char	*file;
 	char	**my_map;
-	t_coord	coord;
 	int		*dim;
 	int		fd;
 	int		i;
@@ -51,6 +38,7 @@ typedef struct s_infos
 	t_map_creation	*map;
 	t_header		*header;
 	t_player		*player;
+
 }					t_infos;
 
 typedef struct s_data
@@ -62,9 +50,17 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
-typedef struct s_container
+typedef struct s_ray
 {
-}			t_container;
+	double		dist;
+	double		x_origin;
+	double		y_origin;
+	double		x_;
+	double		y_;
+	double		x_intercept;
+	double		y_intercept;
+
+}			t_ray;
 
 typedef struct s_launcher
 {
@@ -72,9 +68,7 @@ typedef struct s_launcher
 	void		*mlx;
 	void		*mlx_win;
 	t_data		img;
-	t_container	*c;
 	t_infos		*i;
-	t_player	*p;
 }				t_launcher;
 
 #endif
