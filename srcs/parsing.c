@@ -1,5 +1,20 @@
 #include "./../includes/cube3d.h"
 
+
+
+static int	valid_file(char *file)
+{
+	int	len;
+
+	len = ft_strlen(file);
+	if (len > 4)
+	{
+		if (ft_strncmp(&file[len - 4], ".cub", 4) == 0)
+			return (1);
+	}
+	return (0);
+}
+
 /**
  * open  file of map as input, fd is returned
  * @param file
@@ -9,15 +24,28 @@
 int	ft_handle_map(char *file)
 {
 	int		fd;
-
+	if (valid_file(file) == 0)
+	{
+		ft_putstr_fd("FDF: Error opening file: ", 2);
+		ft_putstr_fd(file, 2);
+		ft_putstr_fd("\nIncorrect format. Expected <filename.fdf>\n", 2);
+		return (-1);
+	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Cannot read file. file name is incorrect!\n", 2);
+		ft_putstr_fd("FDF: Error opening file: ", 2);
+		ft_putstr_fd(file, 2);
+		if (errno == ENOENT)
+			ft_putstr_fd("\nFile not found\n", 2);
+		if (errno == EACCES)
+			ft_putstr_fd("\nAcces not granted\n", 2);
 		return (-1);
 	}
 	return (fd);
 }
+
+
 
 /**
  * get the length of the longest line x (columns)

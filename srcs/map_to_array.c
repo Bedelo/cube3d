@@ -56,7 +56,8 @@ char	**create_map(t_map_creation **map)
 	while (m->i < (m->dim[0]) && m->line)
 	{
 		if (!fill_map(&m, &k))
-			return (free(m->line), shield_malloc_2(m->my_map, m->dim[0]));
+			// return (free(m->line), shield_malloc_2(m->my_map, m->dim[0]), NULL);
+			return (free(m->line), NULL);
 		free(m->line);
 		m->line = NULL;
 		m->i += 1;
@@ -74,7 +75,8 @@ int	ft_initialise_map(t_map_creation **map)
 	m->fd = ft_handle_map(m->file);
 	if (m->fd == -1)
 		return (KO);
-	create_map(&m);
+	if (!create_map(&m))
+		return (KO);
 	close(m->fd);
 	if (!m->my_map)
 		return (KO);

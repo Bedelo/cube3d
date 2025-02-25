@@ -10,7 +10,10 @@ t_infos	*init_player(t_infos **i)
 		return (NULL);
 	infos->player->px = infos->map->pos[0] * H_WALL + H_WALL / 2;
 	infos->player->py = infos->map->pos[1] * W_WALL + W_WALL / 2;
-	infos->player->angle = 0;		//? ADD RADIAN ANGLE BY HEADER N S E W
+	ajust_angle(infos);
+	infos->player->move_utils.rot_dir = 0;
+	infos->player->move_utils.ud_dir = 0;
+	infos->player->move_utils.lr_dir = 0;
 	return (infos);
 }
 
@@ -61,10 +64,9 @@ int	render(t_launcher *launcher)
 {
 
 	init_draw(&launcher);
-
 	handle_event(&launcher);
 	draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
-	render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
+	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
 	mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);
 	mlx_loop(launcher->mlx);
 	return (OK);

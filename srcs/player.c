@@ -40,3 +40,14 @@ int	*player_position(t_map_creation **map)
 	return (NULL);
 }
 
+void ajust_angle(t_infos *infos)
+{
+	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
+		infos->player->angle = 0;
+	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
+		infos->player->angle = PI;
+	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
+		infos->player->angle = PI / 2;
+	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
+		infos->player->angle = 3 * PI / 2;
+}

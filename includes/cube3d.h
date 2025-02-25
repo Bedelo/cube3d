@@ -7,6 +7,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
+#include <errno.h>
 # include "render2D.h"
 
 # define PI 3.14159265358979323846
@@ -19,17 +20,21 @@
 # define ERROR_HEADER "Error: HEADER IS WRONG\n"
 # define KO 1
 # define OK 0
+# define ROT_SPEED 0.15
+# define MOVE_SPEED 0.25
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
 int				ft_handle_map(char *file);
 int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
 
+void			ft_freenstr(int n, void *str, ...);
+
 int				*player_position(t_map_creation **map);
+void			ajust_angle(t_infos *infos);
 
 void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
-void			free_2(char **split);
 void			clean_map(t_map_creation *m);
 void			clean_header(t_header *header);
 
@@ -42,6 +47,7 @@ int				check_map(t_map_creation **map);
 
 char			**header_label(char *header[7]);
 t_header		*header_creation(char *file);
+int				header_format(t_header *header);
 
 void			error_init(void);
 void			error_window(t_launcher *container);
@@ -52,6 +58,10 @@ void			err(char *str);
 int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);
 int				check_is_map(char *file, int *header_len);
+
+
+int				events_window(int keysym, t_launcher **launcher);
+int				close_window_x(t_launcher *c);
 
 void			init_draw(t_launcher **launcher);
 #endif

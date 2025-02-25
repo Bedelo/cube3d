@@ -1,5 +1,25 @@
 #include "./../includes/cube3d.h"
 
+
+void	clear_image(t_launcher *launcher)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < SCR_WIDTH)
+	{
+		x = 0;
+		while (x < SCR_HEIGHT)
+		{
+			my_mlx_pixel_put(&launcher->img, x, y, 0x00000000);
+			x++;
+		}
+		y++;
+	}
+}
+
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -41,6 +61,7 @@ void	draw_wall(t_launcher **launcher)
 	t_infos		*infos;
 	t_launcher	*l;
 
+	clear_image(*launcher);
 	l = (*launcher);
 	infos = (*launcher)->i;
 	i = 0;

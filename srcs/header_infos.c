@@ -13,12 +13,11 @@ int	fill_header(char **split_, int i, int j)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (free_2(split_), KO);
-	// printf("label find: %s\n\n", label[l]); //* printer
+		return (freetab((void **)split_, -1), KO);
 	if (split_[j] != NULL)
 		return (OK);
 	else
-		return (free_2(split_), KO);
+		return (freetab((void **)split_, -1), KO);
 }
 
 void	store_label(t_header **h, char **split_line, int i, int j)
@@ -60,8 +59,9 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	if (ft_strlen(line) == 1)
 		return (free(line), OK);
 	split_line = ft_split(line);
-	if (!split_line)
-		return (free(line), KO);
+	if (ft_len_tab(split_line) != 2 || !split_line)
+		return (err("Bad format header\n"), clean_header(header),\
+			 free(line), freetab((void **)split_line, -1), KO);
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
 		;
 	j = i;
@@ -70,7 +70,6 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	if (fill_header(split_line, i, j) == OK)
 		return ((*nb_label)++, store_label(&header, split_line, i, j), free(line), OK);
 	free(line);
-	// line = NULL;
 	return (KO);
 }
 
@@ -101,10 +100,13 @@ t_header	*header_creation(char *file)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (close(fd), NULL);
+			return (err("Creation header failed!\n"), close(fd), NULL);
 		if (header_init(header, line, &nb_label) == KO)
-			return (NULL);
+			return (err("Creation header failed!\n"), close(fd), NULL);
 	}
 	close (fd);
+	// display_header(header);    //# to delete
+	if(header_format(header) == KO)
+		return (err("Creation header failed!\n"), clean_header(header), NULL);
 	return (header);
 }

@@ -1,14 +1,23 @@
 #ifndef MYSTRUCT_H
 # define MYSTRUCT_H
 
+
+typedef struct s_moving_utils
+{
+	int		rot_dir;
+	int		ud_dir;
+	int		lr_dir;
+}				t_moving_utils;
+
 typedef struct s_player
 {
-	double	px;
-	double	py;
-	double	xx;
-	double	yy;
-	double	angle;
-} 			t_player;
+	double			px;
+	double			py;
+	double			xx;
+	double			yy;
+	double			angle;
+	t_moving_utils	move_utils;
+} 					t_player;
 
 typedef struct s_header
 {
@@ -50,17 +59,17 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
-typedef struct s_ray
-{
-	double		dist;
-	double		x_origin;
-	double		y_origin;
-	double		x_;
-	double		y_;
-	double		x_intercept;
-	double		y_intercept;
+// typedef struct s_ray
+// {
+// 	double		dist;
+// 	double		x_origin;
+// 	double		y_origin;
+// 	double		x_;
+// 	double		y_;
+// 	double		x_intercept;
+// 	double		y_intercept;
 
-}			t_ray;
+// }			t_ray;
 
 typedef struct s_launcher
 {

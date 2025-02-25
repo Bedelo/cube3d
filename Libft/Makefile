@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+         #
+#    By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 14:44:05 by yparthen          #+#    #+#              #
-#    Updated: 2024/08/04 12:13:00 by yparthen         ###   ########.fr        #
+#    Updated: 2025/02/25 15:24:51 by bsunda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_FILES =	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_putchar \
 		ft_calloc ft_strdup ft_substr ft_len_tab str_in_str \
 		ft_strjoin ft_strtrim ft_split ft_itoa ft_print_char \
 		ft_strmapi ft_striteri ft_putstr_fd\
-		ft_outil_printf ft_char_in_str\
+		ft_outil_printf ft_char_in_str ft_split_arg\
 		ft_lstnew ft_lstadd_front ft_free_array ft_abs ft_atol \
 		ft_lstsize ft_lstlast ft_lstadd_back ft_lstdelone ft_atoi \
 		ft_lstclear ft_lstiter ft_lstmap ft_print_hexadecimal \

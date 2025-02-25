@@ -15,10 +15,12 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)utils_parsing.c \
 			$(SRCS)error.c \
 			$(SRCS)header_infos.c \
+			$(SRCS)header_format.c \
 			$(SRCS)map_init.c \
 			$(SRCS)event_handle.c \
 			$(SRCS)player.c \
 			$(SRCS)render_2D.c \
+			$(SRCS)utils.c \
 			$(SRCS)render_3D.c \
 
 CUBE_OBJ = $(CUBE_SRC:.c=.o)

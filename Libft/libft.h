@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:42:24 by yparthen          #+#    #+#             */
-/*   Updated: 2024/08/16 12:36:22 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:17:44 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					ft_abs(int k);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_char_in_str(char *s, int c);
-void				*ft_free_array(void **s, int size_s);
+void				*freetab(void **s, int size_s);
 long int			ft_htoi(char *hex_str);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -73,6 +73,7 @@ char				*ft_substr(const char *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char *s);
+char				**ft_split_arg(const char *s, char c);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_putchar(char c);

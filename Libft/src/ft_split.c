@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:24:41 by yparthen          #+#    #+#             */
-/*   Updated: 2024/07/16 17:17:13 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:14:55 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(char *s)
 		{
 			list_words[k++] = gen_word(s);
 			if (!list_words[k - 1])
-				return (ft_free_array((void **)list_words, k - 1));
+				return (freetab((void **)list_words, - 1));
 			while (*s && !is_espace(*s))
 				s++;
 		}

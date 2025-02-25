@@ -1,31 +1,52 @@
 #include "./../includes/cube3d.h"
 
 
+static void	header_cardinal(t_header * header)
+{
+	if (header->no)
+	{
+		free(header->no);
+		header->no = NULL;
+	}
+	if (header->so)
+	{
+		free(header->so);
+		header->so = NULL;
+	}
+	if (header->we)
+	{
+		free(header->we);
+		header->we = NULL;
+	}
+	if (header->ea)
+	{
+		free(header->ea);
+		header->ea = NULL;
+	}
+}
+
+static void header_floor_celling(t_header *header)
+{
+	if (header->f)
+	{
+		free(header->f);
+		header->f = NULL;
+	}
+	if (header->c)
+	{
+		free(header->c);
+		header->c = NULL;
+	}
+}
+
 void	clean_header(t_header *header)
 {
-	free(header->no);
-	free(header->so);
-	free(header->we);
-	free(header->ea);
-	free(header->f);
-	free(header->c);
+	header_cardinal(header);
+	header_floor_celling(header);
 	free(header);
+	header = NULL;
 }
 
-void	free_2(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		split[i] = NULL;
-		i++;
-	}
-	free(split);
-	split = NULL;
-}
 
 void	*shield_malloc(void *ptr)
 {
@@ -73,3 +94,6 @@ void	clean_map(t_map_creation *m)
 	free(m);
 	m = NULL;
 }
+
+
+
