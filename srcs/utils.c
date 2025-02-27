@@ -1,7 +1,7 @@
 
 #include "./../includes/cube3d.h"
 
-char *rgbToHex(int r, int g, int b, char *hex)
+int	rgbToHex(int r, int g, int b, char *hex)
 {
 	const char hexDigits[] = "0123456789ABCDEF";
 
@@ -13,7 +13,7 @@ char *rgbToHex(int r, int g, int b, char *hex)
 	hex[5] = hexDigits[b / 16];
 	hex[6] = hexDigits[b % 16];
 	hex[7] = '\0';
-	return (hex);
+	return (ft_htoi(hex));
 }
 
 void	ft_freenstr(int n, void *str, ...)

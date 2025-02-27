@@ -2,6 +2,7 @@
 # define MYSTRUCT_H
 
 
+// condition if rotate forward backward left or right
 typedef struct s_moving_utils
 {
 	int		rot_dir;
@@ -9,6 +10,8 @@ typedef struct s_moving_utils
 	int		lr_dir;
 }				t_moving_utils;
 
+
+// infos about player
 typedef struct s_player
 {
 	double			px;
@@ -59,17 +62,6 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
-// typedef struct s_ray
-// {
-// 	double		dist;
-// 	double		x_origin;
-// 	double		y_origin;
-// 	double		x_;
-// 	double		y_;
-// 	double		x_intercept;
-// 	double		y_intercept;
-
-// }			t_ray;
 
 typedef struct s_launcher
 {

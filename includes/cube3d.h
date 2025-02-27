@@ -21,7 +21,7 @@
 # define KO 1
 # define OK 0
 # define ROT_SPEED 0.15
-# define MOVE_SPEED 0.25
+# define MOVE_SPEED 0.75
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);

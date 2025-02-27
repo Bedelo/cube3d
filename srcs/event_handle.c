@@ -96,8 +96,8 @@ int	events_window(int keysym, t_launcher **launcher)
 		return (close_window_x(c));
 	rotate_move_on(keysym, infos);
 	move_on(keysym, infos, c);
-	// render_player(launcher);
-	// mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
+	render_player(launcher);
+	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
 	return (0);
 }
 

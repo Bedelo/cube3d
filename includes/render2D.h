@@ -9,8 +9,8 @@
 # include <stdio.h>
 # include "mystruct.h"
 
-# define W_WALL 5
-# define H_WALL 5
+# define W_WALL 10
+# define H_WALL 10
 
 void		render_player(t_launcher **launcher);
 
