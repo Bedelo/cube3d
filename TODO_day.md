@@ -17,8 +17,5 @@
 
 * initialisation de chaque structure a NULL ou 0
 
-* creer une nouvelle branche
-
-* dossier pour les *.o
 
 

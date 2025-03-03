@@ -8,6 +8,7 @@ t_infos	*init_player(t_infos **i)
 	infos->player = ft_calloc(1, sizeof(t_player));
 	if (!infos->player)								//# ADD MESSAGE
 		return (NULL);
+	*infos->player = (t_player){0};
 	infos->player->px = infos->map->pos[0] * H_WALL + H_WALL / 2;
 	infos->player->py = infos->map->pos[1] * W_WALL + W_WALL / 2;
 	ajust_angle(infos);
@@ -26,6 +27,7 @@ t_infos	*init_infos(char **av, t_infos **i)
 	infos = ft_calloc(1, sizeof(t_infos));
 	if (!infos)
 		return (NULL);
+	*infos = (t_infos){0};
 	infos->map = map_init(infos->map, av);
 	if (!infos->map)
 		return ( free(infos), NULL);
@@ -82,6 +84,7 @@ int	main(int ac, char **av)
 	launcher = ft_calloc(1, sizeof(t_launcher));
 	if (!launcher)
 		return (1);
+	*launcher = (t_launcher){0};
 	(void) ac;
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
