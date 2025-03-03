@@ -3,7 +3,7 @@ gits Instruction
 # a faire avant push
 git fetch --all
 git pull --all
-git add <* / nom_de_fichiers>
+git add <. / * / nom_de_fichiers>
 git commit -m "msg"
 git push
 
