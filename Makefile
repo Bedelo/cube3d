@@ -6,6 +6,7 @@ CUBE_NAME = cube3D
 
 SRCS = ./srcs/
 INCLUDE = ./includes/
+OBJS_DIR = ./objs/
 
 CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)parsing.c \
@@ -23,7 +24,7 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)utils.c \
 			$(SRCS)render_3D.c \
 
-CUBE_OBJ = $(CUBE_SRC:.c=.o)
+CUBE_OBJ = $(CUBE_SRC:$(SRCS)%.c=$(OBJS_DIR)%.o)
 
 NAME = $(CUBE_NAME)
 all: $(NAME)
@@ -38,13 +39,13 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(MLX) $(CUBE_OBJ)
 	$(CC) $(CFLAGS) -I$(INCLUDE) $(CUBE_OBJ) -o $(CUBE_NAME) -lm -L$(LIBFT_PATH) -lft -L$(PATH_MLX) -lmlx -lXext -lX11
 
-
-%.o: %.c
+$(OBJS_DIR)%.o: $(SRCS)%.c
+	mkdir -p $(OBJS_DIR)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 clean:
 	make -C $(LIBFT_PATH) clean
-	rm -f $(CUBE_OBJ)
+	rm -f $(OBJS_DIR)*.o
 
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
