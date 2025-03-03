@@ -7,7 +7,7 @@ int check_header_cardinal(char *file)
 	len = ft_strlen(file);
 	if (len > 4)
 	{
-		if (ft_strncmp(&file[len - 4], ".png", 4) == 0)
+		if (ft_strncmp(&file[len - 4], ".xpm", 4) == 0)
 			return (OK);
 	}
 	//# TO DO : CHECK IF FILE EXISTS

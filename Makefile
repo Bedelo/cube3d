@@ -10,6 +10,7 @@ OBJS_DIR = ./objs/
 
 CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)parsing.c \
+			$(SRCS)init_start.c \
 			$(SRCS)map_to_array.c \
 			$(SRCS)closed_map.c \
 			$(SRCS)utils_free.c \

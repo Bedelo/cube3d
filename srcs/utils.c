@@ -1,19 +1,10 @@
 
 #include "./../includes/cube3d.h"
 
-int	rgbToHex(int r, int g, int b, char *hex)
-{
-	const char hexDigits[] = "0123456789ABCDEF";
 
-	hex[0] = '#';
-	hex[1] = hexDigits[r / 16];
-	hex[2] = hexDigits[r % 16];
-	hex[3] = hexDigits[g / 16];
-	hex[4] = hexDigits[g % 16];
-	hex[5] = hexDigits[b / 16];
-	hex[6] = hexDigits[b % 16];
-	hex[7] = '\0';
-	return (ft_htoi(hex));
+int	rgbToHex(int r, int g, int b)
+{
+    return ((r << 16) | (g << 8) | b);
 }
 
 void	ft_freenstr(int n, void *str, ...)
@@ -41,4 +32,24 @@ void	ft_freenstr(int n, void *str, ...)
 		}
 		i++;
 	}
+}
+
+
+
+unsigned int	to_color_rc(char *str)
+{
+    char			**rgb;
+    int				color[3];
+    unsigned int	color_hex;
+
+    // printf("\n\n#%s#\n\n", str);
+    rgb = ft_split_arg(str, ',');
+    if (!rgb)
+        return (-1);
+    color[0] = ft_atoi(rgb[0]);
+    color[1] = ft_atoi(rgb[1]);
+    color[2] = ft_atoi(rgb[2]);
+    color_hex = (unsigned int) rgbToHex(color[0], color[1], color[2]);
+    freetab((void **)rgb, -1);
+    return (color_hex);
 }

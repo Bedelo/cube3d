@@ -48,6 +48,16 @@ void	clean_header(t_header *header)
 }
 
 
+void	free_all(t_launcher *launcher)
+{
+	free(launcher->raycast);
+	free(launcher->i->player);
+	clean_header(launcher->i->header);
+	clean_map(launcher->i->map);
+	free(launcher->i);
+	free(launcher);
+}
+
 void	*shield_malloc(void *ptr)
 {
 	free(ptr);

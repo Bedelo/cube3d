@@ -51,3 +51,21 @@ void ajust_angle(t_infos *infos)
 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
 		infos->player->angle = 3 * PI / 2;
 }
+
+int *init_axis(t_launcher *launcher)
+{
+	int	x;
+	int	y;
+
+	x = launcher->i->map->pos[0];
+	y = launcher->i->map->pos[1];
+	if (launcher->i->map->my_map[x][y] == 'N')
+		launcher->raycast->axis = (int [2]){0, 1};
+	else if (launcher->i->map->my_map[x][y] == 'S')
+		launcher->raycast->axis = (int [2]){0, -1};
+	else if (launcher->i->map->my_map[x][y] == 'W')
+		launcher->raycast->axis = (int [2]){-1, 0};
+	else if (launcher->i->map->my_map[x][y] == 'E')
+		launcher->raycast->axis = (int [2]){1, 0};
+	return (launcher->raycast->axis);
+}

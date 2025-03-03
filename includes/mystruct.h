@@ -62,6 +62,18 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_raycast
+{
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	int				*dim_texture;
+	unsigned int	f_color;
+	unsigned int	c_color;
+	t_data			img;
+	int				*axis;
+}					t_raycast;
 
 typedef struct s_launcher
 {
@@ -70,6 +82,7 @@ typedef struct s_launcher
 	void		*mlx_win;
 	t_data		img;
 	t_infos		*i;
+	t_raycast	*raycast;
 }				t_launcher;
 
 #endif

@@ -2,11 +2,13 @@
 
 int	close_window_x(t_launcher *c)
 {
+
 	mlx_destroy_image(c->mlx, c->img.img);
 	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
 	free(c->name);
 	free(c->mlx);
+	free(c->raycast);
 	free(c->i->player);
 	clean_map(c->i->map);
 	clean_header(c->i->header);

@@ -15,7 +15,8 @@
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
-# define ERROR "Error\n"
+# define TEXTURE_DIM 1080
+# define ERROR "Error:\n"
 # define ERROR_MAP "Error: MAP IS WRONG\n"
 # define ERROR_HEADER "Error: HEADER IS WRONG\n"
 # define KO 1
@@ -23,16 +24,20 @@
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.75
 
+
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
 int				ft_handle_map(char *file);
 int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
 
 void			ft_freenstr(int n, void *str, ...);
+unsigned int	to_color_rc(char *str);
+int				rgbToHex(int r, int g, int b);
 
 int				*player_position(t_map_creation **map);
 void			ajust_angle(t_infos *infos);
 
+void			free_all(t_launcher *launcher);
 void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
 void			clean_map(t_map_creation *m);
@@ -63,5 +68,9 @@ int				check_is_map(char *file, int *header_len);
 int				events_window(int keysym, t_launcher **launcher);
 int				close_window_x(t_launcher *c);
 
+t_infos			*init_player(t_infos **i);
+t_raycast		*init_raycast(t_launcher *launcher);
+t_infos			*init_infos(char **av, t_infos **i);
 void			init_draw(t_launcher **launcher);
+int				render(t_launcher *launcher);
 #endif
