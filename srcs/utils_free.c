@@ -50,11 +50,12 @@ void	clean_header(t_header *header)
 
 void	free_all(t_launcher *launcher)
 {
-	free(launcher->raycast);
 	free(launcher->i->player);
 	clean_header(launcher->i->header);
 	clean_map(launcher->i->map);
 	free(launcher->i);
+	free(launcher->raycast->axis);
+	free(launcher->raycast);
 	free(launcher);
 }
 

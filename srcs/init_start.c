@@ -27,20 +27,21 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	if (!raycast)
 		return (NULL);
 	*raycast = (t_raycast){0};					//# doublon ??
+	raycast->axis = init_axis(launcher, raycast);
+	if (!raycast->axis)
+		return (err(ERROR), err("Init axis error!\n"), free(raycast), NULL);
 	raycast->no = launcher->i->header->no;
 	raycast->so = launcher->i->header->so;
 	raycast->we = launcher->i->header->we;
 	raycast->ea = launcher->i->header->ea;
 	raycast->f_color = to_color_rc(launcher->i->header->f);
 	if (raycast->f_color == -1)
-		return (err(ERROR), err("Color floor issue !\n"), free(raycast), NULL);
-	// printf("f: %u\n", raycast->f_color);
+		return (err(ERROR), err("Color floor issue!\n"), free(raycast), NULL);
 	raycast->c_color = to_color_rc(launcher->i->header->c);
 	if (raycast->c_color == -1)
-		return (err(ERROR), err("Color ceiling issue !\n"), free(raycast), NULL);
+		return (err(ERROR), err("Color ceiling issue!\n"), free(raycast), NULL);
 	raycast->dim_texture = (int){TEXTURE_DIM, TEXTURE_DIM};
 	raycast->img = launcher->img;
-	raycast->axis = init_axis(launcher);
 	return (raycast);
 }
 

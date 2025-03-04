@@ -36,6 +36,7 @@ int				rgbToHex(int r, int g, int b);
 
 int				*player_position(t_map_creation **map);
 void			ajust_angle(t_infos *infos);
+int				*init_axis(t_launcher *launcher, t_raycast *rc);
 
 void			free_all(t_launcher *launcher);
 void			*shield_malloc(void *ptr);

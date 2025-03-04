@@ -52,20 +52,44 @@ void ajust_angle(t_infos *infos)
 		infos->player->angle = 3 * PI / 2;
 }
 
-int *init_axis(t_launcher *launcher)
+
+int *axis(t_raycast *raycast, char c)
+{
+	raycast->axis = ft_calloc(2, sizeof(int));
+	if (!raycast->axis)
+		return (NULL);
+	if (c == 'N')
+	{
+		raycast->axis[0] = 0;
+		raycast->axis[1] = 1;
+	}
+	else if (c == 'S')
+	{
+		raycast->axis[0] = 0;
+		raycast->axis[1] = -1;
+	}
+	else if (c == 'W')
+	{
+		raycast->axis[0] = -1;
+		raycast->axis[1] = 0;
+	}
+	else if (c == 'E')
+	{
+		raycast->axis[0] = 1;
+		raycast->axis[1] = 0;
+	}
+	return (raycast->axis);
+}
+
+
+int *init_axis(t_launcher *launcher, t_raycast *rc)
 {
 	int	x;
 	int	y;
+	char	c;
 
 	x = launcher->i->map->pos[0];
 	y = launcher->i->map->pos[1];
-	if (launcher->i->map->my_map[x][y] == 'N')
-		launcher->raycast->axis = (int [2]){0, 1};
-	else if (launcher->i->map->my_map[x][y] == 'S')
-		launcher->raycast->axis = (int [2]){0, -1};
-	else if (launcher->i->map->my_map[x][y] == 'W')
-		launcher->raycast->axis = (int [2]){-1, 0};
-	else if (launcher->i->map->my_map[x][y] == 'E')
-		launcher->raycast->axis = (int [2]){1, 0};
-	return (launcher->raycast->axis);
+	c = launcher->i->map->my_map[x][y];
+	return (axis(rc, c));
 }
