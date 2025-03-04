@@ -62,6 +62,14 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+
+typedef struct s_texture
+{
+	t_data		*data;
+	int			width;
+	int			height;
+}				t_texture;
+
 typedef struct s_raycast
 {
 	char			*no;
@@ -70,9 +78,10 @@ typedef struct s_raycast
 	char			*ea;
 	int				dim_texture_x;
 	int				dim_texture_y;
+	t_data			img;
+	t_texture		*texture;
 	unsigned int	f_color;
 	unsigned int	c_color;
-	t_data			img;
 	int				*axis;
 }					t_raycast;
 
