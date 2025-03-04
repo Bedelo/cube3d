@@ -55,6 +55,7 @@ void	free_all(t_launcher *launcher)
 	clean_map(launcher->i->map);
 	free(launcher->i);
 	free(launcher->raycast->axis);
+	free(launcher->raycast->texture);
 	free(launcher->raycast);
 	free(launcher);
 }

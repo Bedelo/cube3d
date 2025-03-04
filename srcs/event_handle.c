@@ -9,6 +9,7 @@ int	close_window_x(t_launcher *c)
 	free(c->name);
 	free(c->mlx);
 	free(c->raycast->axis);
+	free(c->raycast->texture);
 	free(c->raycast);
 	free(c->i->player);
 	clean_map(c->i->map);
