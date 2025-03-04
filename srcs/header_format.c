@@ -3,15 +3,24 @@
 int check_header_cardinal(char *file)
 {
 	int	len;
+	int	fd;
 
+	printf("file = %s\n", file);
 	len = ft_strlen(file);
+	fd = ft_handle_map(file);
+	if (fd == -1)
+		return (err("\n"), err(ERROR), err("texture issue!\n"), KO);
 	if (len > 4)
 	{
 		if (ft_strncmp(&file[len - 4], ".xpm", 4) == 0)
+		{
+			close (fd);
 			return (OK);
+		}
 	}
 	//# TO DO : CHECK IF FILE EXISTS
-	return (KO);
+	close(fd);
+	return (err(ERROR), err("texture issue!\n"), KO);
 }
 
 static int	is_color(char *color)
@@ -52,17 +61,17 @@ int check_header_no_cardinal(char *file)
 
 int header_format(t_header *header)
 {
-	// if(check_header_cardianal(header->no) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->so) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->we) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->ea) == KO)
-	// 	return (KO);
-	if(check_header_no_cardinal(header->f) == KO)
+	if (check_header_cardinal(header->no) == KO)
 		return (KO);
-	if(check_header_no_cardinal(header->c) == KO)
+	if (check_header_cardinal(header->so) == KO)
+		return (KO);
+	if (check_header_cardinal(header->we) == KO)
+		return (KO);
+	if (check_header_cardinal(header->ea) == KO)
+		return (KO);
+	if (check_header_no_cardinal(header->f) == KO)
+		return (KO);
+	if (check_header_no_cardinal(header->c) == KO)
 		return (KO);
 	return (OK);
 }

@@ -26,15 +26,15 @@ int	ft_handle_map(char *file)
 	int		fd;
 	if (valid_file(file) == 0)
 	{
-		ft_putstr_fd("FDF: Error opening file: ", 2);
+		err(ERROR);
+		ft_putstr_fd("Error opening file: \n", 2);
 		ft_putstr_fd(file, 2);
-		ft_putstr_fd("\nIncorrect format. Expected <filename.fdf>\n", 2);
 		return (-1);
 	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("FDF: Error opening file: ", 2);
+		ft_putstr_fd("FDF: Error opening file: \n", 2);
 		ft_putstr_fd(file, 2);
 		if (errno == ENOENT)
 			ft_putstr_fd("\nFile not found\n", 2);

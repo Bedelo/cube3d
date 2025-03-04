@@ -45,7 +45,7 @@
 ## Minilibx
 [] moving
 [] translation
-[] close Windows
+[x] close Windows
 
 [] clean frees
 
