@@ -20,6 +20,7 @@
 # define ERROR_MAP "Error: MAP IS WRONG\n"
 # define ERROR_HEADER "Error: HEADER IS WRONG\n"
 # define KO 1
+# define STOP -2
 # define OK 0
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.75
@@ -27,7 +28,7 @@
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
-int				ft_handle_map(char *file);
+int				ft_handle_map(char *file, char *extension);
 int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
 
 void			ft_freenstr(int n, void *str, ...);

@@ -18,7 +18,7 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	if (!m->pos)
 		return (clean_map(m), NULL);
 	if (!player_position(&m))
-		return (clean_map(m), NULL);
+		return (err(ERROR), err("Player doesn't exist !\n"), clean_map(m), NULL);
 	return (m);
 }
 

@@ -2,16 +2,16 @@
 
 int check_header_cardinal(char *file)
 {
-	int	len;
+	int	fd;
 
-	len = ft_strlen(file);
-	if (len > 4)
+	fd = ft_handle_map(file, ".xpm");
+	if (fd > 0)
 	{
-		if (ft_strncmp(&file[len - 4], ".xpm", 4) == 0)
-			return (OK);
+		close(fd);
+		return (OK);
 	}
-	//# TO DO : CHECK IF FILE EXISTS
 	return (KO);
+	
 }
 
 static int	is_color(char *color)
@@ -52,17 +52,17 @@ int check_header_no_cardinal(char *file)
 
 int header_format(t_header *header)
 {
-	// if(check_header_cardianal(header->no) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->so) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->we) == KO)
-	// 	return (KO);
-	// if(check_header_cardianal(header->ea) == KO)
-	// 	return (KO);
-	if(check_header_no_cardinal(header->f) == KO)
+	if (check_header_cardinal(header->no) == KO)
 		return (KO);
-	if(check_header_no_cardinal(header->c) == KO)
+	if (check_header_cardinal(header->so) == KO)
+		return (KO);
+	if (check_header_cardinal(header->we) == KO)
+		return (KO);
+	if (check_header_cardinal(header->ea) == KO)
+		return (KO);
+	if (check_header_no_cardinal(header->f) == KO)
+		return (KO);
+	if (check_header_no_cardinal(header->c) == KO)
 		return (KO);
 	return (OK);
 }

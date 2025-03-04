@@ -2,14 +2,14 @@
 
 
 
-static int	valid_file(char *file)
+static int	valid_file(char *file, char *extension)
 {
 	int	len;
 
 	len = ft_strlen(file);
 	if (len > 4)
 	{
-		if (ft_strncmp(&file[len - 4], ".cub", 4) == 0)
+		if (ft_strncmp(&file[len - 4], extension, 4) == 0)
 			return (1);
 	}
 	return (0);
@@ -21,20 +21,22 @@ static int	valid_file(char *file)
  * @return fd of the file
  * fd must be closed after use
  */
-int	ft_handle_map(char *file)
+int	ft_handle_map(char *file, char *extension)
 {
 	int		fd;
-	if (valid_file(file) == 0)
+	if (valid_file(file, extension) == 0)
 	{
-		ft_putstr_fd("FDF: Error opening file: ", 2);
-		ft_putstr_fd(file, 2);
-		ft_putstr_fd("\nIncorrect format. Expected <filename.fdf>\n", 2);
+		err(ERROR);
+		err("Error opening file: \n");
+		err("Extension error \n");
+		err(file);
+		err("\n");
 		return (-1);
 	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("FDF: Error opening file: ", 2);
+		ft_putstr_fd("\nError opening file: \n", 2);
 		ft_putstr_fd(file, 2);
 		if (errno == ENOENT)
 			ft_putstr_fd("\nFile not found\n", 2);
@@ -116,8 +118,8 @@ int	map_dim(int *dim, char *file, int (*f) (int, int*), int *header_len)
 {
 	int	fd;
 
-	fd = ft_handle_map(file);
-	if (fd == -1)
+	fd = ft_handle_map(file, ".cub");
+	if (fd < 0)
 		return (KO);
 	else
 		*dim = f(fd, header_len);

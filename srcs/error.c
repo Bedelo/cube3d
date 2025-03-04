@@ -23,9 +23,8 @@ void	error_image(t_launcher *container)
 	ft_putstr_fd("Error: image: ", 2);
 	error_init();
 }
+void err(char *s)
+{
+	ft_putstr_fd(s, 2);
+}
 
-// void	err(char *str)
-// {
-// 	while (*str)
-// 		write(2, str++, 1);
-// }
