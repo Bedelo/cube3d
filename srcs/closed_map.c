@@ -1,9 +1,6 @@
 #include "./../includes/cube3d.h"
 
-void err(char *s)
-{
-	ft_putstr_fd(s, 1);
-}
+
 
 int is_border(char c)
 {

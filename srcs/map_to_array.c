@@ -72,8 +72,8 @@ int	ft_initialise_map(t_map_creation **map)
 	t_map_creation	*m;
 
 	m = *map;
-	m->fd = ft_handle_map(m->file);
-	if (m->fd == -1)
+	m->fd = ft_handle_map(m->file, ".cub");
+	if (m->fd < 0)
 		return (KO);
 	if (!create_map(&m))
 		return (KO);

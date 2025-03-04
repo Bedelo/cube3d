@@ -2,25 +2,16 @@
 
 int check_header_cardinal(char *file)
 {
-	int	len;
 	int	fd;
 
-	printf("file = %s\n", file);
-	len = ft_strlen(file);
-	fd = ft_handle_map(file);
-	if (fd == -1)
-		return (err("\n"), err(ERROR), err("texture issue!\n"), KO);
-	if (len > 4)
+	fd = ft_handle_map(file, ".xpm");
+	if (fd > 0)
 	{
-		if (ft_strncmp(&file[len - 4], ".xpm", 4) == 0)
-		{
-			close (fd);
-			return (OK);
-		}
+		close(fd);
+		return (OK);
 	}
-	//# TO DO : CHECK IF FILE EXISTS
-	close(fd);
-	return (err(ERROR), err("texture issue!\n"), KO);
+	return (KO);
+	
 }
 
 static int	is_color(char *color)
