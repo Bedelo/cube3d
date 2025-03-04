@@ -18,7 +18,6 @@ int	main(int ac, char **av)
 	launcher->raycast = init_raycast(launcher);
 	if (!launcher->raycast)
 		return (free_all(launcher), 1);
-	printf("##########################################ENTRER\n");
 	render(launcher);
 	return (0);
 }

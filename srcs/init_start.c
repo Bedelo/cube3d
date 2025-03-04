@@ -54,12 +54,15 @@ t_infos	*init_infos(char **av, t_infos **i)
 	if (!infos)
 		return (NULL);
 	*infos = (t_infos){0};
-	infos->map = map_init(infos->map, av);
-	if (!infos->map)
-		return ( free(infos), NULL);
 	infos->header = header_creation(av[1]);
 	if(!infos->header)
-		return (clean_map(infos->map), free(infos), NULL);
+		return (free(infos), NULL);
+	infos->map = map_init(infos->map, av);
+	if (!infos->map)
+		return (clean_header(infos->header), free(infos), NULL);
+	// infos->header = header_creation(av[1]);
+	// if(!infos->header)
+	// 	return (clean_map(infos->map), free(infos), NULL);
 	display_map(infos->map);
 	infos = init_player(&infos);							//* printer
 	if (!infos)

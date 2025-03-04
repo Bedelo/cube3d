@@ -20,6 +20,7 @@
 # define ERROR_MAP "Error: MAP IS WRONG\n"
 # define ERROR_HEADER "Error: HEADER IS WRONG\n"
 # define KO 1
+# define STOP 2
 # define OK 0
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.75
