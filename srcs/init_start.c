@@ -40,7 +40,8 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	raycast->c_color = to_color_rc(launcher->i->header->c);
 	if (raycast->c_color == -1)
 		return (err(ERROR), err("Color ceiling issue!\n"), free(raycast), NULL);
-	raycast->dim_texture = (int){TEXTURE_DIM, TEXTURE_DIM};
+	raycast->dim_texture_x = TEXTURE_DIM;
+	raycast->dim_texture_y = TEXTURE_DIM;
 	raycast->img = launcher->img;
 	return (raycast);
 }

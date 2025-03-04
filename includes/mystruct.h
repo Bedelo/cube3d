@@ -68,7 +68,8 @@ typedef struct s_raycast
 	char			*so;
 	char			*we;
 	char			*ea;
-	int				*dim_texture;
+	int				dim_texture_x;
+	int				dim_texture_y;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	t_data			img;
