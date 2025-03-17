@@ -12,10 +12,11 @@ t_infos	*init_player(t_infos **i)
 	*infos->player = (t_player){0};
 	infos->player->px = infos->map->pos[0] * H_WALL + H_WALL / 2;
 	infos->player->py = infos->map->pos[1] * W_WALL + W_WALL / 2;
-	ajust_angle(infos);
-	infos->player->move_utils.rot_dir = 0;
-	infos->player->move_utils.ud_dir = 0;
-	infos->player->move_utils.lr_dir = 0;
+	infos->player->move = 1;
+	//ajust_angle(infos);
+	// infos->player->move_utils.rot_dir = 0;
+	// infos->player->move_utils.ud_dir = 0;
+	// infos->player->move_utils.lr_dir = 0;
 	return (infos);
 }
 
@@ -40,10 +41,10 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	raycast->c_color = to_color_rc(launcher->i->header->c);
 	if (raycast->c_color == -1)
 		return (err(ERROR), err("Color ceiling issue!\n"), free(raycast), NULL);
-	raycast->texture = ft_calloc(1, sizeof(t_texture));
-	if (!raycast->texture)
-		return (err(ERROR), err("Texture allocation!\n"), free(raycast), NULL);
-	raycast->texture = init_texture(launcher, raycast);
+	// raycast->texture = ft_calloc(1, sizeof(t_texture));
+	// if (!raycast->texture)
+	// 	return (err(ERROR), err("Texture allocation!\n"), free(raycast), NULL);
+	// raycast->texture = init_texture(launcher, raycast);
 	return (raycast);
 }
 
@@ -95,10 +96,13 @@ void	init_draw(t_launcher **launcher)
 
 int	render(t_launcher *launcher)
 {
-
+	printf("98\n");
 	init_draw(&launcher);
+	printf("100\n");
 	handle_event(&launcher);
+	printf("102\n");
 	mlx_loop_hook(launcher->mlx, (void *)draw_cube3d, launcher);
+	printf("104/n");
 	// draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
 	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
 	// mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);

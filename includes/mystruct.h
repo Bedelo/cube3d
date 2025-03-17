@@ -10,6 +10,19 @@
 // 	int		lr_dir;
 // }				t_moving_utils;
 
+/*
+	VARIABLES AUXILIAIRES POUR LES EVENTS
+ */
+typedef struct 		s_event_variable
+{
+	double			old_dirX;
+	double			old_planeX;
+	double			cos_theta;
+	double			sin_theta;
+	double			x;
+	double			y;
+	char			**map;
+}					t_event_variable;
 
 // infos about player
 typedef struct s_player
@@ -93,6 +106,7 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		*data;
 	int				width;
 	int				height;
 }				t_data;

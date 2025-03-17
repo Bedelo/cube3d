@@ -1,7 +1,7 @@
 #include "./../includes/cube3d.h"
 
 
-void	clear_image(t_launcher *launcher)
+void	clear_image(t_launcher *ptr)
 {
 	int	x;
 	int	y;
@@ -12,11 +12,12 @@ void	clear_image(t_launcher *launcher)
 		x = 0;
 		while (x < SCR_HEIGHT)
 		{
-			my_mlx_pixel_put(&launcher->img, x, y, 0x00000000);
+			my_mlx_pixel_put(&ptr->img, x, y, 0x00000000);
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

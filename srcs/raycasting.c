@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:18:36 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 14:08:25 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:51:06 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	draw_cube3d(t_launcher *ptr)
 	if (!ptr->i->player->move)
 		return ;
 	x = 0;
-	//clear_image(ptr);
+	clear_image(ptr);
+	printf("SETUP_RAY 110\n");
 	while (x < SCR_WIDTH)
 	{
 		//init_ray(&ray);//TO DO

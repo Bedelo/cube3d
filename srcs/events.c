@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/16 12:53:19 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:15:21 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,44 @@
 static void	move_player(t_launcher *ptr, double move_x, double move_y)
 {
 	t_player		*player;
-	event_variable	var;
+	t_event_variable	var;
+	char				**m;
 
 	player = ptr->i->player;
+	m = ptr->i->map->my_map;
 	// var.map = ptr->map;
 	var.x = player->px + move_x * MOVE_SPEED;
 	var.y = player->py + move_y * MOVE_SPEED;
-	if (ptr->map[(int)player->py][(int)var.x] != '1')
+	if (m[(int)player->py][(int)var.x] != '1')
 		player->px = var.x;
-	if (ptr->map[(int)var.y][(int)player->px] != '1')
+	if (m[(int)var.y][(int)player->px] != '1')
 		player->py = var.y;
 	ptr->i->player->move = 1;
 }
 
+int	close_window_x(t_launcher *c)
+{
+	// rajouter les free pour les textures
+	mlx_destroy_image(c->mlx, c->img.img);
+	mlx_destroy_window(c->mlx, c->mlx_win);
+	mlx_destroy_display(c->mlx);
+	free(c->name);
+	free(c->mlx);
+	free(c->raycast->axis);
+	//free(c->raycast->texture);
+	free(c->raycast);
+	free(c->i->player);
+	clean_map(c->i->map);
+	clean_header(c->i->header);
+	free(c->i);
+	free(c);
+	exit(0);
+}
 
 static void	rotate_player(t_launcher *ptr, int direction)
 {
 	t_player		*player;
-	event_variable	var;
+	t_event_variable	var;
 
 	if (direction == -1)
 	{
@@ -55,7 +75,8 @@ static void	rotate_player(t_launcher *ptr, int direction)
 
 int	event_key(int k_code, t_launcher *ptr)
 {
-	printf("key_code = %d\n", k_code);
+	if (k_code == XK_Escape)
+		return (close_window_x(ptr));
 	if (k_code == 122)
 		move_player(ptr, ptr->i->player->dir_x, ptr->i->player->dir_y);
 	if (k_code == XK_s)

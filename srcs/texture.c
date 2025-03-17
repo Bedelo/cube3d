@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 14:09:59 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:29:09 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	alloc_textures(t_launcher *ptr)
 	i = 0;
 	while (i < 4)
 	{
-		ptr->texture[i] = (int *)malloc(sizeof(int) * (TEX_HEIGHT
-					* TEX_WIDTH));
-		if (!ptr->texture[i])
+		ptr->raycast->texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_DIM
+					* TEXTURE_DIM));
+		if (!ptr->raycast->texture[i])
 			printf("Memory allocation failed for texture array");
 		i++;
 	}
@@ -30,9 +30,9 @@ static void	alloc_textures(t_launcher *ptr)
 	while (i < 4)
 	{
 		j = 0;
-		while (j < TEX_HEIGHT * TEX_WIDTH)
+		while (j < TEXTURE_DIM * TEXTURE_DIM)
 		{
-			ptr->texture[i][j] = 0;
+			ptr->raycast->texture[i][j] = 0;
 			j++;
 		}
 		i++;
@@ -51,12 +51,12 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 	img_tex.data = (int *)mlx_get_data_addr(img_tex.img, &img_tex.bits_per_pixel, &img_tex.line_length, &img_tex.endian);
 	if (!img_tex.data)
 		return (0);
-	while (y < TEX_HEIGHT)
+	while (y < TEXTURE_DIM)
 	{
 		x = 0;
-		while (x < TEX_WIDTH)
+		while (x < TEXTURE_DIM)
 		{
-			tex[TEX_WIDTH * y + x] = img_tex.data[TEX_WIDTH * y + x];
+			tex[TEXTURE_DIM * y + x] = img_tex.data[TEXTURE_DIM * y + x];
 			x++;
 		}
 		y++;
@@ -67,13 +67,13 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 
 static void	prepare_textures(t_launcher *ptr)
 {
-	if (set_texture(ptr, ptr->texture[0], ptr->i->header->no) == 0)
+	if (set_texture(ptr, ptr->raycast->texture[0], ptr->i->header->no) == 0)
 		printf("ERROR TEXTURE NORD\n");
-	if (set_texture(ptr, ptr->texture[1], ptr->i->header->so) == 0)
+	if (set_texture(ptr, ptr->raycast->texture[1], ptr->i->header->so) == 0)
 		printf("ERROR TEXTURE SOUTH\n");
-	if (set_texture(ptr, ptr->texture[2], ptr->i->header->ea) == 0)
+	if (set_texture(ptr, ptr->raycast->texture[2], ptr->i->header->ea) == 0)
 		printf("ERROR TEXTURE EAST\n");
-	if (set_texture(ptr, ptr->texture[3], ptr->i->header->we) == 0)
+	if (set_texture(ptr, ptr->raycast->texture[3], ptr->i->header->we) == 0)
 		printf("ERROR TEXTURE WEST\n");
 }
 

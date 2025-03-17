@@ -14,10 +14,11 @@ int	main(int ac, char **av)
 	(void) ac;
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
-		return (free(launcher), 1);
+	return (free(launcher), 1);
 	launcher->raycast = init_raycast(launcher);
 	if (!launcher->raycast)
-		return (free_all(launcher), 1);
+	return (free_all(launcher), 1);
+	printf("21\n");
 	render(launcher);
 	return (0);
 }

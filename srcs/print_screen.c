@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 15:43:39 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:30:24 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,24 @@ void	put_pixel_to_buffer(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	clear_image(t_launcher *ptr)
-{
-	int	x;
-	int	y;
+// void	clear_image(t_launcher *ptr)
+// {
+// 	int	x;
+// 	int	y;
 
-	y = 0;
-	while (y < SCR_WIDTH)
-	{
-		x = 0;
-		while (x < SCR_HEIGHT)
-		{
-			put_pixel_to_buffer(&ptr->img, x, y, 0xFFFF00);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);
-}
+// 	y = 0;
+// 	while (y < SCR_WIDTH)
+// 	{
+// 		x = 0;
+// 		while (x < SCR_HEIGHT)
+// 		{
+// 			put_pixel_to_buffer(&ptr->img, x, y, 0xFFFF00);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);
+// }
 
 static int	get_tex_id(t_ray *ray)
 {
@@ -66,38 +66,38 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 	int	tex_index;
 
 	// on verifie que `ray->wall` est dans le rang correct
-	ray->tex_x = (int)(ray->wall * (double)TEX_WIDTH);
+	ray->tex_x = (int)(ray->wall * (double)TEXTURE_DIM);
 	if (ray->tex_x < 0)
 		ray->tex_x = 0;
-	if (ray->tex_x >= TEX_WIDTH)
-	ray->tex_x = TEX_WIDTH - 1;
+	if (ray->tex_x >= TEXTURE_DIM)
+	ray->tex_x = TEXTURE_DIM - 1;
 	// On corrige l'inversion de la texture
 	if ((ray->side == 1 && ray->ray_dir_y < 0) || (ray->side == 0
 		&& ray->ray_dir_x > 0))
-		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
-		ray->step = 1.0 * TEX_HEIGHT / ray->line_height;
-		ray->texture_pos = (ray->draw_start - TEX_HEIGHT / 2.0 + ray->line_height / 2) * ray->step;
+		ray->tex_x = TEXTURE_DIM - ray->tex_x - 1;
+		ray->step = 1.0 * TEXTURE_DIM / ray->line_height;
+		ray->texture_pos = (ray->draw_start - TEXTURE_DIM / 2.0 + ray->line_height / 2) * ray->step;
 		y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
 		ray->texture_id = get_tex_id(ray);
 		if (ray->draw_end - ray->draw_start > 0)
-		ray->tex_y = (int)ray->texture_pos & (TEX_HEIGHT - 1);
-		// ray->tex_y = ((y - ray->draw_start) * TEX_HEIGHT) / (ray->draw_end
+		ray->tex_y = (int)ray->texture_pos & (TEXTURE_DIM - 1);
+		// ray->tex_y = ((y - ray->draw_start) * TEXTURE_DIM) / (ray->draw_end
 		// 	- ray->draw_start);
 		else
 			ray->tex_y = 0;
 		if (ray->tex_y < 0)
 			ray->tex_y = 0;
-		if (ray->tex_y >= TEX_HEIGHT)
-			ray->tex_y = TEX_HEIGHT - 1;
+		if (ray->tex_y >= TEXTURE_DIM)
+			ray->tex_y = TEXTURE_DIM - 1;
 		ray->texture_pos += ray->step;
-		ray->color = ptr->texture[ray->texture_id][TEX_HEIGHT * ray->tex_y + ray->tex_x];
+		ray->color = ptr->raycast->texture[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
 		if (ray->side == 1)
 			ray->color = (ray->color >> 1) & 8355711;
 		// Evitar acceso fuera de memoria en `tex->data`
-		// tex_index = ray->tex_y * TEX_WIDTH + ray->tex_x;
-		// if (tex_index >= 0 && tex_index < TEX_WIDTH * TEX_HEIGHT)
+		// tex_index = ray->tex_y * TEXTURE_DIM + ray->tex_x;
+		// if (tex_index >= 0 && tex_index < TEXTURE_DIM * TEXTURE_DIM)
 		// 	ray->color = tex->data[tex_index];
 		// else
 		// 	ray->color = 0xFFFFFF; // Color de seguridad
@@ -137,12 +137,12 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 // |  0 | 16 | 32 | 48 |  ← Coordonnees X dans la texture
 // +----+----+----+----+
 
-// Si `wall_x = 0.75` et `TEX_WIDTH = 64`:
+// Si `wall_x = 0.75` et `TEXTURE_DIM = 64`:
 // tex_x = 0.75 * 64 = 48
 
 // 		L'impacte est a  75% de la texture, donc on prends tex_x = 48;
 // 		*/
-// 	ray->tex_x = (int)(ray->wall * TEX_WIDTH);
+// 	ray->tex_x = (int)(ray->wall * TEXTURE_DIM);
 
 // 	printf("ray->tex = %d\n", ray->tex_x);
 // /*
@@ -156,7 +156,7 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 //  */
 // 	if ((ray->side == 1 && ray->ray_dir_x > 0) ||
 // 		(ray->side == 0 && ray->ray_dir_y < 0))
-// 		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;
+// 		ray->tex_x = TEXTURE_DIM - ray->tex_x - 1;
 
 // /*
 // 		On calcule la ou ca commance et la ou ca fini dans l'ecran:
@@ -182,7 +182,7 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 // 		pour tex_y: on converti la position de l'ecran Y pour une coordonnee de la texture (tex_x)
 // 		on multiplie par height pour mapper correctement les pixels.
 
-// Si `TEX_HEIGHT = 64` et `y` est dans la moitie:
+// Si `TEXTURE_DIM = 64` et `y` est dans la moitie:
 // tex_y = (32 * 64) / 64 = 32
 
 // on obtient le pixel exacte qu'on doit extraire de la texture
@@ -201,9 +201,9 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 // 	printf("antes de la bucle\n");
 // 	while (y < ray->draw_end)
 // 	{
-// 		ray->tex_y = ((y * 2 - SCR_HEIGHT + ray->line_height) + TEX_HEIGHT /
+// 		ray->tex_y = ((y * 2 - SCR_HEIGHT + ray->line_height) + TEXTURE_DIM /
 // 				(2 * ray->line_height));
-// 		ray->color = (int)tex->data[ray->tex_y * TEX_WIDTH + ray->tex_x];
+// 		ray->color = (int)tex->data[ray->tex_y * TEXTURE_DIM + ray->tex_x];
 // 		put_pixel_to_buffer(&ptr->img, x, y, ray->color);
 // 		y++;
 // 	}

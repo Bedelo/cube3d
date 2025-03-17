@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:14:34 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 15:43:31 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:22:39 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	draw_floor_ceiling(t_launcher *ptr, int x, int draw_start, int draw_end)
 		return ;
 	while (y < draw_start)
 	{
-		put_pixel_to_buffer(&ptr->img, x, y, ptr->i->header->c);
+		put_pixel_to_buffer(&ptr->img, x, y, ptr->raycast->c_color);
 		y++;
 	}
 	y = draw_end + 1;
 	while (y < SCR_HEIGHT)
 	{
-		put_pixel_to_buffer(&ptr->img, x, y, ptr->i->header->f);
+		put_pixel_to_buffer(&ptr->img, x, y, ptr->raycast->f_color);
 		y++;
 	}
 }
@@ -38,8 +38,10 @@ void	draw_floor_ceiling(t_launcher *ptr, int x, int draw_start, int draw_end)
 void	dda(t_ray *ray, t_launcher *ptr)
 {
 	int hit;
+	char **m;
 
 	hit = 0;
+	m = ptr->i->map->my_map;
 	/*
 		pour chaque iteration, le rayon avance jusqu'a la suivance celulle de la grille
 		Le rayon bouge de gauche a droite jusqu'a trouver un mur
@@ -92,7 +94,7 @@ void	dda(t_ray *ray, t_launcher *ptr)
 
 		*/
 		//printf("Valor de la grille [%c]\n", ptr->map[ray->map_x][ray->map_y]);
-		if (ptr->map[ray->map_x][ray->map_y] == '1') //
+		if (m[ray->map_x][ray->map_y] == '1') //
 		{
 				//printf("MURO ENCONTRADO\n");
 				hit = 1;

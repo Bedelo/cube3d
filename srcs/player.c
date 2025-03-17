@@ -40,18 +40,50 @@ int	*player_position(t_map_creation **map)
 	return (NULL);
 }
 
-void ajust_angle(t_infos *infos)
-{
-	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
-		infos->player->angle = 0;
-	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
-		infos->player->angle = PI;
-	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
-		infos->player->angle = PI / 2;
-	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
-		infos->player->angle = 3 * PI / 2;
-}
+// void ajust_angle(t_infos *infos)
+// {
+// 	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
+// 		infos->player->angle = 0;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
+// 		infos->player->angle = PI;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
+// 		infos->player->angle = PI / 2;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
+// 		infos->player->angle = 3 * PI / 2;
+// }
 
+
+void	init_player_direction(char direction, t_player *player)
+{
+	if (direction == 'N')
+	{
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
+	}
+	if (direction == 'S')
+	{
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
+	}
+	if (direction == 'E')
+	{
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
+	}
+	if (direction == 'W')
+	{
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
+	}
+}
 
 int *axis(t_raycast *raycast, char c)
 {
