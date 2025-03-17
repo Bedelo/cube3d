@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 14:52:46 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:39 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 /*
 	DESSINE DANS LE BUFFER
  */
-// void	put_pixel_to_buffer(t_data *ptr, int x, int y, int color)
-// {
-// 	if (x >= 0 && x < SCR_WIDTH && y >= 0 && y < SCR_HEIGHT)
-// 		ptr->data[y * ptr->line_length + x * (ptr->bits_per_pixel / 8)] = color;
-// }
-
 void	put_pixel_to_buffer(t_data *data, int x, int y, int color)
 {
 	char	*dst;

@@ -84,7 +84,6 @@ typedef struct s_infos
 	t_map_creation	*map;
 	t_header		*header;
 	t_player		*player;
-
 }					t_infos;
 
 typedef struct s_data
@@ -99,12 +98,12 @@ typedef struct s_data
 }				t_data;
 
 
-typedef struct s_texture
-{
-	t_data		*data;
-	int			width;
-	int			height;
-}				t_texture;
+// typedef struct s_texture
+// {
+// 	t_data		*data;
+// 	int			width;
+// 	int			height;
+// }				t_texture;
 
 typedef struct s_raycast
 {
@@ -114,8 +113,9 @@ typedef struct s_raycast
 	char			*ea;
 	int				dim_texture_x;
 	int				dim_texture_y;
+	int				*texture[4];
 	t_data			img;
-	t_texture		*texture;
+	// t_texture		*texture;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	int				*axis;
@@ -126,7 +126,6 @@ typedef struct s_launcher
 	char		*name;
 	void		*mlx;
 	void		*mlx_win;
-	int			*texture[4];
 	t_data		img;
 	t_infos		*i;
 	t_raycast	*raycast;

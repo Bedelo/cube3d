@@ -42,10 +42,10 @@ void	display_map(t_map_creation *m)
 	}
 }
 /*	a supprimer */
-t_texture	*init_texture(t_launcher *launcher, t_raycast *raycast)
-{
-	raycast->texture->data = &launcher->img;
-	raycast->texture->width = TEXTURE_DIM;
-	raycast->texture->height = TEXTURE_DIM;
-	return (raycast->texture);
-}
+// t_texture	*init_texture(t_launcher *launcher, t_raycast *raycast)
+// {
+// 	raycast->texture->data = &launcher->img;
+// 	raycast->texture->width = TEXTURE_DIM;
+// 	raycast->texture->height = TEXTURE_DIM;
+// 	return (raycast->texture);
+// }

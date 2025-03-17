@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:14:34 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 13:16:28 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:43:31 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	draw_floor_ceiling(t_launcher *ptr, int x, int draw_start, int draw_end)
 		return ;
 	while (y < draw_start)
 	{
-		put_pixel_to_buffer(ptr->img.img, x, y, ptr->i->header->c);
+		put_pixel_to_buffer(&ptr->img, x, y, ptr->i->header->c);
 		y++;
 	}
 	y = draw_end + 1;
 	while (y < SCR_HEIGHT)
 	{
-		put_pixel_to_buffer(ptr->img.img, x, y, ptr->i->header->f);
+		put_pixel_to_buffer(&ptr->img, x, y, ptr->i->header->f);
 		y++;
 	}
 }
