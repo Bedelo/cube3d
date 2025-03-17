@@ -24,6 +24,11 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)render_2D.c \
 			$(SRCS)utils.c \
 			$(SRCS)render_3D.c \
+			$(SRCS)events.c \
+			$(SRCS)print_screen.c \
+			$(SRCS)raycasting.c \
+			$(SRCS)raycasting_utils.c \
+			$(SRCS)texture.c \
 
 CUBE_OBJ = $(CUBE_SRC:$(SRCS)%.c=$(OBJS_DIR)%.o)
 

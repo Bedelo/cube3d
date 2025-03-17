@@ -41,7 +41,7 @@ void	display_map(t_map_creation *m)
 		j = 0;
 	}
 }
-
+/*	a supprimer */
 t_texture	*init_texture(t_launcher *launcher, t_raycast *raycast)
 {
 	raycast->texture->data = &launcher->img;

@@ -2,7 +2,7 @@
 
 int	close_window_x(t_launcher *c)
 {
-
+	// rajouter les free pour les textures
 	mlx_destroy_image(c->mlx, c->img.img);
 	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
@@ -89,6 +89,7 @@ int down(int keysym, t_launcher *launcher)
 	return (0);
 }
 
+/*		RAJOUTER LES EVENTS	*/
 int	events_window(int keysym, t_launcher **launcher)
 {
 	t_launcher	*c;
@@ -97,11 +98,11 @@ int	events_window(int keysym, t_launcher **launcher)
 	infos = (*launcher)->i;
 	c = (*launcher);
 	if (keysym == XK_Escape)
-		return (close_window_x(c));
-	rotate_move_on(keysym, infos);
-	move_on(keysym, infos, c);
-	render_player(launcher);
-	mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0);
+	return (close_window_x(c));
+	// rotate_move_on(keysym, infos); // supprimer
+	// move_on(keysym, infos, c); // supprimer
+	// render_player(launcher); // supprimer
+	//mlx_put_image_to_window(c->mlx, c->mlx_win, c->img.img, 0, 0); // supprimer
 	return (0);
 }
 

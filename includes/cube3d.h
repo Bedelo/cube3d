@@ -24,6 +24,11 @@
 # define OK 0
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.75
+# define FOV 0.66
+# define COS_ANGLE 0.7316888688738209
+# define SIN_ANGLE 0.6816387600233341
+# define COS_NEG_ANGLE 0.7316888688738209
+# define SIN_NEG_ANGLE -0.6816387600233341
 
 
 int				len_x(int fd, int *header_len);
@@ -75,4 +80,22 @@ t_raycast		*init_raycast(t_launcher *launcher);
 t_infos			*init_infos(char **av, t_infos **i);
 void			init_draw(t_launcher **launcher);
 int				render(t_launcher *launcher);
+/*		events.c				*/
+int				event_key(int k_code, t_launcher *ptr);
+/*		print_screen.c			*/
+void			put_pixel_to_buffer(t_data *ptr, int x, int y, int color);
+void			clear_image(t_launcher *launcher);
+void			print_pixels(t_launcher *launcher, t_ray *ray, int x);
+/*		raycasting.c			*/
+void			draw_cube3d(t_launcher *ptr);
+void			setup_ray(t_ray *ray, int x, t_launcher *launcher);
+/*		raycasting_utils.c		*/
+void			dda(t_ray *ray, t_launcher *launcher);
+void			line_height(t_ray *ray, t_player *player);
+void			draw_floor_ceiling(t_launcher *ptr, int x, int draw_start, int draw_end);
+/*		texture.c				*/
+void			init_textures(t_launcher *ptr);
+int				events_key(int keycode, t_launcher *launcher);
+void			init_player_direction(char direction, t_player *player);
+
 #endif
