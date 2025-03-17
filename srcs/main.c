@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	if (!launcher->raycast)
 	return (free_all(launcher), 1);
 	printf("21\n");
+	init_player_direction('S', launcher->i->player);   /// TEST
 	render(launcher);
 	return (0);
 }

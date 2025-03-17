@@ -90,6 +90,7 @@ typedef struct s_map_creation
 	char	*line;
 	int		flag;
 	int		*pos;
+	char	init_dir;
 }			t_map_creation;
 
 typedef struct s_infos
