@@ -14,8 +14,6 @@ t_infos	*init_player(t_infos **i)
 	*infos->player = (t_player){0};
 	infos->player->px = infos->map->pos[0];// * H_WALL + H_WALL / 2;
 	infos->player->py = infos->map->pos[1];// * W_WALL + W_WALL / 2;
-	x = infos->map->pos[0];
-	y = infos->map->pos[1];
 	infos->player->move = 1;
 	//ajust_angle(infos);
 	// infos->player->move_utils.rot_dir = 0;
@@ -45,10 +43,6 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	raycast->c_color = to_color_rc(launcher->i->header->c);
 	if (raycast->c_color == -1)
 		return (err(ERROR), err("Color ceiling issue!\n"), free(raycast), NULL);
-	// raycast->texture = ft_calloc(1, sizeof(t_texture));
-	// if (!raycast->texture)
-	// 	return (err(ERROR), err("Texture allocation!\n"), free(raycast), NULL);
-	// raycast->texture = init_texture(launcher, raycast);
 	return (raycast);
 }
 
@@ -70,7 +64,7 @@ t_infos	*init_infos(char **av, t_infos **i)
 	// infos->header = header_creation(av[1]);
 	// if(!infos->header)
 	// 	return (clean_map(infos->map), free(infos), NULL);
-	display_map(infos->map);
+	//display_map(infos->map);
 	infos = init_player(&infos);							//* printer
 	if (!infos)
 		return (free(infos->player), clean_header(infos->header), clean_map(infos->map), free(infos), NULL);
@@ -85,10 +79,10 @@ void	init_draw(t_launcher **launcher)
 	c->mlx = mlx_init();
 	if (!c->mlx)
 		return (error_init(), free(c));
-	c->mlx_win = mlx_new_window(c->mlx, 1920, 1080, "Cube3d");
+	c->mlx_win = mlx_new_window(c->mlx, SCR_HEIGHT, SCR_WIDTH, "Cube3d");
 	if (!c->mlx_win)
 		return (error_window(c), free(c));
-	c->img.img = mlx_new_image(c->mlx, 1920, 1080);
+	c->img.img = mlx_new_image(c->mlx, SCR_HEIGHT, SCR_WIDTH);
 	if (!c->img.img)
 		return (error_image(c), free(c));
 	c->img.addr = mlx_get_data_addr(c->img.img,
@@ -98,13 +92,16 @@ void	init_draw(t_launcher **launcher)
 	return ;
 }
 
-int	render(t_launcher *launcher)
+int	render(t_launcher *ptr)
 {
-	init_draw(&launcher);
-	init_textures(launcher);
-	handle_event(launcher);
-	mlx_loop_hook(launcher->mlx, (void *)draw_cube3d, launcher);
-	mlx_loop(launcher->mlx);
+	ptr->i->map->map_h = ptr->i->map->dim[1];
+	ptr->i->map->map_w = ptr->i->map->dim[0];
+	printf("ptr->i->map->map_h = [%d]\tptr->i->map->map_w = [%d]\n", ptr->i->map->map_h, ptr->i->map->map_w);
+	init_draw(&ptr);
+	init_textures(ptr);
+	handle_event(ptr);
+	mlx_loop_hook(ptr->mlx, (void *)draw_cube3d, ptr);
+	mlx_loop(ptr->mlx);
 	return (OK);
 }
 

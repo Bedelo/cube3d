@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/17 16:29:09 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:32:19 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	prepare_textures(t_launcher *ptr)
 
 void	init_textures(t_launcher *ptr)
 {
-
 	alloc_textures(ptr);
 	prepare_textures(ptr);
 }

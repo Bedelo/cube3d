@@ -19,9 +19,16 @@ typedef struct 		s_event_variable
 	double			old_planeX;
 	double			cos_theta;
 	double			sin_theta;
-	int				x;
-	int				y;
+	double				x;
+	double				y;
+	double			current_px;
+	double			current_py;
 	char			**map;
+	int				height;
+	int				width;
+	int				fila_len_x;
+	int				fila_len_y;
+
 }					t_event_variable;
 
 // infos about player
@@ -91,6 +98,8 @@ typedef struct s_map_creation
 	int		flag;
 	int		*pos;
 	char	init_dir;
+	int		map_h;
+	int		map_w;
 }			t_map_creation;
 
 typedef struct s_infos
@@ -122,7 +131,6 @@ typedef struct s_raycast
 	int				dim_texture_y;
 	int				*texture[4];
 	t_data			img;
-	// t_texture		*texture;
 	unsigned int	f_color;
 	unsigned int	c_color;
 	int				*axis;

@@ -6,54 +6,48 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 12:56:59 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:49:31 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/cube3d.h"
 
-static void	move_player(t_launcher *ptr, double move_x, double move_y)
+/********************MOUVEMENT EN XY ********************/
+// Verificamos que la posición futura en XY esté dentro de las filas del mapa
+// Obtenemos la longitud real de la fila (por si es irregular)
+// Comprobamos que la posición XY actual del jugador sea válida en esa fila
+// Esto evita acceder fuera de la memoria si la fila es más corta
+static void move_player(t_launcher *ptr, double move_x, double move_y)
 {
-	t_player		*player;
+	t_player			*player;
 	t_event_variable	var;
 	t_map_creation		*dim;
-	int					height;
-	int					width;
 
 	player = ptr->i->player;
-	var.map = ptr->i->map->my_map;
 	dim = ptr->i->map;
+	var.map = dim->my_map;
 	var.x = player->px + move_x * MOVE_SPEED;
 	var.y = player->py + move_y * MOVE_SPEED;
-	height = dim->dim[0];
-	width = dim->dim[1];
-	printf("var.x 		= [%d]\t	var.y 		= [%d]\n", var.x, var.y);
-	printf("px		= [%f]\tpy		= [%f]\n", player->px, player->py);
-	printf("map height	= [%d]\t	map width	= [%d]\n", dim->dim[0], dim->dim[1]);
-	if (player->py >= 0 && (int)player->py < height &&
-		var.x >= 0 && var.x < width &&
-		var.map[var.x][(int)player->py] != '1')
+	if (var.x >= 0 && (int)var.x < dim->map_h && var.map[(int)var.x])
+	{
+		var.fila_len_x = strlen(var.map[(int)var.x]);
+		if ((int)player->py < var.fila_len_x &&
+			var.map[(int)var.x][(int)player->py] != '1')
 			player->px = var.x;
-	else
-	{
-		printf("out of range en X\n");
-		return ;
 	}
-	if (player->px >= 0 && (int)player->px < width &&
-		var.y >= 0 && var.y < height &&
-		var.map[var.x][(int)player->py] != '1')
-		player->px = var.x;
-	else
+	if ((int)player->px < dim->map_h && var.map[(int)player->px])
 	{
-		printf("out of range en Y\n");
-		return ;
+		var.fila_len_y = strlen(var.map[(int)player->px]);
+		if (var.y >= 0 && (int)var.y < var.fila_len_y &&
+			var.map[(int)player->px][(int)var.y] != '1')
+			player->py = var.y;
 	}
-	ptr->i->player->move = 1;
+	player->move = 1;
 }
 
 static void	rotate_player(t_launcher *ptr, int direction)
 {
-	t_player		*player;
+	t_player			*player;
 	t_event_variable	var;
 
 	player = ptr->i->player;
@@ -69,29 +63,35 @@ static void	rotate_player(t_launcher *ptr, int direction)
 	}
 	var.old_dirX = player->dir_x;
 	var.old_planeX = player->plane_x;
-	player->dir_x = player->dir_x * var.cos_theta - player->dir_y * var.sin_theta;
-	player->dir_y = var.old_dirX * var.sin_theta + player->dir_y * var.cos_theta;
-	player->plane_x = player->plane_x * var.cos_theta - player->plane_y * var.sin_theta;
-	player->plane_y = var.old_planeX * var.sin_theta + player->plane_y * var.cos_theta;
+	player->dir_x = player->dir_x * var.cos_theta - player->dir_y
+		* var.sin_theta;
+	player->dir_y = var.old_dirX * var.sin_theta + player->dir_y
+		* var.cos_theta;
+	player->plane_x = player->plane_x * var.cos_theta - player->plane_y
+		* var.sin_theta;
+	player->plane_y = var.old_planeX * var.sin_theta + player->plane_y
+		* var.cos_theta;
 	ptr->i->player->move = 1;
 }
 
 int	event_key(int k_code, t_launcher *ptr)
 {
-	//printf("puntero ptr->i->player = [%p]\n", ptr->i->player);
+	t_player	*player;
+
+	player = ptr->i->player;
 	if (k_code == XK_Escape)
 		return (close_window_x(ptr));
-	if (k_code == 122)
-		move_player(ptr, ptr->i->player->dir_x, ptr->i->player->dir_y);
+	if (k_code == XK_w || k_code == 122)
+		move_player(ptr, player->dir_x, player->dir_y);
 	if (k_code == XK_s)
-		move_player(ptr, ptr->i->player->dir_x, -ptr->i->player->dir_y);
-	if (k_code == 113)
-		move_player(ptr, ptr->i->player->dir_y, -ptr->i->player->dir_x);
+		move_player(ptr, -player->dir_x, -player->dir_y);
+	if (k_code == XK_a || k_code == 113)
+		move_player(ptr, -player->dir_y, player->dir_x);
 	if (k_code == XK_d)
-		move_player(ptr, -ptr->i->player->dir_y, ptr->i->player->dir_x);
-	if (k_code == 65361) // fleche left
+		move_player(ptr, player->dir_y, -player->dir_x);
+	if (k_code == 65363)
 		rotate_player(ptr, -1);
-	if (k_code == 65363) // fleche right
+	if (k_code == 65361)
 		rotate_player(ptr, 1);
 	return (0);
 }
@@ -105,7 +105,7 @@ int	close_window_x(t_launcher *c)
 	free(c->name);
 	free(c->mlx);
 	free(c->raycast->axis);
-	//free(c->raycast->texture);
+	// free(c->raycast->texture);
 	free(c->raycast);
 	free(c->i->player);
 	clean_map(c->i->map);
