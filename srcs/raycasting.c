@@ -6,7 +6,7 @@
 /*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:18:36 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 10:36:11 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:15:10 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ void	draw_cube3d(t_launcher *ptr)
 	while (x < SCR_WIDTH)
 	{
 		setup_ray(&ray, x, ptr);
-		printf("SETUP_RAY OK\n");
+		//printf("SETUP_RAY OK\n");
 		dda(&ray, ptr);
-		printf("DDA OK\n");
+		//printf("DDA OK\n");
 		line_height(&ray, ptr->i->player);
-		printf("LINE_HEIGHT OK\n");
+		//printf("LINE_HEIGHT OK\n");
 		print_pixels(ptr, &ray, x);
-		printf("PRINT_PIXELS OK\n");
+		//printf("PRINT_PIXELS OK\n");
 		draw_floor_ceiling(ptr, x, ray.draw_start, ray.draw_end);
-		printf("FLOOR_CEIL OK\n");
+		//printf("FLOOR_CEIL OK\n");
 		x++;
 	}
 	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);

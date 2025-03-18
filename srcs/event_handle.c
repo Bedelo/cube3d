@@ -107,12 +107,9 @@
 // }
 
 
-void	handle_event(t_launcher **launcher)
+void	handle_event(t_launcher *c)
 {
-	t_launcher	*c;
-
-	c = (*launcher);
-	mlx_key_hook(c->mlx_win, event_key, launcher);
+	mlx_hook(c->mlx_win, 2, 1L<<0, event_key, c);
 	//mlx_hook(c->mlx_win, 2, 1L << 0, up, c);
 	// mlx_hook(c->mlx_win, 3, 1L << 1, down, c);
 	mlx_hook(c->mlx_win, 17, 0, close_window_x, c);

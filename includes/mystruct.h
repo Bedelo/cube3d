@@ -19,8 +19,8 @@ typedef struct 		s_event_variable
 	double			old_planeX;
 	double			cos_theta;
 	double			sin_theta;
-	double			x;
-	double			y;
+	int				x;
+	int				y;
 	char			**map;
 }					t_event_variable;
 
@@ -111,14 +111,6 @@ typedef struct s_data
 	int				width;
 	int				height;
 }				t_data;
-
-
-// typedef struct s_texture
-// {
-// 	t_data		*data;
-// 	int			width;
-// 	int			height;
-// }				t_texture;
 
 typedef struct s_raycast
 {

@@ -71,7 +71,6 @@ int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);
 int				check_is_map(char *file, int *header_len);
 
-
 int				events_window(int keysym, t_launcher **launcher);
 int				close_window_x(t_launcher *c);
 

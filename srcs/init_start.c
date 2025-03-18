@@ -101,12 +101,13 @@ void	init_draw(t_launcher **launcher)
 int	render(t_launcher *launcher)
 {
 	init_draw(&launcher);
-	handle_event(&launcher);
 	init_textures(launcher);
+	handle_event(launcher);
 	mlx_loop_hook(launcher->mlx, (void *)draw_cube3d, launcher);
-	// draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
-	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
-	// mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);
 	mlx_loop(launcher->mlx);
 	return (OK);
 }
+
+	// draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
+	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
+	// mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);
