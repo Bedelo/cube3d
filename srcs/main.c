@@ -11,15 +11,12 @@ int	main(int ac, char **av)
 	if (!launcher)
 		return (1);
 	*launcher = (t_launcher){0};
-	(void) ac;
 	launcher->i = init_infos(av, &launcher->i);
 	if (!launcher->i)
-	return (free(launcher), 1);
+		return (free(launcher), 1);
 	launcher->raycast = init_raycast(launcher);
 	if (!launcher->raycast)
-	return (free_all(launcher), 1);
-	printf("21\n");
-	init_player_direction('S', launcher->i->player);   /// TEST
+		return (free_all(launcher), 1);
 	render(launcher);
 	return (0);
 }

@@ -123,5 +123,6 @@ int *init_axis(t_launcher *launcher, t_raycast *rc)
 	x = launcher->i->map->pos[0];
 	y = launcher->i->map->pos[1];
 	c = launcher->i->map->my_map[x][y];
+	init_player_direction(c, launcher->i->player);
 	return (axis(rc, c));
 }

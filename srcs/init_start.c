@@ -4,14 +4,18 @@
 t_infos	*init_player(t_infos **i)
 {
 	t_infos	*infos;
+	int		x;
+	int		y;
 
 	infos = *i;
 	infos->player = ft_calloc(1, sizeof(t_player));
 	if (!infos->player)								//# ADD MESSAGE
 		return (err(ERROR), err("Error occurs when player creation!\n"), NULL);
 	*infos->player = (t_player){0};
-	infos->player->px = infos->map->pos[0] * H_WALL + H_WALL / 2;
-	infos->player->py = infos->map->pos[1] * W_WALL + W_WALL / 2;
+	infos->player->px = infos->map->pos[0];// * H_WALL + H_WALL / 2;
+	infos->player->py = infos->map->pos[1];// * W_WALL + W_WALL / 2;
+	x = infos->map->pos[0];
+	y = infos->map->pos[1];
 	infos->player->move = 1;
 	//ajust_angle(infos);
 	// infos->player->move_utils.rot_dir = 0;
@@ -96,13 +100,10 @@ void	init_draw(t_launcher **launcher)
 
 int	render(t_launcher *launcher)
 {
-	printf("98\n");
 	init_draw(&launcher);
-	printf("100\n");
 	handle_event(&launcher);
-	printf("102\n");
+	init_textures(launcher);
 	mlx_loop_hook(launcher->mlx, (void *)draw_cube3d, launcher);
-	printf("104/n");
 	// draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
 	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
 	// mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);

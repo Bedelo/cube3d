@@ -20,7 +20,6 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	if (!player_position(&m))
 		return (err(ERROR), err("Player doesn't exist !\n"), clean_map(m), NULL);
 	m->init_dir = m->my_map[m->pos[0]][m->pos[1]];
-	printf("\n\n\ninit_dir = %c\n\n\n", m->init_dir);
 	return (m);
 }
 
