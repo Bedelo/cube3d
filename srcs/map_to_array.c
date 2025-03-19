@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_to_array.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:51:18 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:51:19 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
 
 char	**fill_empty_map(t_map_creation **map, int *k)
@@ -108,6 +120,7 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 		i++;
 	}
 	if (ft_initialise_map(&m) == KO)
-		return (shield_malloc_2(m->my_map, m->dim[0]), free(m->dim), free(m), NULL);
+		return (free_map(m), NULL);
+		// return (shield_malloc_2(m->my_map, m->dim[0]), free(m->dim), free(m), NULL);
 	return (m);
 }

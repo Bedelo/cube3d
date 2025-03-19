@@ -6,4 +6,6 @@
 * appropriate message error when no NO,... in header no deux arguments
 
 
-* forbidden function to check
+* forbidden function to check:
+printf , ft_...
+close all fd

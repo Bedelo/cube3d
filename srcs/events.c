@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/19 12:38:23 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/19 14:56:16 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Obtenemos la longitud real de la fila (por si es irregular)
 // Comprobamos que la posición XY actual del jugador sea válida en esa fila
 // Esto evita acceder fuera de la memoria si la fila es más corta
-static void move_player(t_launcher *ptr, double move_x, double move_y)
+static void	move_player(t_launcher *ptr, double move_x, double move_y)
 {
 	t_player			*player;
 	t_event_variable	var;
@@ -31,15 +31,15 @@ static void move_player(t_launcher *ptr, double move_x, double move_y)
 	if (var.x >= 0 && (int)var.x < dim->map_h && var.map[(int)var.x])
 	{
 		var.fila_len_x = ft_strlen(var.map[(int)var.x]);
-		if ((int)player->py < var.fila_len_x &&
-			var.map[(int)var.x][(int)player->py] != '1')
+		if ((int)player->py < var.fila_len_x
+			&& var.map[(int)var.x][(int)player->py] != '1')
 			player->px = var.x;
 	}
 	if ((int)player->px < dim->map_h && var.map[(int)player->px])
 	{
 		var.fila_len_y = ft_strlen(var.map[(int)player->px]);
-		if (var.y >= 0 && (int)var.y < var.fila_len_y &&
-			var.map[(int)player->px][(int)var.y] != '1')
+		if (var.y >= 0 && (int)var.y < var.fila_len_y
+			&& var.map[(int)player->px][(int)var.y] != '1')
 			player->py = var.y;
 	}
 	player->move = 1;
@@ -98,14 +98,12 @@ int	event_key(int k_code, t_launcher *ptr)
 
 int	close_window_x(t_launcher *c)
 {
-	// rajouter les free pour les textures
 	mlx_destroy_image(c->mlx, c->img.img);
 	mlx_destroy_window(c->mlx, c->mlx_win);
 	mlx_destroy_display(c->mlx);
 	free(c->name);
 	free(c->mlx);
 	free(c->raycast->axis);
-	// free(c->raycast->texture);
 	clean_textures(c);
 	free(c->raycast);
 	free(c->i->player);

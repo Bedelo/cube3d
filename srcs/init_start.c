@@ -1,5 +1,16 @@
-#include "./../includes/cube3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_start.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:50:51 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:50:52 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "./../includes/cube3d.h"
 
 t_infos	*init_player(t_infos **i)
 {
@@ -9,16 +20,12 @@ t_infos	*init_player(t_infos **i)
 
 	infos = *i;
 	infos->player = ft_calloc(1, sizeof(t_player));
-	if (!infos->player)								//# ADD MESSAGE
+	if (!infos->player)
 		return (err(ERROR), err("Error occurs when player creation!\n"), NULL);
 	*infos->player = (t_player){0};
-	infos->player->px = infos->map->pos[0];// * H_WALL + H_WALL / 2;
-	infos->player->py = infos->map->pos[1];// * W_WALL + W_WALL / 2;
+	infos->player->px = infos->map->pos[0];
+	infos->player->py = infos->map->pos[1];
 	infos->player->move = 1;
-	//ajust_angle(infos);
-	// infos->player->move_utils.rot_dir = 0;
-	// infos->player->move_utils.ud_dir = 0;
-	// infos->player->move_utils.lr_dir = 0;
 	return (infos);
 }
 
@@ -26,10 +33,9 @@ t_raycast	*init_raycast(t_launcher *launcher)
 {
 	t_raycast	*raycast;
 
-	raycast = ft_calloc(1, sizeof(t_raycast));  //# doublon
+	raycast = ft_calloc(1, sizeof(t_raycast));
 	if (!raycast)
 		return (NULL);
-	*raycast = (t_raycast){0};					//# doublon ??
 	raycast->axis = init_axis(launcher, raycast);
 	if (!raycast->axis)
 		return (err(ERROR), err("Init axis error!\n"), free(raycast), NULL);
@@ -56,18 +62,15 @@ t_infos	*init_infos(char **av, t_infos **i)
 		return (NULL);
 	*infos = (t_infos){0};
 	infos->header = header_creation(av[1]);
-	if(!infos->header)
+	if (!infos->header)
 		return (free(infos), NULL);
 	infos->map = map_init(infos->map, av);
 	if (!infos->map)
 		return (clean_header(infos->header), free(infos), NULL);
-	// infos->header = header_creation(av[1]);
-	// if(!infos->header)
-	// 	return (clean_map(infos->map), free(infos), NULL);
-	//display_map(infos->map);
-	infos = init_player(&infos);							//* printer
+	infos = init_player(&infos);
 	if (!infos)
-		return (free(infos->player), clean_header(infos->header), clean_map(infos->map), free(infos), NULL);
+		return (free(infos->player), clean_header(infos->header),
+			clean_map(infos->map), free(infos), NULL);
 	return (infos);
 }
 
@@ -96,7 +99,7 @@ int	render(t_launcher *ptr)
 {
 	ptr->i->map->map_h = ptr->i->map->dim[1];
 	ptr->i->map->map_w = ptr->i->map->dim[0];
-	printf("ptr->i->map->map_h = [%d]\tptr->i->map->map_w = [%d]\n", ptr->i->map->map_h, ptr->i->map->map_w);
+	// printf("ptr->i->map->map_h = [%d]\tptr->i->map->map_w = [%d]\n", ptr->i->map->map_h, ptr->i->map->map_w);
 	init_draw(&ptr);
 	init_textures(ptr);
 	handle_event(ptr);
@@ -104,7 +107,3 @@ int	render(t_launcher *ptr)
 	mlx_loop(ptr->mlx);
 	return (OK);
 }
-
-	// draw_wall(&launcher); //# ADD DRAW WALL MINIMAP
-	// render_player(&launcher); //# ADD RENDER PLAYER MINIMAP
-	// mlx_put_image_to_window(launcher->mlx, launcher->mlx_win, launcher->img.img, 0, 0);

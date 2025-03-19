@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:14:34 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 09:44:02 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:38:35 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ void	dda(t_ray *ray, t_launcher *ptr)
 	int		hit;
 	char	c;
 
-	// printf("valor de x=[%d]\tvalor de y=[%d]\n", ray->map_x, ray->map_y);
-	// printf("valor de step_x=[%d]\tvalor de step_y=[%d]\n", ray->step_x, ray->step_y);
-
 	hit = 0;
 	while (!hit)
 	{
@@ -55,9 +52,6 @@ void	dda(t_ray *ray, t_launcher *ptr)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		// printf("valor de x=[%d]\tvalor de y=[%d]\n", ray->map_x, ray->map_y);
-		// printf("valor de step_x=[%d]\tvalor de step_y=[%d]\n", ray->step_x, ray->step_y);
-
 		c = ptr->i->map->my_map[ray->map_x][ray->map_y];
 		if (c == '1')
 			hit = 1;

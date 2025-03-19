@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:51:30 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:51:31 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
-
-
 
 static int	valid_file(char *file, char *extension)
 {
@@ -24,6 +34,7 @@ static int	valid_file(char *file, char *extension)
 int	ft_handle_map(char *file, char *extension)
 {
 	int		fd;
+
 	if (valid_file(file, extension) == 0)
 	{
 		err(ERROR);
@@ -46,8 +57,6 @@ int	ft_handle_map(char *file, char *extension)
 	}
 	return (fd);
 }
-
-
 
 /**
  * get the length of the longest line x (columns)

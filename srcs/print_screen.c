@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 10:23:20 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:36:42 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static int	get_tex_id(t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			return (2); // texture EST
-		return (3);     // texture WEST
+			return (2);
+		return (3);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			return (1); // texture SOUTH
-		return (0);     // texture NORTH
+			return (1);
+		return (0);
 	}
 }
 

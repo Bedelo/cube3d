@@ -1,26 +1,17 @@
 #ifndef MYSTRUCT_H
 # define MYSTRUCT_H
 
-
-// condition if rotate forward backward left or right
-// typedef struct s_moving_utils
-// {
-// 	int		rot_dir;
-// 	int		ud_dir;
-// 	int		lr_dir;
-// }				t_moving_utils;
-
 /*
 	VARIABLES AUXILIAIRES POUR LES EVENTS
  */
-typedef struct 		s_event_variable
+typedef struct		s_event_variable
 {
 	double			old_dirX;
 	double			old_planeX;
 	double			cos_theta;
 	double			sin_theta;
-	double				x;
-	double				y;
+	double			x;
+	double			y;
 	double			current_px;
 	double			current_py;
 	char			**map;
@@ -43,11 +34,7 @@ typedef struct s_player
 	double			plane_x;
 	double			plane_y;
 	int				move;
-	// double			xx;
-	// double			yy;
-	// double			angle;
-	// t_moving_utils	move_utils;
-} 					t_player;
+}					t_player;
 
 typedef struct s_ray
 {
@@ -117,8 +104,8 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 	int		*data;
-	int				width;
-	int				height;
+	int		width;
+	int		height;
 }				t_data;
 
 typedef struct s_raycast

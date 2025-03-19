@@ -51,6 +51,7 @@ int				*init_axis(t_launcher *launcher, t_raycast *rc);
 void			free_all(t_launcher *launcher);
 void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
+void			free_map(t_map_creation *m);
 void			clean_map(t_map_creation *m);
 void			clean_header(t_header *header);
 void			clean_textures(t_launcher *ptr);

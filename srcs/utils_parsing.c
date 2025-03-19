@@ -47,4 +47,3 @@ int	is_header(char *line, int fd)
 	}
 	return (shield_malloc_2(split_line, size), KO);
 }
-

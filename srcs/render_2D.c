@@ -1,6 +1,5 @@
 #include "./../includes/cube3d.h"
 
-
 void	clear_image(t_launcher *ptr)
 {
 	int	x;
@@ -25,10 +24,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
-int is_player(char c)
+int	is_player(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (OK);

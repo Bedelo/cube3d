@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header_format.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:50:39 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:50:40 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
 
-int check_header_cardinal(char *file)
+int	check_header_cardinal(char *file)
 {
 	int	fd;
 
@@ -11,7 +23,6 @@ int check_header_cardinal(char *file)
 		return (OK);
 	}
 	return (KO);
-	
 }
 
 static int	is_color(char *color)
@@ -28,7 +39,7 @@ static int	is_color(char *color)
 	return (OK);
 }
 
-int check_header_no_cardinal(char *file)
+int	check_header_no_cardinal(char *file)
 {
 	char	**tab;
 	int		i;
@@ -39,7 +50,7 @@ int check_header_no_cardinal(char *file)
 	if (ft_len_tab(tab) != 3)
 		return (freetab((void **)tab, -1), KO);
 	i = 0;
-	while( i < 3)
+	while (i < 3)
 	{
 		if (is_color(tab[i]) == KO)
 			return (err("Bad value header\n"), freetab((void **)tab, -1), KO);
@@ -50,7 +61,7 @@ int check_header_no_cardinal(char *file)
 	return (freetab((void **)tab, -1), OK);
 }
 
-int header_format(t_header *header)
+int	header_format(t_header *header)
 {
 	if (check_header_cardinal(header->no) == KO)
 		return (KO);

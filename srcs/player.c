@@ -14,7 +14,6 @@ void	render_player(t_launcher **launcher)
 	my_mlx_pixel_put(&c->img, j, k, 0x00FF0000);
 }
 
-
 int	*player_position(t_map_creation **map)
 {
 	t_map_creation	*m;
@@ -51,8 +50,6 @@ int	*player_position(t_map_creation **map)
 // 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
 // 		infos->player->angle = 3 * PI / 2;
 // }
-
-
 void	init_player_direction(char direction, t_player *player)
 {
 	if (direction == 'N')
@@ -85,7 +82,7 @@ void	init_player_direction(char direction, t_player *player)
 	}
 }
 
-int *axis(t_raycast *raycast, char c)
+int	*axis(t_raycast *raycast, char c)
 {
 	raycast->axis = ft_calloc(2, sizeof(int));
 	if (!raycast->axis)
@@ -113,11 +110,10 @@ int *axis(t_raycast *raycast, char c)
 	return (raycast->axis);
 }
 
-
-int *init_axis(t_launcher *launcher, t_raycast *rc)
+int	*init_axis(t_launcher *launcher, t_raycast *rc)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	c;
 
 	x = launcher->i->map->pos[0];

@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   closed_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:50:06 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:50:07 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
 
-
-
-int is_border(char c)
+int	is_border(char c)
 {
 	if (!c || c == ' ')
 		return (KO);
 	return (OK);
 }
 
-int is_boundary_border(t_map_creation *map, int x , int y)
+int	is_boundary_border(t_map_creation *map, int x , int y)
 {
 	if (x  == 0 && map->my_map[x][y] == '0')
 		return (KO);

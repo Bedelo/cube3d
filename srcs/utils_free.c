@@ -60,7 +60,6 @@ void	clean_textures(t_launcher *ptr)
 	}
 }
 
-
 void	free_all(t_launcher *launcher)
 {
 	free(launcher->i->player);
@@ -68,7 +67,8 @@ void	free_all(t_launcher *launcher)
 	clean_map(launcher->i->map);
 	free(launcher->i);
 	free(launcher->raycast->axis);
-	free(launcher->raycast->texture);  // free textures
+	clean_textures(launcher);
+	// free(launcher->raycast->texture);  // free textures
 	free(launcher->raycast);
 	free(launcher);
 }
@@ -120,5 +120,11 @@ void	clean_map(t_map_creation *m)
 	m = NULL;
 }
 
+void	free_map(t_map_creation *m)
+{
+	shield_malloc_2(m->my_map, m->dim[0]);
+	free(m->dim);
+	free(m);
+}
 
 

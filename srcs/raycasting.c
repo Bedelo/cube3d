@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:18:36 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 11:15:10 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:38:54 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	setup_ray_2(t_ray *ray, int x, t_player *player)
 
 void	setup_ray(t_ray *ray, int x, t_launcher *ptr)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = ptr->i->player;
 

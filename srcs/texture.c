@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 18:32:19 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:41:49 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 	int		x;
 	int		y;
 
-	img_tex.img = mlx_xpm_file_to_image(ptr->mlx, path, &img_tex.width, &img_tex.height);
+	img_tex.img = mlx_xpm_file_to_image(ptr->mlx, path, &img_tex.width,
+			&img_tex.height);
 	if (!img_tex.img)
 		return (0);
-	img_tex.data = (int *)mlx_get_data_addr(img_tex.img, &img_tex.bits_per_pixel, &img_tex.line_length, &img_tex.endian);
+	img_tex.data = (int *)mlx_get_data_addr(img_tex.img,
+			&img_tex.bits_per_pixel, &img_tex.line_length, &img_tex.endian);
 	if (!img_tex.data)
 		return (0);
 	while (y < TEXTURE_DIM)

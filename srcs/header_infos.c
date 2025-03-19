@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header_infos.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/19 15:50:46 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
 
 int	fill_header(char **split_, int i, int j)
@@ -13,7 +25,8 @@ int	fill_header(char **split_, int i, int j)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (err("Label initiation failed"), freetab((void **)split_, -1), KO);
+		return (err("Label initiation failed"),
+			freetab((void **)split_, -1), KO);
 	if (split_[j] != NULL)
 		return (OK);
 	else
@@ -22,17 +35,21 @@ int	fill_header(char **split_, int i, int j)
 
 int	label_empty(t_header *header, char *label)
 {
-	if(ft_strncmp(label, "NO", ft_strlen(label) + 1) == 0 && header->no == NULL)
+	if (ft_strncmp(label, "NO", ft_strlen(label) + 1) == 0
+		&& header->no == NULL)
 		return (OK);
-	if(ft_strncmp(label, "SO", ft_strlen(label) + 1) == 0 && header->so == NULL)
+	if (ft_strncmp(label, "SO", ft_strlen(label) + 1) == 0
+		&& header->so == NULL)
 		return (OK);
-	if(ft_strncmp(label, "WE", ft_strlen(label) + 1) == 0 && header->we == NULL)
+	if (ft_strncmp(label, "WE", ft_strlen(label) + 1) == 0
+		&& header->we == NULL)
 		return (OK);
-	if(ft_strncmp(label, "EA", ft_strlen(label) + 1) == 0 && header->ea == NULL)
+	if (ft_strncmp(label, "EA", ft_strlen(label) + 1) == 0
+		&& header->ea == NULL)
 		return (OK);
-	if(ft_strncmp(label, "F", ft_strlen(label) + 1) == 0 && header->f == NULL)
+	if (ft_strncmp(label, "F", ft_strlen(label) + 1) == 0 && header->f == NULL)
 		return (OK);
-	if(ft_strncmp(label, "C", ft_strlen(label) + 1) == 0 && header->c == NULL)
+	if (ft_strncmp(label, "C", ft_strlen(label) + 1) == 0 && header->c == NULL)
 		return (OK);
 	return (KO);
 }
@@ -74,29 +91,21 @@ int	header_init(t_header *header, char *line, int *nb_label)
 		return (free(line), OK);
 	split_line = ft_split(line);
 	if (ft_len_tab(split_line) != 2 || !split_line)
-		return (err("Bad format header\n"), clean_header(header),\
-			 free(line), freetab((void **)split_line, -1), KO);
+		return (err("Bad format header\n"), clean_header(header),
+			free(line), freetab((void **)split_line, -1), KO);
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
 		;
 	j = i;
 	while (split_line[++j] && ft_strlen(split_line[j]) < 5)
 		;
-	if (fill_header(split_line, i, j) == OK && label_empty(header, split_line[i]) == OK)
-		return ((*nb_label)++, store_label(&header, split_line, i, j), free(line), OK);
+	if (fill_header(split_line, i, j) == OK
+		&& label_empty(header, split_line[i]) == OK)
+		return ((*nb_label)++, store_label(&header, split_line, i, j),
+			free(line), OK);
 	else
-		return (err("Double label in header\n"), clean_header(header),\
-			 free(line), freetab((void **)split_line, -1), KO);
+		return (err("Double label in header\n"), clean_header(header),
+			free(line), freetab((void **)split_line, -1), KO);
 }
-
-// void	display_header(t_header *header)
-// {
-// 	printf("NO: %s\n", header->no);
-// 	printf("SO: %s\n", header->so);
-// 	printf("WE: %s\n", header->we);
-// 	printf("EA: %s\n", header->ea);
-// 	printf("F: %s\n", header->f);
-// 	printf("C: %s\n", header->c);
-// }
 
 t_header	*header_creation(char *file)
 {
@@ -120,8 +129,7 @@ t_header	*header_creation(char *file)
 			return (err("Creation header failed!\n"), close(fd), NULL);
 	}
 	close (fd);
-	// display_header(header);    //# to delete
-	if(header_format(header) == KO)
+	if (header_format(header) == KO)
 		return (err("Creation header failed!\n"), clean_header(header), NULL);
 	return (header);
 }
