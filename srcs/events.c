@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/18 19:49:31 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:38:23 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void move_player(t_launcher *ptr, double move_x, double move_y)
 	var.y = player->py + move_y * MOVE_SPEED;
 	if (var.x >= 0 && (int)var.x < dim->map_h && var.map[(int)var.x])
 	{
-		var.fila_len_x = strlen(var.map[(int)var.x]);
+		var.fila_len_x = ft_strlen(var.map[(int)var.x]);
 		if ((int)player->py < var.fila_len_x &&
 			var.map[(int)var.x][(int)player->py] != '1')
 			player->px = var.x;
 	}
 	if ((int)player->px < dim->map_h && var.map[(int)player->px])
 	{
-		var.fila_len_y = strlen(var.map[(int)player->px]);
+		var.fila_len_y = ft_strlen(var.map[(int)player->px]);
 		if (var.y >= 0 && (int)var.y < var.fila_len_y &&
 			var.map[(int)player->px][(int)var.y] != '1')
 			player->py = var.y;
@@ -106,6 +106,7 @@ int	close_window_x(t_launcher *c)
 	free(c->mlx);
 	free(c->raycast->axis);
 	// free(c->raycast->texture);
+	clean_textures(c);
 	free(c->raycast);
 	free(c->i->player);
 	clean_map(c->i->map);

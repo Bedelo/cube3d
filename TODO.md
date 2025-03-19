@@ -27,10 +27,10 @@
 [] check extension ending map
 
 ## Player
-[] Structure player
-[] Direction to parse N S E W
-[] Position based on map
-[] FOV
+[x] Structure player
+[x] Direction to parse N S E W
+[x] Position based on map
+[x] FOV
 
 
 ## Draw 2D map
@@ -43,23 +43,22 @@
 
 
 ## Minilibx
-[] moving
-[] translation
+[x] moving
+[x] translation
 [x] close Windows
 
 [] clean frees
 
 ## Raycast
-[] Do Ceiling
-[] Do Floor
-[] Do Walls
-[]
+[x] Do Ceiling
+[x] Do Floor
+[x] Do Walls
+
 
 ## ERROR MESSAGE
 [] whole refacto
 
-### Garbage Collector
-[] do by struct
+
 
 
 

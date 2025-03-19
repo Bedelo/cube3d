@@ -53,6 +53,7 @@ void			*shield_malloc(void *ptr);
 void			*shield_malloc_2(char **ptr, int y);
 void			clean_map(t_map_creation *m);
 void			clean_header(t_header *header);
+void			clean_textures(t_launcher *ptr);
 
 t_map_creation	*map_init(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m, char **av);

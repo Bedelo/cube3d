@@ -47,6 +47,19 @@ void	clean_header(t_header *header)
 	header = NULL;
 }
 
+void	clean_textures(t_launcher *ptr)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		free(ptr->raycast->texture[i]);
+		ptr->raycast->texture[i] = NULL;
+		i++;
+	}
+}
+
 
 void	free_all(t_launcher *launcher)
 {
@@ -55,7 +68,7 @@ void	free_all(t_launcher *launcher)
 	clean_map(launcher->i->map);
 	free(launcher->i);
 	free(launcher->raycast->axis);
-	free(launcher->raycast->texture);
+	free(launcher->raycast->texture);  // free textures
 	free(launcher->raycast);
 	free(launcher);
 }
