@@ -1,18 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/21 09:13:42 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/21 09:36:58 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../includes/cube3d.h"
-
-void	render_player(t_launcher **launcher)
-{
-	int			k;
-	int			j;
-	t_infos		*infos;
-	t_launcher	*c;
-
-	c = (*launcher);
-	infos = (*launcher)->i;
-	k = infos->player->px;
-	j = infos->player->py;
-	my_mlx_pixel_put(&c->img, j, k, 0x00FF0000);
-}
 
 int	*player_position(t_map_creation **map)
 {
@@ -39,17 +37,24 @@ int	*player_position(t_map_creation **map)
 	return (NULL);
 }
 
-// void ajust_angle(t_infos *infos)
-// {
-// 	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
-// 		infos->player->angle = 0;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
-// 		infos->player->angle = PI;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
-// 		infos->player->angle = PI / 2;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
-// 		infos->player->angle = 3 * PI / 2;
-// }
+void	init_player_direction_2(char direction, t_player *player)
+{
+	if (direction == 'E')
+	{
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
+	}
+	if (direction == 'W')
+	{
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
+	}
+}
+
 void	init_player_direction(char direction, t_player *player)
 {
 	if (direction == 'N')
@@ -66,20 +71,7 @@ void	init_player_direction(char direction, t_player *player)
 		player->plane_x = 0;
 		player->plane_y = -0.66;
 	}
-	if (direction == 'E')
-	{
-		player->dir_x = 0;
-		player->dir_y = 1;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
-	}
-	if (direction == 'W')
-	{
-		player->dir_x = 0;
-		player->dir_y = -1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
-	}
+	init_player_direction_2(direction, player);
 }
 
 int	*axis(t_raycast *raycast, char c)
@@ -122,3 +114,29 @@ int	*init_axis(t_launcher *launcher, t_raycast *rc)
 	init_player_direction(c, launcher->i->player);
 	return (axis(rc, c));
 }
+
+// void ajust_angle(t_infos *infos)
+// {
+// 	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
+// 		infos->player->angle = 0;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
+// 		infos->player->angle = PI;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
+// 		infos->player->angle = PI / 2;
+// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
+// 		infos->player->angle = 3 * PI / 2;
+// }
+//
+// void	render_player(t_launcher **launcher)
+// {
+// 	int			k;
+// 	int			j;
+// 	t_infos		*infos;
+// 	t_launcher	*c;
+
+// 	c = (*launcher);
+// 	infos = (*launcher)->i;
+// 	k = infos->player->px;
+// 	j = infos->player->py;
+// 	my_mlx_pixel_put(&c->img, j, k, 0x00FF0000);
+// }

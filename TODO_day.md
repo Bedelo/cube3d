@@ -9,3 +9,5 @@
 * forbidden function to check:
 printf , ft_...
 close all fd
+
+posibiliter de redimensionner la fenetre

@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:06 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:07 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 10:24:26 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	is_border(char c)
 	return (OK);
 }
 
-int	is_boundary_border(t_map_creation *map, int x , int y)
+int	is_boundary_border(t_map_creation *map, int x, int y)
 {
-	if (x  == 0 && map->my_map[x][y] == '0')
+	if (x == 0 && map->my_map[x][y] == '0')
 		return (KO);
 	if (y == 0 && map->my_map[x][y] == '0')
 		return (KO);
@@ -31,7 +31,6 @@ int	is_boundary_border(t_map_creation *map, int x , int y)
 		return (KO);
 	return (OK);
 }
-
 
 int	is_closed(char **map, int x, int y)
 {
@@ -71,9 +70,9 @@ int	check_map(t_map_creation **map)
 		while (m[i][j])
 		{
 			if (is_boundary_border(*map, i, j) == KO)
-				return (err("Error: map not close in boundary\n"), KO);
+				return (err (ERROR), err("map not close in boundary\n"), KO);
 			if (is_closed(m, i, j) == KO)
-				return (err("Error: map not close\n"), KO);
+				return (err(ERROR), err("map not close\n"), KO);
 			j++;
 		}
 		i++;

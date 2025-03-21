@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:51:19 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 09:51:57 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	**create_map(t_map_creation **map)
 	while (m->i < (m->dim[0]) && m->line)
 	{
 		if (!fill_map(&m, &k))
-			// return (free(m->line), shield_malloc_2(m->my_map, m->dim[0]), NULL);
 			return (free(m->line), NULL);
 		free(m->line);
 		m->line = NULL;
@@ -121,6 +120,5 @@ t_map_creation	*ft_map(t_map_creation **map, char **av)
 	}
 	if (ft_initialise_map(&m) == KO)
 		return (free_map(m), NULL);
-		// return (shield_malloc_2(m->my_map, m->dim[0]), free(m->dim), free(m), NULL);
 	return (m);
 }

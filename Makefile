@@ -14,6 +14,7 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)map_to_array.c \
 			$(SRCS)closed_map.c \
 			$(SRCS)utils_free.c \
+			$(SRCS)utils_free_2.c \
 			$(SRCS)utils_parsing.c \
 			$(SRCS)error.c \
 			$(SRCS)header_infos.c \

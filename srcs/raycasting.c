@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:18:36 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/19 15:38:54 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 09:50:30 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	setup_ray_2(t_ray *ray, int x, t_player *player)
 		ray->side_dist_y = (player->py - ray->map_y) * ray->d_dist_y;
 	else
 		ray->side_dist_y = (ray->map_y + 1.0 - player->py) * ray->d_dist_y;
-
 }
 
 void	setup_ray(t_ray *ray, int x, t_launcher *ptr)
@@ -38,7 +37,6 @@ void	setup_ray(t_ray *ray, int x, t_launcher *ptr)
 	t_player	*player;
 
 	player = ptr->i->player;
-
 	ray->camera = ((2.0 * (double)x) / (double)SCR_WIDTH) - 1.0;
 	ray->ray_dir_x = player->dir_x + player->plane_x * ray->camera;
 	ray->ray_dir_y = player->dir_y + player->plane_y * ray->camera;
@@ -67,15 +65,10 @@ void	draw_cube3d(t_launcher *ptr)
 	while (x < SCR_WIDTH)
 	{
 		setup_ray(&ray, x, ptr);
-		//printf("SETUP_RAY OK\n");
 		dda(&ray, ptr);
-		//printf("DDA OK\n");
 		line_height(&ray, ptr->i->player);
-		//printf("LINE_HEIGHT OK\n");
 		print_pixels(ptr, &ray, x);
-		//printf("PRINT_PIXELS OK\n");
 		draw_floor_ceiling(ptr, x, ray.draw_start, ray.draw_end);
-		//printf("FLOOR_CEIL OK\n");
 		x++;
 	}
 	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);

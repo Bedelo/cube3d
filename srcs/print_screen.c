@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/19 15:36:42 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 09:46:34 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ static int	get_tex_id(t_ray *ray)
 static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 {
 	int	y;
+	int	**p_r_t;
+	int	c;
 
+	c = ray->color;
+	p_r_t = &ptr->raycast->texture[0];
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
@@ -56,7 +60,7 @@ static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 		if (ray->tex_y >= TEXTURE_DIM)
 			ray->tex_y = TEXTURE_DIM - 1;
 		ray->texture_pos += ray->step;
-		ray->color = ptr->raycast->texture[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
+		c = p_r_t[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
 		if (ray->side == 1)
 			ray->color = (ray->color >> 1) & 8355711;
 		put_pixel_to_buffer(&ptr->img, x, y, ray->color);

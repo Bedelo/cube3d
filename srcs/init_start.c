@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:51 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:52 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 09:27:21 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	render(t_launcher *ptr)
 {
 	ptr->i->map->map_h = ptr->i->map->dim[1];
 	ptr->i->map->map_w = ptr->i->map->dim[0];
-	// printf("ptr->i->map->map_h = [%d]\tptr->i->map->map_w = [%d]\n", ptr->i->map->map_h, ptr->i->map->map_w);
 	init_draw(&ptr);
 	init_textures(ptr);
 	handle_event(ptr);

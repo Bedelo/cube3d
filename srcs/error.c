@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:19 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 09:16:58 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	error_image(t_launcher *container)
 	ft_putstr_fd("Error: image: ", 2);
 	error_init();
 }
+
 void	err(char *s)
 {
 	ft_putstr_fd(s, 2);
 }
-

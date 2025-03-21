@@ -1,7 +1,7 @@
-NO   ./rscs/textures/NO.xpm
-SO   ./rscs/textures/SO.xpm
-WE ./rscs/textures/WE.xpm
-EA rscs/textures/EA.xpm
+NO   rscs/textures/aa/NO.xpm
+SO   rscs/textures/aa/SO.xpm
+WE rscs/textures/aa/WE.xpm
+EA rscs/textures/aa/EA.xpm
 
  F  220,100,0
 
