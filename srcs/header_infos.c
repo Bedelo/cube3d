@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:46 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 10:50:25 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	header_init(t_header *header, char *line, int *nb_label)
 		return ((*nb_label)++, store_label(&header, split_line, i, j),
 			free(line), OK);
 	else
-		return (err("Double label in header\n"), clean_header(header),
+		return (err(ERROR), err(ERR_HEADER_2), clean_header(header),
 			free(line), freetab((void **)split_line, -1), KO);
 }
 
@@ -124,9 +124,10 @@ t_header	*header_creation(char *file)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (err("Creation header failed!\n"), close(fd), NULL);
+			return (free(header), err(ERROR),
+				err(ERR_HEADER_0), close(fd), NULL);
 		if (header_init(header, line, &nb_label) == KO)
-			return (err("Creation header failed!\n"), close(fd), NULL);
+			return (err(ERROR), err(ERR_HEADER_1), close(fd), NULL);
 	}
 	close (fd);
 	if (header_format(header) == KO)

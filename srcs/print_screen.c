@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/21 09:46:34 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 11:27:50 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 		y++;
 	}
 }
+
 
 void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 {

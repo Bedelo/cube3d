@@ -7,7 +7,7 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
-#include <errno.h>
+# include <errno.h>
 # include "render2D.h"
 
 # define PI 3.14159265358979323846
@@ -15,10 +15,12 @@
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
-# define TEXTURE_DIM 64
+# define TEXTURE_DIM 1080
 # define ERROR "Error:\n"
+# define ERR_HEADER_1  "Creation header failed!\n"
+# define ERR_HEADER_0  "PATH or HEADER issue!\n"
+# define ERR_HEADER_2  "Double label in header\n"
 # define ERROR_MAP "Error: MAP IS WRONG\n"
-# define ERROR_HEADER "Error: HEADER IS WRONG\n"
 # define KO 1
 # define STOP -2
 # define OK 0

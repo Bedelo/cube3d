@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:51:57 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 11:00:46 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**fill_map(t_map_creation **map, int *k)
 	{
 		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W'
 				|| m->line[*k] == 'E') && m->flag)
-			return (err(INCORRECT_PLAYER), NULL);
+			return (err(ERROR), err(INCORRECT_PLAYER), NULL);
 		if ((m->line[*k] == 'N' || m->line[*k] == 'S' || m->line[*k] == 'W'
 				|| m->line[*k] == 'E') && !m->flag)
 		{
@@ -87,7 +87,7 @@ int	ft_initialise_map(t_map_creation **map)
 	if (m->fd < 0)
 		return (KO);
 	if (!create_map(&m))
-		return (KO);
+		return (close (m->fd), KO);
 	close(m->fd);
 	if (!m->my_map)
 		return (KO);

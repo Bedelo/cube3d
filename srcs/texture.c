@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/19 15:41:49 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/21 11:37:54 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 	return (1);
 }
 
+//a gerer err et ft_printf
 static void	prepare_textures(t_launcher *ptr)
 {
 	if (set_texture(ptr, ptr->raycast->texture[0], ptr->i->header->no) == 0)
