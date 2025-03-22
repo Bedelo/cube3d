@@ -6,15 +6,12 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/21 11:27:50 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:14:25 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/cube3d.h"
 
-/*
-	DESSINE DANS LE BUFFER
- */
 void	put_pixel_to_buffer(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -62,12 +59,11 @@ static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 		ray->texture_pos += ray->step;
 		c = p_r_t[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
 		if (ray->side == 1)
-			ray->color = (ray->color >> 1) & 8355711;
-		put_pixel_to_buffer(&ptr->img, x, y, ray->color);
+			c = (c >> 1) & 8355711;
+		put_pixel_to_buffer(&ptr->img, x, y, c);
 		y++;
 	}
 }
-
 
 void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 {

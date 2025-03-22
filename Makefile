@@ -1,4 +1,4 @@
-CC = cc
+CC = clang
 CFLAGS =  -g3 -O3
 # CFLAGS = -Wall -Wextra -Werror -g3 -O3
 

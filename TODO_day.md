@@ -13,3 +13,6 @@ close all fd
 posibiliter de redimensionner la fenetre
 
 textures issue
+
+
+add CFLAGS

@@ -6,11 +6,13 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/21 11:37:54 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/22 11:24:20 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/cube3d.h"
+
+//a gerer err et ft_printf
 
 static void	alloc_textures(t_launcher *ptr)
 {
@@ -23,7 +25,7 @@ static void	alloc_textures(t_launcher *ptr)
 		ptr->raycast->texture[i] = (int *)malloc(sizeof(int) * (TEXTURE_DIM
 					* TEXTURE_DIM));
 		if (!ptr->raycast->texture[i])
-			printf("Memory allocation failed for texture array");
+			err("ERROR:\nMemory allocation failed for texture array\n");
 		i++;
 	}
 	i = 0;
@@ -53,6 +55,7 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 			&img_tex.bits_per_pixel, &img_tex.line_length, &img_tex.endian);
 	if (!img_tex.data)
 		return (0);
+	y = 0;
 	while (y < TEXTURE_DIM)
 	{
 		x = 0;
@@ -63,21 +66,32 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 		}
 		y++;
 	}
-	mlx_destroy_image(ptr->mlx, img_tex.img);
-	return (1);
+	return (mlx_destroy_image(ptr->mlx, img_tex.img), 1);
 }
-
 //a gerer err et ft_printf
+
 static void	prepare_textures(t_launcher *ptr)
 {
 	if (set_texture(ptr, ptr->raycast->texture[0], ptr->i->header->no) == 0)
-		printf("ERROR TEXTURE NORD\n");
+	{
+		err(ERROR);
+		err("ERROR TEXTURE NORTH\n");
+	}
 	if (set_texture(ptr, ptr->raycast->texture[1], ptr->i->header->so) == 0)
-		printf("ERROR TEXTURE SOUTH\n");
+	{
+		err(ERROR);
+		err("ERROR TEXTURE SOUTH\n");
+	}
 	if (set_texture(ptr, ptr->raycast->texture[2], ptr->i->header->ea) == 0)
-		printf("ERROR TEXTURE EAST\n");
+	{
+		err(ERROR);
+		err("ERROR TEXTURE EAST\n");
+	}
 	if (set_texture(ptr, ptr->raycast->texture[3], ptr->i->header->we) == 0)
-		printf("ERROR TEXTURE WEST\n");
+	{
+		err(ERROR);
+		err("ERROR TEXTURE WEST\n");
+	}
 }
 
 void	init_textures(t_launcher *ptr)

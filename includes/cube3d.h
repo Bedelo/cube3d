@@ -15,7 +15,7 @@
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
-# define TEXTURE_DIM 1080
+# define TEXTURE_DIM 64
 # define ERROR "Error:\n"
 # define ERR_HEADER_1  "Creation header failed!\n"
 # define ERR_HEADER_0  "PATH or HEADER issue!\n"
@@ -31,11 +31,6 @@
 # define SIN_ANGLE 0.0749297073
 # define COS_NEG_ANGLE 0.9971871872
 # define SIN_NEG_ANGLE -0.0749297073
-// # define COS_ANGLE 0.7316888688738209
-// # define SIN_ANGLE 0.6816387600233341
-// # define COS_NEG_ANGLE 0.7316888688738209
-// # define SIN_NEG_ANGLE -0.6816387600233341
-
 
 int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
@@ -63,7 +58,6 @@ t_map_creation	*ft_map(t_map_creation **m, char **av);
 void			display_map(t_map_creation *m);
 int				check_enclosure_map(t_map_creation **map);
 int				check_map(t_map_creation **map);
-//t_texture		*init_texture(t_launcher *launcher, t_raycast *raycast);
 
 char			**header_label(char *header[7]);
 t_header		*header_creation(char *file);
@@ -99,7 +93,7 @@ void			setup_ray(t_ray *ray, int x, t_launcher *launcher);
 /*		raycasting_utils.c		*/
 void			dda(t_ray *ray, t_launcher *launcher);
 void			line_height(t_ray *ray, t_player *player);
-void			draw_floor_ceiling(t_launcher *ptr, int x, int draw_start, int draw_end);
+void			draw_floor_ceiling(t_launcher *ptr, int x, int d_s, int d_e);
 /*		texture.c				*/
 void			init_textures(t_launcher *ptr);
 int				events_key(int keycode, t_launcher *launcher);
