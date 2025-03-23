@@ -1,6 +1,6 @@
 CC = clang
-CFLAGS =  -g3 -O3
-# CFLAGS = -Wall -Wextra -Werror -g3 -O3
+# CFLAGS =  -g3 -O3
+CFLAGS = -Wall -Wextra -Werror -g3 -O3
 
 CUBE_NAME = cube3D
 
@@ -24,7 +24,6 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)player.c \
 			$(SRCS)render_2D.c \
 			$(SRCS)utils.c \
-			$(SRCS)render_3D.c \
 			$(SRCS)events.c \
 			$(SRCS)print_screen.c \
 			$(SRCS)raycasting.c \

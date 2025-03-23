@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 10:50:25 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:35:30 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	fill_header(char **split_, int i, int j)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (err("Label initiation failed"),
+		return (err(ERROR), err("Label initiation failed"),
 			freetab((void **)split_, -1), KO);
 	if (split_[j] != NULL)
 		return (OK);
 	else
-		return (err("Label empty"), freetab((void **)split_, -1), KO);
+		return (err(ERROR), err("Label empty"),
+			freetab((void **)split_, -1), KO);
 }
 
 int	label_empty(t_header *header, char *label)
@@ -82,7 +83,6 @@ void	store_label(t_header **h, char **split_line, int i, int j)
 int	header_init(t_header *header, char *line, int *nb_label)
 {
 	char	**split_line;
-	int		size;
 	int		i;
 	int		j;
 
@@ -131,6 +131,7 @@ t_header	*header_creation(char *file)
 	}
 	close (fd);
 	if (header_format(header) == KO)
-		return (err("Creation header failed!\n"), clean_header(header), NULL);
+		return (err(ERROR), err("Creation header failed!\n"),
+			clean_header(header), NULL);
 	return (header);
 }

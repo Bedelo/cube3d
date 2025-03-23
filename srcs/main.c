@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:02 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 13:09:05 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:33:50 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_launcher	*launcher;
 
 	if (ac != 2)
-		return (err("Enter valid map\n"), 1);
+		return (err(ERROR), err("Enter valid map\n"), 1);
 	launcher = ft_calloc(1, sizeof(t_launcher));
 	if (!launcher)
 		return (1);

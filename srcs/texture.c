@@ -6,13 +6,11 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:33:33 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/22 11:24:20 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:31:20 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/cube3d.h"
-
-//a gerer err et ft_printf
 
 static void	alloc_textures(t_launcher *ptr)
 {
@@ -68,7 +66,6 @@ static int	set_texture(t_launcher *ptr, int *tex, char *path)
 	}
 	return (mlx_destroy_image(ptr->mlx, img_tex.img), 1);
 }
-//a gerer err et ft_printf
 
 static void	prepare_textures(t_launcher *ptr)
 {

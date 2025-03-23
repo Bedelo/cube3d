@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:18:36 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/21 09:50:30 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:29:16 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	setup_ray_2(t_ray *ray, int x, t_player *player)
 {
+	(void) x;
 	if (ray->ray_dir_x < 0)
 		ray->step_x = -1;
 	else

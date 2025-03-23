@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:51 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 10:32:43 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:22:18 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 t_infos	*init_player(t_infos **i)
 {
 	t_infos	*infos;
-	int		x;
-	int		y;
 
 	infos = *i;
 	infos->player = ft_calloc(1, sizeof(t_player));
@@ -44,10 +42,10 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	raycast->we = launcher->i->header->we;
 	raycast->ea = launcher->i->header->ea;
 	raycast->f_color = to_color_rc(launcher->i->header->f);
-	if (raycast->f_color == -1)
+	if (raycast->f_color == (unsigned int)(-1))
 		return (err(ERROR), err("Color floor issue!\n"), free(raycast), NULL);
 	raycast->c_color = to_color_rc(launcher->i->header->c);
-	if (raycast->c_color == -1)
+	if (raycast->c_color == (unsigned int)(-1))
 		return (err(ERROR), err("Color ceiling issue!\n"), free(raycast), NULL);
 	return (raycast);
 }

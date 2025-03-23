@@ -54,7 +54,7 @@ void			clean_header(t_header *header);
 void			clean_textures(t_launcher *ptr);
 
 t_map_creation	*map_init(t_map_creation *m, char **av);
-t_map_creation	*ft_map(t_map_creation **m, char **av);
+t_map_creation	*ft_map(t_map_creation **m);
 void			display_map(t_map_creation *m);
 int				check_enclosure_map(t_map_creation **map);
 int				check_map(t_map_creation **map);

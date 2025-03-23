@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:12 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:51:13 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:26:35 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_map_creation	*map_init(t_map_creation *m, char **av)
 	if (!av[1])
 		return (NULL);
 	m->file = av[1];
-	m = ft_map(&m, av);
+	m = ft_map(&m);
 	if (!m)
 		return (NULL);
 	if (check_map(&m) == KO)
@@ -54,11 +54,3 @@ void	display_map(t_map_creation *m)
 		j = 0;
 	}
 }
-/*	a supprimer */
-// t_texture	*init_texture(t_launcher *launcher, t_raycast *raycast)
-// {
-// 	raycast->texture->data = &launcher->img;
-// 	raycast->texture->width = TEXTURE_DIM;
-// 	raycast->texture->height = TEXTURE_DIM;
-// 	return (raycast->texture);
-// }

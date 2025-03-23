@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:14:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:14:19 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:27:57 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	is_header(char *line, int fd)
 	char	*header[7];
 	int		h;
 
+	(void)fd;
 	h = -1;
 	size = 0;
 	header_label(header);

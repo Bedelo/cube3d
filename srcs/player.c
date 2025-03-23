@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:13:42 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:36:58 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:30:05 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,29 +114,3 @@ int	*init_axis(t_launcher *launcher, t_raycast *rc)
 	init_player_direction(c, launcher->i->player);
 	return (axis(rc, c));
 }
-
-// void ajust_angle(t_infos *infos)
-// {
-// 	if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'N')
-// 		infos->player->angle = 0;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'S')
-// 		infos->player->angle = PI;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'W')
-// 		infos->player->angle = PI / 2;
-// 	else if (infos->map->my_map[infos->map->pos[0]][infos->map->pos[1]] == 'E')
-// 		infos->player->angle = 3 * PI / 2;
-// }
-//
-// void	render_player(t_launcher **launcher)
-// {
-// 	int			k;
-// 	int			j;
-// 	t_infos		*infos;
-// 	t_launcher	*c;
-
-// 	c = (*launcher);
-// 	infos = (*launcher)->i;
-// 	k = infos->player->px;
-// 	j = infos->player->py;
-// 	my_mlx_pixel_put(&c->img, j, k, 0x00FF0000);
-// }

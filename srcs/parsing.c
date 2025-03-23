@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:30 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:51:31 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:20:01 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	len_x(int fd, int *header_len)
 {
 	char	*line;
 	int		len_x;
-	int		ret;
 
+	(void)header_len;
 	len_x = 0;
 	if (fd == -1)
 		return (-1);
@@ -79,7 +79,7 @@ int	len_x(int fd, int *header_len)
 	{
 		if (!line)
 			break ;
-		if (ft_strlen(line) > len_x)
+		if (ft_strlen(line) > (size_t) len_x)
 			len_x = ft_strlen(line);
 		free(line);
 		line = get_next_line(fd);
@@ -97,9 +97,8 @@ int	len_y(int fd, int *header_len)
 {
 	char	*line;
 	int		len_y;
-	int		ret;
 
-	ret = 0;
+	(void)header_len;
 	len_y = 0;
 	if (fd == -1)
 		return (-1);

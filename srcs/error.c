@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:16:58 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 09:38:37 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	error_window(t_launcher *container)
 	mlx_destroy_display(container->mlx);
 	free(container->img.img);
 	free(container->mlx);
+	err(ERROR);
 	ft_putstr_fd("Error: windows: ", 2);
 	error_init();
 }
@@ -32,6 +33,7 @@ void	error_image(t_launcher *container)
 	mlx_destroy_display(container->mlx);
 	free(container->img.img);
 	free(container->mlx);
+	err(ERROR);
 	ft_putstr_fd("Error: image: ", 2);
 	error_init();
 }
