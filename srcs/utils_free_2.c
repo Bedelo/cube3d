@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:22:50 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/24 11:50:30 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 13:50:07 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	header_floor_celling(t_header *header)
 	if (header->f)
 	{
 		shield_malloc(header->f);
-		
 	}
 	if (header->c)
 	{
