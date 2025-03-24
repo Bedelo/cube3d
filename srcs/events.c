@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/23 14:48:42 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 14:22:22 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,17 @@ int	event_key(int k_code, t_launcher *ptr)
 	player = ptr->i->player;
 	if (k_code == XK_Escape)
 		return (close_window_x(ptr));
-	if (k_code == XK_w || k_code == 122)
+	if (k_code == XK_w || k_code == XK_W)
 		move_player(ptr, player->dir_x, player->dir_y);
-	if (k_code == XK_s)
+	if (k_code == XK_s || k_code == XK_S)
 		move_player(ptr, -player->dir_x, -player->dir_y);
-	if (k_code == XK_a || k_code == 113)
+	if (k_code == XK_a || k_code == XK_A)
 		move_player(ptr, -player->dir_y, player->dir_x);
-	if (k_code == XK_d)
+	if (k_code == XK_d || k_code == XK_D)
 		move_player(ptr, player->dir_y, -player->dir_x);
-	if (k_code == 65363)
+	if (k_code == XK_Left)
 		rotate_player(ptr, -1);
-	if (k_code == 65361)
+	if (k_code == XK_Right)
 		rotate_player(ptr, 1);
 	return (0);
 }
