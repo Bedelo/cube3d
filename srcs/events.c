@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/24 14:22:22 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 14:25:06 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int	event_key(int k_code, t_launcher *ptr)
 	if (k_code == XK_d || k_code == XK_D)
 		move_player(ptr, player->dir_y, -player->dir_x);
 	if (k_code == XK_Left)
-		rotate_player(ptr, -1);
-	if (k_code == XK_Right)
 		rotate_player(ptr, 1);
+	if (k_code == XK_Right)
+		rotate_player(ptr, -1);
 	return (0);
 }
 
