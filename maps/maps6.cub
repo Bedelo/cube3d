@@ -1,9 +1,9 @@
-NO   ./rscs/textures/NO.xpm
-SO   ./rscs/textures/SO.xpm
+NO   ./rscs/textures/mat.xpm
 
+SO   ./rscs/textures/mat2.xpm
+WE           ./rscs/textures/mat1.xpm
+EA ./rscs/textures/mat0.xpm
 
-WE          ./rscs/textures/WE.xpm
-EA ./rscs/textures/EA.xpm
 
  F  220,100,0
 

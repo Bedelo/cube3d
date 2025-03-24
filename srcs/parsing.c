@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:30 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 09:20:01 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 12:32:04 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	ft_handle_map(char *file, char *extension)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("\nError opening file: \n", 2);
+		err(ERROR);
+		ft_putstr_fd("Error opening file: \n", 2);
 		ft_putstr_fd(file, 2);
 		if (errno == ENOENT)
 			ft_putstr_fd("\nFile not found\n", 2);

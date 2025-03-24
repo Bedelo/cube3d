@@ -1,13 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mystruct.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 14:45:35 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/23 15:07:09 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MYSTRUCT_H
 # define MYSTRUCT_H
 
-/*
-	VARIABLES AUXILIAIRES POUR LES EVENTS
- */
-typedef struct		s_event_variable
+typedef struct s_event_variable
 {
-	double			old_dirX;
-	double			old_planeX;
+	double			old_dir_x;
+	double			old_plane_x;
 	double			cos_theta;
 	double			sin_theta;
 	double			x;
@@ -19,7 +28,6 @@ typedef struct		s_event_variable
 	int				width;
 	int				fila_len_x;
 	int				fila_len_y;
-
 }					t_event_variable;
 
 // infos about player

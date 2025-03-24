@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/23 14:45:31 by bsunda            #+#    #+#             */
+/*   Updated: 2025/03/23 14:45:32 by bsunda           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
@@ -15,8 +27,8 @@
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
-# define TEXTURE_DIM 64
-# define ERROR "Error:\n"
+# define TEXTURE_DIM 256
+# define ERROR "Error\n"
 # define ERR_HEADER_1  "Creation header failed!\n"
 # define ERR_HEADER_0  "PATH or HEADER issue!\n"
 # define ERR_HEADER_2  "Double label in header\n"

@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/22 11:14:25 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 14:37:59 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,38 @@ void	put_pixel_to_buffer(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void	clear_image(t_launcher *ptr)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < SCR_WIDTH)
+	{
+		x = 0;
+		while (x < SCR_HEIGHT)
+		{
+			put_pixel_to_buffer(&ptr->img, x, y, 0x00000000);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(ptr->mlx, ptr->mlx_win, ptr->img.img, 0, 0);
+}
+
 static int	get_tex_id(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			return (2);
-		return (3);
+			return (1);
+		return (0);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			return (1);
-		return (0);
+			return (2);
+		return (3);
 	}
 }
 

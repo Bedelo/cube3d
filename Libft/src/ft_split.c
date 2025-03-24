@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 14:24:41 by yparthen          #+#    #+#             */
-/*   Updated: 2025/02/25 14:14:55 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 14:57:43 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(char *s)
 		{
 			list_words[k++] = gen_word(s);
 			if (!list_words[k - 1])
-				return (freetab((void **)list_words, - 1));
+				return (freetab((void **) list_words, -1));
 			while (*s && !is_espace(*s))
 				s++;
 		}

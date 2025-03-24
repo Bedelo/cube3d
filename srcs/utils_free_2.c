@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:22:50 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:47:32 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 11:50:30 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,19 @@ static void	header_cardinal(t_header *header)
 {
 	if (header->no)
 	{
-		free(header->no);
-		header->no = NULL;
+		shield_malloc(header->no);
 	}
 	if (header->so)
 	{
-		free(header->so);
-		header->so = NULL;
+		shield_malloc(header->so);
 	}
 	if (header->we)
 	{
-		free(header->we);
-		header->we = NULL;
+		shield_malloc(header->we);
 	}
 	if (header->ea)
 	{
-		free(header->ea);
-		header->ea = NULL;
+		shield_malloc(header->ea);
 	}
 }
 
@@ -40,13 +36,12 @@ static void	header_floor_celling(t_header *header)
 {
 	if (header->f)
 	{
-		free(header->f);
-		header->f = NULL;
+		shield_malloc(header->f);
+		
 	}
 	if (header->c)
 	{
-		free(header->c);
-		header->c = NULL;
+		shield_malloc(header->c);
 	}
 }
 
@@ -54,8 +49,7 @@ void	clean_header(t_header *header)
 {
 	header_cardinal(header);
 	header_floor_celling(header);
-	free(header);
-	header = NULL;
+	shield_malloc(header);
 }
 
 void	clean_textures(t_launcher *ptr)
@@ -65,20 +59,19 @@ void	clean_textures(t_launcher *ptr)
 	i = 0;
 	while (i < 4)
 	{
-		free(ptr->raycast->texture[i]);
-		ptr->raycast->texture[i] = NULL;
+		shield_malloc(ptr->raycast->texture[i]);
 		i++;
 	}
 }
 
 void	free_all(t_launcher *launcher)
 {
-	free(launcher->i->player);
+	shield_malloc (launcher->i->player);
 	clean_header(launcher->i->header);
 	clean_map(launcher->i->map);
-	free(launcher->i);
-	free(launcher->raycast->axis);
+	shield_malloc(launcher->i);
+	shield_malloc(launcher->raycast->axis);
 	clean_textures(launcher);
-	free(launcher->raycast);
-	free(launcher);
+	shield_malloc(launcher->raycast);
+	shield_malloc(launcher);
 }

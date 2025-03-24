@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/19 14:56:16 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/23 14:48:42 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,15 @@ static void	rotate_player(t_launcher *ptr, int direction)
 		var.cos_theta = COS_ANGLE;
 		var.sin_theta = SIN_ANGLE;
 	}
-	var.old_dirX = player->dir_x;
-	var.old_planeX = player->plane_x;
+	var.old_dir_x = player->dir_x;
+	var.old_plane_x = player->plane_x;
 	player->dir_x = player->dir_x * var.cos_theta - player->dir_y
 		* var.sin_theta;
-	player->dir_y = var.old_dirX * var.sin_theta + player->dir_y
+	player->dir_y = var.old_dir_x * var.sin_theta + player->dir_y
 		* var.cos_theta;
 	player->plane_x = player->plane_x * var.cos_theta - player->plane_y
 		* var.sin_theta;
-	player->plane_y = var.old_planeX * var.sin_theta + player->plane_y
+	player->plane_y = var.old_plane_x * var.sin_theta + player->plane_y
 		* var.cos_theta;
 	ptr->i->player->move = 1;
 }

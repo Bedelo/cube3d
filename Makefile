@@ -1,5 +1,4 @@
-CC = clang
-# CFLAGS =  -g3 -O3
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -O3
 
 CUBE_NAME = cube3D
@@ -22,7 +21,6 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)map_init.c \
 			$(SRCS)event_handle.c \
 			$(SRCS)player.c \
-			$(SRCS)render_2D.c \
 			$(SRCS)utils.c \
 			$(SRCS)events.c \
 			$(SRCS)print_screen.c \
@@ -42,6 +40,10 @@ LIBFT = $(LIBFT_PATH)/libft.a
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
 
+MLX = $(PATH_MLX)/libmlx.a
+$(MLX):
+	$(MAKE) -C $(PATH_MLX)
+
 $(NAME): $(LIBFT) $(MLX) $(CUBE_OBJ)
 	$(CC) $(CFLAGS) -I$(INCLUDE) $(CUBE_OBJ) -o $(CUBE_NAME) -lm -L$(LIBFT_PATH) -lft -L$(PATH_MLX) -lmlx -lXext -lX11
 
@@ -52,6 +54,7 @@ $(OBJS_DIR)%.o: $(SRCS)%.c
 clean:
 	make -C $(LIBFT_PATH) clean
 	rm -f $(OBJS_DIR)*.o
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
@@ -59,9 +62,9 @@ fclean: clean
 
 re: fclean all
 
-push:
+push: fclean
 	git add .
 	git commit -m "$(m)"
 	git push
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re push

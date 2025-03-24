@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:14:11 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/21 09:26:53 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 11:46:32 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	*shield_malloc(void *ptr)
 {
-	free(ptr);
+	if(ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 	return (NULL);
 }
 

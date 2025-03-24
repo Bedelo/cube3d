@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 09:35:30 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/24 13:44:03 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ int	fill_header(char **split_, int i, int j)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (err(ERROR), err("Label initiation failed"),
-			freetab((void **)split_, -1), KO);
+		return (err(ERROR), err("Label initiation failed\n"), KO);
 	if (split_[j] != NULL)
 		return (OK);
 	else
-		return (err(ERROR), err("Label empty"),
-			freetab((void **)split_, -1), KO);
+		return (err(ERROR), err("Label empty"), KO);
 }
 
 int	label_empty(t_header *header, char *label)
@@ -103,8 +101,8 @@ int	header_init(t_header *header, char *line, int *nb_label)
 		return ((*nb_label)++, store_label(&header, split_line, i, j),
 			free(line), OK);
 	else
-		return (err(ERROR), err(ERR_HEADER_2), clean_header(header),
-			free(line), freetab((void **)split_line, -1), KO);
+		return (clean_header(header),
+			shield_malloc(line), freetab((void **)split_line, -1), KO);
 }
 
 t_header	*header_creation(char *file)
@@ -115,11 +113,12 @@ t_header	*header_creation(char *file)
 	int			nb_label;
 
 	nb_label = 0;
-	fd = open(file, O_RDONLY);
-	header = malloc(sizeof(t_header));
-	if (!header)
+	fd = ft_handle_map(file, ".cub");
+	if (fd < 0)
 		return (NULL);
-	*header = (t_header){0};
+	header = ft_calloc(1, sizeof(t_header));
+	if (!header)
+		return (close(fd), NULL);
 	while (nb_label < 6)
 	{
 		line = get_next_line(fd);
@@ -129,9 +128,8 @@ t_header	*header_creation(char *file)
 		if (header_init(header, line, &nb_label) == KO)
 			return (err(ERROR), err(ERR_HEADER_1), close(fd), NULL);
 	}
-	close (fd);
 	if (header_format(header) == KO)
 		return (err(ERROR), err("Creation header failed!\n"),
-			clean_header(header), NULL);
-	return (header);
+			clean_header(header), close(fd), NULL);
+	return (close(fd), header);
 }

@@ -1,20 +1,23 @@
-NO   ./path_to_the_north_texture
-SO       ./path_to_the_south_texture
+NO   ./rscs/textures/mat.xpm
 
-      WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO   ./rscs/textures/mat2.xpm
+WE           ./rscs/textures/mat1.xpm
+EA ./rscs/textures/mat0.xpm
 
- F  255,100,0
+ F  30,50,40
 
-C  225,30,0
+C  4,171,252
 
 
 
 
  111111
  100001
- 10N001
+ 100001
+ 100001
+ 100N01
+ 100001
  111111
-  1
+  1  
          1
 11    1

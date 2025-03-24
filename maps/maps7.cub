@@ -1,12 +1,13 @@
+NO   ./rscs/textures/mat.xpm
 
-NO   ./rscs/textures/NO.xpm
-SO   ./rscs/textures/SO.xpm
-WE ./rscs/textures/WE.xpm
-EA ./rscs/textures/EA.xpm
+SO   ./rscs/textures/mat2.xpm
+WE           ./rscs/textures/mat1.xpm
+EA ./rscs/textures/mat0.xpm
 
-F 220,100,222
 
-C 10,30,29
+ F  30,50,40
+
+C  4,171,252
 
 11111        1111111
 10001        1000001
