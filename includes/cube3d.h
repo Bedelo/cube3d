@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:31 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 14:45:32 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:18:11 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void			free_map(t_map_creation *m);
 void			clean_map(t_map_creation *m);
 void			clean_header(t_header *header);
 void			clean_textures(t_launcher *ptr);
+int				header_issue(t_header *header, char *line, char **split_line);
 
 t_map_creation	*map_init(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m);

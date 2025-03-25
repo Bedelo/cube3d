@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 14:09:28 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 15:20:30 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	fill_header(char **split_, int i, int j)
 
 	l = -1;
 	header_label(label);
-	if (ft_isdigit(split_[i][0]) == 0)
-		return (err(ERROR), err("Map is wrong\n"), KO);
 	while (label[++l])
 	{
 		if (ft_strncmp(split_[i], label[l], ft_strlen(split_[i]) + 1) == 0)
@@ -31,7 +29,7 @@ int	fill_header(char **split_, int i, int j)
 	if (split_[j] != NULL)
 		return (OK);
 	else
-		return (err(ERROR), err("Label empty"), KO);
+		return (err(ERROR), err("Label empty\n"), KO);
 }
 
 int	label_empty(t_header *header, char *label)
@@ -96,6 +94,8 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
 		;
 	j = i;
+	if (header_issue(header, line, split_line) == KO)
+		return (KO);
 	while (split_line[++j] && ft_strlen(split_line[j]) < 5)
 		;
 	if (fill_header(split_line, i, j) == OK
