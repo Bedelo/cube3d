@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/24 13:44:03 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 14:09:28 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ int	fill_header(char **split_, int i, int j)
 
 	l = -1;
 	header_label(label);
+	if (ft_isdigit(split_[i][0]) == 0)
+		return (err(ERROR), err("Map is wrong\n"), KO);
 	while (label[++l])
 	{
 		if (ft_strncmp(split_[i], label[l], ft_strlen(split_[i]) + 1) == 0)
 			break ;
 	}
 	if (label[l] == NULL)
-		return (err(ERROR), err("Label initiation failed\n"), KO);
+		return (err(ERROR), err("Label initialisation failed\n"), KO);
 	if (split_[j] != NULL)
 		return (OK);
 	else

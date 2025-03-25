@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:51:18 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 09:26:47 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 14:11:03 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,11 @@ char	**fill_map(t_map_creation **map, int *k)
 char	**create_map(t_map_creation **map)
 {
 	int				k;
-	int				head;
 	t_map_creation	*m;
 
 	m = *map;
 	m->flag = 0;
 	m->i = 0;
-	head = 0;
 	while (check_is_header(&m->line, m->fd) == OK)
 		free(m->line);
 	while (m->i < (m->dim[0]) && m->line)
