@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:31 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 15:18:11 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 16:33:20 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				close_window_x(t_launcher *c);
 
 t_infos			*init_player(t_infos **i);
 t_raycast		*init_raycast(t_launcher *launcher);
-t_infos			*init_infos(char **av, t_infos **i);
+t_infos			*init_infos(char **av, t_infos *i);
 void			init_draw(t_launcher **launcher);
 int				render(t_launcher *launcher);
 /*		events.c				*/

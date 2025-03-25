@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:51:37 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/24 14:25:06 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 16:31:13 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ int	close_window_x(t_launcher *c)
 	clean_map(c->i->map);
 	clean_header(c->i->header);
 	free(c->i);
-	free(c);
 	exit(0);
 }

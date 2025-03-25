@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:51 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 12:53:56 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 16:33:00 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ t_raycast	*init_raycast(t_launcher *launcher)
 	return (raycast);
 }
 
-t_infos	*init_infos(char **av, t_infos **i)
+t_infos	*init_infos(char **av, t_infos *i)
 {
 	t_infos				*infos;
 
-	infos = *i;
 	infos = ft_calloc(1, sizeof(t_infos));
 	if (!infos)
 		return (NULL);
@@ -68,8 +67,9 @@ t_infos	*init_infos(char **av, t_infos **i)
 	infos = init_player(&infos);
 	if (!infos)
 		return (free(infos->player), clean_header(infos->header),
-			clean_map(infos->map), free(infos), NULL);
-	return (infos);
+	clean_map(infos->map), free(infos), NULL);
+	i = infos;
+	return (i);
 }
 
 void	init_draw(t_launcher **launcher)

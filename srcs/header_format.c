@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:39 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:40 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/25 16:17:00 by yparthen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,29 @@ static int	is_color(char *color)
 	j = 0;
 	while (color[j])
 	{
-		if (!ft_isdigit(color[j]))
+		if (!ft_isdigit(color[j]) || j > 3)
 			return (KO);
 		j++;
 	}
 	return (OK);
+}
+
+static int	count_commas(char *line)
+{
+	int	k;
+	int	commas;
+
+	k = 0;
+	commas = 0;
+	if (!line)
+		return (0);
+	while (line[k])
+	{
+		if (line[k] == ',')
+			commas++;
+		k++;
+	}
+	return (commas);
 }
 
 int	check_header_no_cardinal(char *file)
@@ -44,6 +62,8 @@ int	check_header_no_cardinal(char *file)
 	char	**tab;
 	int		i;
 
+	if (count_commas(file) != 2)
+		return (err("Bad color format\n"), KO);
 	tab = ft_split_arg(file, ',');
 	if (!tab)
 		return (KO);
