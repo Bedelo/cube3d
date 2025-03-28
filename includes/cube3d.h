@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:31 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 16:33:20 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:13:05 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define PI 3.14159265358979323846
 # define INCORRECT_PLAYER "Error: INCORRECT PLAYER\n"
 # define ERROR_INITIALISATION "ERROR: INITIALISATION MLX ERROR OCCURS\n"
+# define INCORRECT_CHAR "Error: INCORRECT CHAR\n"
 # define SCR_WIDTH 720
 # define SCR_HEIGHT 720
 # define TEXTURE_DIM 256
@@ -36,6 +37,7 @@
 # define KO 1
 # define STOP -2
 # define OK 0
+# define EH "Error\nCreation header failed!\n"
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.75
 # define FOV 0.66
@@ -48,7 +50,7 @@ int				len_x(int fd, int *header_len);
 int				len_y(int fd, int *header_len);
 int				ft_handle_map(char *file, char *extension);
 int				map_dim(int *dim, char *file, int (*f) (int, int*), int *h);
-
+int				header_issue(char *split_line);
 void			ft_freenstr(int n, void *str, ...);
 unsigned int	to_color_rc(char *str);
 int				rgbToHex(int r, int g, int b);
@@ -64,7 +66,6 @@ void			free_map(t_map_creation *m);
 void			clean_map(t_map_creation *m);
 void			clean_header(t_header *header);
 void			clean_textures(t_launcher *ptr);
-int				header_issue(t_header *header, char *line, char **split_line);
 
 t_map_creation	*map_init(t_map_creation *m, char **av);
 t_map_creation	*ft_map(t_map_creation **m);
@@ -74,13 +75,18 @@ int				check_map(t_map_creation **map);
 
 char			**header_label(char *header[7]);
 t_header		*header_creation(char *file);
-int				header_format(t_header *header);
+int				header_format(t_header *header, int fd);
+
+int				check_header_no_cardinal(char *file);
+int				check_header_cardinal(char *file);
 
 void			error_init(void);
 void			error_window(t_launcher *container);
 void			error_image(t_launcher *container);
 
 void			err(char *str);
+
+char			**fill_map(t_map_creation **map, int k);
 
 int				check_is_header(char **line, int fd);
 int				is_header(char *line, int fd);

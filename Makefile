@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -O3
 
-CUBE_NAME = cube3D
+CUBE_NAME = cub3D
 
 SRCS = ./srcs/
 INCLUDE = ./includes/
@@ -27,6 +27,8 @@ CUBE_SRC = $(SRCS)main.c \
 			$(SRCS)raycasting.c \
 			$(SRCS)raycasting_utils.c \
 			$(SRCS)texture.c \
+			$(SRCS)utils_header.c \
+			$(SRCS)utils_map.c \
 
 CUBE_OBJ = $(CUBE_SRC:$(SRCS)%.c=$(OBJS_DIR)%.o)
 

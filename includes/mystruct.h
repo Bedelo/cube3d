@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:35 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/23 15:07:09 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 11:44:00 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_header
 	char	*ea;
 	char	*f;
 	char	*c;
+	int		verif;
 }			t_header;
 
 typedef struct s_map_creation

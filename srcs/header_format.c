@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:39 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 16:17:00 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:57:04 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,4 @@ int	check_header_no_cardinal(char *file)
 		i++;
 	}
 	return (freetab((void **)tab, -1), OK);
-}
-
-int	header_format(t_header *header)
-{
-	if (check_header_cardinal(header->no) == KO)
-		return (KO);
-	if (check_header_cardinal(header->so) == KO)
-		return (KO);
-	if (check_header_cardinal(header->we) == KO)
-		return (KO);
-	if (check_header_cardinal(header->ea) == KO)
-		return (KO);
-	if (check_header_no_cardinal(header->f) == KO)
-		return (KO);
-	if (check_header_no_cardinal(header->c) == KO)
-		return (KO);
-	return (OK);
 }

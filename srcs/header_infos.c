@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:45 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 15:20:30 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:42:13 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,23 +88,23 @@ int	header_init(t_header *header, char *line, int *nb_label)
 	if (ft_strlen(line) == 1)
 		return (free(line), OK);
 	split_line = ft_split(line);
-	if (ft_len_tab(split_line) != 2 || !split_line)
-		return (err("Bad format header\n"), clean_header(header),
+	if (!split_line || ft_len_tab(split_line) != 2
+		|| header_issue(split_line[0]) == KO)
+	{
+		return (err("Bad format header\n"),
 			free(line), freetab((void **)split_line, -1), KO);
+	}
 	while (split_line[++i] && ft_isalpha(split_line[i][0]) == 0)
 		;
 	j = i;
-	if (header_issue(header, line, split_line) == KO)
-		return (KO);
 	while (split_line[++j] && ft_strlen(split_line[j]) < 5)
 		;
 	if (fill_header(split_line, i, j) == OK
 		&& label_empty(header, split_line[i]) == OK)
 		return ((*nb_label)++, store_label(&header, split_line, i, j),
-			free(line), OK);
+			shield_malloc(line), OK);
 	else
-		return (clean_header(header),
-			shield_malloc(line), freetab((void **)split_line, -1), KO);
+		return (shield_malloc(line), freetab((void **)split_line, -1), KO);
 }
 
 t_header	*header_creation(char *file)
@@ -128,10 +128,10 @@ t_header	*header_creation(char *file)
 			return (free(header), err(ERROR),
 				err(ERR_HEADER_0), close(fd), NULL);
 		if (header_init(header, line, &nb_label) == KO)
-			return (err(ERROR), err(ERR_HEADER_1), close(fd), NULL);
+			return (err(ERROR), err(ERR_HEADER_1),
+				close(fd), clean_header(header), NULL);
 	}
-	if (header_format(header) == KO)
-		return (err(ERROR), err("Creation header failed!\n"),
-			clean_header(header), close(fd), NULL);
+	if (header_format(header, fd) == KO)
+		return (err(EH), clean_header(header), close(fd), NULL);
 	return (close(fd), header);
 }

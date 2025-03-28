@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/23 14:37:59 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:27:12 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,14 @@ static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 	c = ray->color;
 	p_r_t = &ptr->raycast->texture[0];
 	y = ray->draw_start;
+	double y_end = ray->draw_end - ray->draw_start;
 	while (y < ray->draw_end)
 	{
+		double y_l = y - ray->draw_start;
+		double y_p = y_l / y_end;
 		ray->texture_id = get_tex_id(ray);
 		if (ray->draw_end - ray->draw_start > 0)
-			ray->tex_y = (int)ray->texture_pos & (TEXTURE_DIM - 1);
+			ray->tex_y = (int) (y_p * (TEXTURE_DIM - 1));
 		else
 			ray->tex_y = 0;
 		if (ray->tex_y < 0)

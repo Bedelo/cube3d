@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 09:14:11 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 15:17:25 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:06:53 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ void	free_map(t_map_creation *m)
 	free(m);
 }
 
-int	header_issue(t_header *header, char *line, char **split_line)
+int	header_issue(char *split_line)
 {
-	if (split_line[0][1] == '0' || split_line[0][1] == '1')
-		return (clean_header(header), free(line),
-			freetab((void **)split_line, -1), KO);
+	if (*split_line == '0' || *split_line == '1')
+		return (KO);
 	return (OK);
 }
