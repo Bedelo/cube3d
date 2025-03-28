@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yparthen <yparthen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:51 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/25 16:33:00 by yparthen         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:06:16 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_infos	*init_infos(char **av, t_infos *i)
 	infos = init_player(&infos);
 	if (!infos)
 		return (free(infos->player), clean_header(infos->header),
-	clean_map(infos->map), free(infos), NULL);
+			clean_map(infos->map), free(infos), NULL);
 	i = infos;
 	return (i);
 }
