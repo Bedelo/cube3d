@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:31 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/28 15:13:05 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 20:01:35 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define OK 0
 # define EH "Error\nCreation header failed!\n"
 # define ROT_SPEED 0.15
-# define MOVE_SPEED 0.75
+# define MOVE_SPEED 0.15
 # define FOV 0.66
 # define COS_ANGLE 0.9971871872
 # define SIN_ANGLE 0.0749297073

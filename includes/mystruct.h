@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 14:45:35 by bsunda            #+#    #+#             */
-/*   Updated: 2025/03/28 11:44:00 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:57:02 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_ray
 	int				draw_start;
 	int				draw_end;
 	int				color;
+	double			y_end;
+	double			y_l;
+	double			y_p;
 }					t_ray;
 
 typedef struct s_header

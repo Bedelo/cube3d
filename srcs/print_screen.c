@@ -6,7 +6,7 @@
 /*   By: bsunda <bsunda@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:57:19 by yparthen          #+#    #+#             */
-/*   Updated: 2025/03/28 19:27:12 by bsunda           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:57:23 by bsunda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,21 @@ static int	get_tex_id(t_ray *ray)
 	}
 }
 
-static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
+static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x, int **tx)
 {
 	int	y;
-	int	**p_r_t;
 	int	c;
 
 	c = ray->color;
-	p_r_t = &ptr->raycast->texture[0];
 	y = ray->draw_start;
-	double y_end = ray->draw_end - ray->draw_start;
+	ray->y_end = ray->draw_end - ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		double y_l = y - ray->draw_start;
-		double y_p = y_l / y_end;
+		ray->y_l = y - ray->draw_start;
+		ray->y_p = ray->y_l / ray->y_end;
 		ray->texture_id = get_tex_id(ray);
 		if (ray->draw_end - ray->draw_start > 0)
-			ray->tex_y = (int) (y_p * (TEXTURE_DIM - 1));
+			ray->tex_y = (int)(ray->y_p * (TEXTURE_DIM - 1));
 		else
 			ray->tex_y = 0;
 		if (ray->tex_y < 0)
@@ -79,9 +77,7 @@ static void	put_texture_to_buffer(t_launcher *ptr, t_ray *ray, int x)
 		if (ray->tex_y >= TEXTURE_DIM)
 			ray->tex_y = TEXTURE_DIM - 1;
 		ray->texture_pos += ray->step;
-		c = p_r_t[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
-		if (ray->side == 1)
-			c = (c >> 1) & 8355711;
+		c = tx[ray->texture_id][TEXTURE_DIM * ray->tex_y + ray->tex_x];
 		put_pixel_to_buffer(&ptr->img, x, y, c);
 		y++;
 	}
@@ -100,5 +96,5 @@ void	print_pixels(t_launcher *ptr, t_ray *ray, int x)
 	ray->step = 1.0 * TEXTURE_DIM / ray->line_height;
 	ray->texture_pos = (ray->draw_start - TEXTURE_DIM / 2.0 + ray->line_height
 			/ 2) * ray->step;
-	put_texture_to_buffer(ptr, ray, x);
+	put_texture_to_buffer(ptr, ray, x, (ptr->raycast->texture));
 }
